@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+
 @Test(groups = "Block")
 public class SBlockTest {
 
@@ -16,7 +18,7 @@ public class SBlockTest {
         int expectedNumbersOfColumns = 3;
 
         //then
-        Assert.assertEquals(block.cols, expectedNumbersOfColumns, "Block should have three columns");
+        assertEquals(block.cols, expectedNumbersOfColumns, "Block should have three columns");
     }
 
     @Test
@@ -28,7 +30,7 @@ public class SBlockTest {
         int expectedNumberOfRows = 2;
 
         //then
-        Assert.assertEquals(block.rows, expectedNumberOfRows, "Block should have two rows");
+        assertEquals(block.rows, expectedNumberOfRows, "Block should have two rows");
     }
 
     @Test(dataProvider = "blockPoints")
@@ -40,7 +42,7 @@ public class SBlockTest {
         byte blockValue = block.dotAt(x, y);
 
         //then
-        Assert.assertEquals(blockValue, testValue, "Block should have different value here");
+        assertEquals(blockValue, testValue, "Block should have different value here");
     }
 
     @DataProvider()

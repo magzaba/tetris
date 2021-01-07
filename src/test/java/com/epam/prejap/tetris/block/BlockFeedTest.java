@@ -56,7 +56,7 @@ public class BlockFeedTest {
                 .anyMatch(e -> e instanceof SBlock);
 
         //then
-        Assert.assertTrue(containsSBlock, "Block feed must contain SBlock");
+        assertTrue(containsSBlock, "Block feed must contain SBlock");
     }
 
     @Test(dependsOnMethods = "shallContainSBlock")
