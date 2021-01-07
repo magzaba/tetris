@@ -1,7 +1,7 @@
 package com.epam.prejap.tetris.block;
 
 /**
- * The class is derived from {@link Block} and represents S-shaped block:
+ * The class represents S-shaped block:
  * <pre> ##<br/>## </pre>
  *
  * @author  Aleksander Konieczny
