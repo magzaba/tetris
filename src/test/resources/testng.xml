@@ -5,18 +5,26 @@
 <!-- *************************************************************** -->
 
 <suite name="TetrisSuite" time-out="10000" verbose="1">
-    <test name="CompleteTests">
+    <test name="Player">
         <groups>
             <run>
-                <include name="Block"/>
                 <include name="Player"/>
             </run>
         </groups>
         <classes>
+            <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
+        </classes>
+    </test>
+    <test name="Block">
+        <groups>
+            <run>
+                <include name="Block"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.epam.prejap.tetris.block.BlockFeedTest"/>
             <class name="com.epam.prejap.tetris.block.LBlockTest"/>
             <class name="com.epam.prejap.tetris.block.SBlockTest"/>
-            <class name="com.epam.prejap.tetris.block.BlockFeedTest"/>
-            <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
         </classes>
     </test>
 </suite>
