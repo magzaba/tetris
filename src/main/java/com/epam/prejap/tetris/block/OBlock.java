@@ -11,4 +11,12 @@ final class OBlock extends Block {
         super(IMAGE);
     }
 
+    private OBlock(byte[][] image) {
+        super(image);
+    }
+
+    @Override
+    public Block copyWithImage(byte[][] image) {
+        return new OBlock(image);
+    }
 }

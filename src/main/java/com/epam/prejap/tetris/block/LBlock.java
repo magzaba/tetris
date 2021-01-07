@@ -1,5 +1,7 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.Arrays;
+
 /**
  * The LBlock class represents block shape of "L" in tetris game.
  *
@@ -7,7 +9,7 @@ package com.epam.prejap.tetris.block;
  * arranged in a way to form required shape.
  *
  */
-final class LBlock extends Block{
+final class LBlock extends Block {
 
     private static final byte[][] IMAGE = {
             {1, 0},
@@ -19,4 +21,12 @@ final class LBlock extends Block{
         super(IMAGE);
     }
 
+    private LBlock(byte[][] image) {
+        super(image);
+    }
+
+    @Override
+    public Block copyWithImage(byte[][] image) {
+        return new LBlock(image);
+    }
 }
