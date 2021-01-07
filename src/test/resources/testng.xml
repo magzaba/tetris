@@ -14,7 +14,7 @@
         </groups>
         <classes>
             <class name="com.epam.prejap.tetris.block.LBlockTest"/>
-            <class name="com.epam.prejap.tetris.block.SBlockTests"/>
+            <class name="com.epam.prejap.tetris.block.SBlockTest"/>
             <class name="com.epam.prejap.tetris.block.BlockFeedTest"/>
             <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
         </classes>

@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 @Test(groups = "Block")
-public class SBlockTests {
+public class SBlockTest {
 
     @Test
     public void blockShouldHaveThreeColumns() {
