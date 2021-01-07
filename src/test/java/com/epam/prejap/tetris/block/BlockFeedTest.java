@@ -47,7 +47,10 @@ public class BlockFeedTest {
     @Test
     public void blockListContainsSBlock() {
         BlockFeed blockFeed = new BlockFeed();
-        boolean containsSBlock = blockFeed.blocks().stream().map(Supplier::get).anyMatch(e -> e instanceof SBlock);
+        boolean containsSBlock = blockFeed.blocks()
+                .stream()
+                .map(Supplier::get)
+                .anyMatch(e -> e instanceof SBlock);
         Assert.assertTrue(containsSBlock, "Block feed must contain SBlock");
     }
 }
