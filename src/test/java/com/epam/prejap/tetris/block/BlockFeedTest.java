@@ -46,22 +46,32 @@ public class BlockFeedTest {
 
     @Test
     public void shallContainSBlock() {
+        //given
         BlockFeed blockFeed = new BlockFeed();
+
+        //when
         boolean containsSBlock = blockFeed.blocks()
                 .stream()
                 .map(Supplier::get)
                 .anyMatch(e -> e instanceof SBlock);
+
+        //then
         Assert.assertTrue(containsSBlock, "Block feed must contain SBlock");
     }
 
     @Test(dependsOnMethods = "shallContainSBlock")
     public void shallContainOnlyOneSBlock() {
+        //given
         BlockFeed feed = new BlockFeed();
+
+        //when
         List<Block> blocks = feed.blocks()
                 .stream()
                 .map(Supplier::get)
                 .filter(e -> e instanceof SBlock)
                 .collect(Collectors.toList());
+
+        //then
         assertEquals(blocks.size(), 1, "Block feed should contain only one SBlock");
     }
 }

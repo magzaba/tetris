@@ -9,22 +9,37 @@ public class SBlockTest {
 
     @Test
     public void blockShouldHaveThreeColumns() {
+        //given
         SBlock block = new SBlock();
+
+        //when
         int expectedNumbersOfColumns = 3;
+
+        //then
         Assert.assertEquals(block.cols, expectedNumbersOfColumns, "Block should have three columns");
     }
 
     @Test
     public void blockShouldHaveTwoRows() {
+        //given
         SBlock block = new SBlock();
+
+        //when
         int expectedNumberOfRows = 2;
+
+        //then
         Assert.assertEquals(block.rows, expectedNumberOfRows, "Block should have two rows");
     }
 
     @Test(dataProvider = "blockPoints")
     public void shouldHaveSShape(int x, int y, int testValue) {
+        //given
         SBlock block = new SBlock();
+
+        //when
         byte blockValue = block.dotAt(x, y);
+
+        //then
         Assert.assertEquals(blockValue, testValue, "Block should have different value here");
     }
 
