@@ -54,5 +54,14 @@ public class BlockFeedTest {
         Assert.assertTrue(containsSBlock, "Block feed must contain SBlock");
     }
 
-
+    @Test(dependsOnMethods = "shallContainSBlock")
+    public void shallContainOnlyOneSBlock() {
+        BlockFeed feed = new BlockFeed();
+        List<Block> blocks = feed.blocks()
+                .stream()
+                .map(Supplier::get)
+                .filter(e -> e instanceof SBlock)
+                .collect(Collectors.toList());
+        assertEquals(blocks.size(), 1, "Block feed should contain only one SBlock");
+    }
 }
