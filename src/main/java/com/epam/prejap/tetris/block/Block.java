@@ -1,5 +1,7 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.HashMap;
+
 public abstract class Block {
 
     final byte[][] image;
@@ -38,5 +40,17 @@ public abstract class Block {
     public byte dotAt(int i, int j) {
         return image[i][j];
     }
+
+    /**
+     * Creates and returns a copy of this object with {@link Block#image}
+     * field changed to the value passed as {@code image} argument.
+     *
+     * @implSpec should create a defensive copy of implementing object's fields.
+     *
+     * @param   image new block image that will be the image of a returned object
+     * @return  a copy of this object with changed {@link Block#image} field,
+     *          returned object also has the same type as this concrete object
+     */
+    public abstract Block copyWithImage(byte[][] image);
 
 }
