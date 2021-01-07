@@ -8,7 +8,7 @@ import java.util.Random;
 
 import static org.testng.Assert.*;
 
-@Test(groups = "Player")
+@Test(groups = {"RandomPlayer", "Player"})
 public class RandomPlayerTest {
 
     class MockRandom extends Random {

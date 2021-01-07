@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-@Test(groups = "Block")
+@Test(groups = {"Block", "BlockFeed"})
 public class BlockFeedTest {
 
     @Test
