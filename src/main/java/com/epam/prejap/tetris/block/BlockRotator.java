@@ -17,7 +17,7 @@ public class BlockRotator {
 
     }
 
-    private byte[][] rotateBlockImage90DegreesClockwise() {
+    byte[][] rotateBlockImage90DegreesClockwise() {
         int rotatedRows = block.cols();
         int rotatedColumns = block.rows();
         Point rotatedImageSize = new Point(rotatedRows, rotatedColumns);
@@ -37,11 +37,11 @@ public class BlockRotator {
     }
 
     private void rotatePointOnImage(byte[][] rotatedImage, Point rotatedImageSize, Point toRotate) {
-        Point rotated = rotatePoint90DegreesClockwise(toRotate, rotatedImageSize);
+        Point rotated = rotatePointOnRotatedImage(toRotate, rotatedImageSize);
         rotatedImage[rotated.row][rotated.column] = block.dotAt(toRotate.row, toRotate.column);
     }
 
-    private Point rotatePoint90DegreesClockwise(Point toRotate, Point rotatedImageSize) {
+    Point rotatePointOnRotatedImage(Point toRotate, Point rotatedImageSize) {
         int rotatedRow = toRotate.column;
         int rotatedColumn = rotatedImageSize.column - 1 - toRotate.row;
         return new Point(rotatedRow, rotatedColumn);
