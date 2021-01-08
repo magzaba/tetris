@@ -51,6 +51,6 @@ public abstract class Block {
      * @return  a copy of this object with changed {@link Block#image} field,
      *          returned object also has the same type as this concrete object
      */
-    public abstract Block copyWithImage(byte[][] image);
+    abstract Block copyWithImage(byte[][] image);
 
 }

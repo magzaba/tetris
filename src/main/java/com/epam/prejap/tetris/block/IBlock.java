@@ -27,7 +27,7 @@ final class IBlock extends Block {
     }
 
     @Override
-    public Block copyWithImage(byte[][] image) {
+    Block copyWithImage(byte[][] image) {
         return new IBlock(image);
     }
 }

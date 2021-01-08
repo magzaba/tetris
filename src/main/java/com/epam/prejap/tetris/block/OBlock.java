@@ -16,7 +16,7 @@ final class OBlock extends Block {
     }
 
     @Override
-    public Block copyWithImage(byte[][] image) {
+    Block copyWithImage(byte[][] image) {
         return new OBlock(image);
     }
 }
