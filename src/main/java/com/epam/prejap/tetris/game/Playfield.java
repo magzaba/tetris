@@ -2,6 +2,7 @@ package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.Block;
 import com.epam.prejap.tetris.block.BlockFeed;
+import com.epam.prejap.tetris.block.BlockRotator;
 
 public class Playfield {
 
@@ -12,6 +13,7 @@ public class Playfield {
     private final BlockFeed feed;
 
     private Block block;
+    private BlockRotator blockRotator;
     private int row;
     private int col;
 
@@ -25,6 +27,7 @@ public class Playfield {
 
     public void nextBlock() {
         block = feed.nextBlock();
+        blockRotator = new BlockRotator(block);
         row = 0;
         col = (cols - block.cols()) / 2;
         show();
@@ -36,10 +39,21 @@ public class Playfield {
         switch (move) {
             case LEFT -> moveLeft();
             case RIGHT -> moveRight();
+            case UP -> rotateBlock();
         }
         moved = moveDown();
         show();
         return moved;
+    }
+
+    private void rotateBlock() {
+        blockRotator.rotate();
+        block = blockRotator.getRotatedBlock();
+        var offset = blockRotator.getBlockOffset();
+        if (!move(offset.row, offset.column)) {
+            blockRotator.rotateBack();
+            block = blockRotator.getRotatedBlock();
+        }
     }
 
 
