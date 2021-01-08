@@ -16,6 +16,10 @@
             <define name="Player">
                 <include name="RandomPlayer" />
             </define>
+            <define name="Game">
+                <include name="PrinterTest" />
+                <include name="TimerTest" />
+            </define>
             <run>
                 <include name="Block"/>
                 <include name="Player"/>
