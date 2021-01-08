@@ -1,5 +1,8 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class BlockRotator {
 
     private static final Point NO_OFFSET = new Point(0, 0);
@@ -7,11 +10,17 @@ public class BlockRotator {
     private Block block;
     private Point blockOffset;
 
+    private final LastBlockRotation lastRotation;
+    private boolean rotationBackLocked;
     private Point rotationPoint;
 
     public BlockRotator(Block block) {
         this.block = block;
         rotationPoint = blockRotationPoint();
+        blockOffset = NO_OFFSET;
+
+        lastRotation = new LastBlockRotation();
+        rotationBackLocked = true;
     }
 
     public Block getRotatedBlock() {
@@ -22,13 +31,9 @@ public class BlockRotator {
         return blockOffset;
     }
 
-    Point blockRotationPoint() {
-        int middleRow = block.rows()/2;
-        int middleColumn = block.cols()/2;
-        return new Point(middleRow, middleColumn);
-    }
-
     public void rotate() {
+        saveLastRotation();
+
         int rotatedRows = block.cols();
         int rotatedColumns = block.rows();
         Point rotatedImageSize = new Point(rotatedRows, rotatedColumns);
@@ -37,6 +42,35 @@ public class BlockRotator {
         blockOffset = setNewRotationPoint(rotatedImageSize);
 
         block = block.copyWithImage(rotatedImage);
+    }
+
+    private void saveLastRotation() {
+        rotationBackLocked = false;
+        lastRotation.block = block;
+        lastRotation.rotationPoint = rotationPoint;
+        lastRotation.blockOffset = blockOffset;
+    }
+
+    public void rotateBack() {
+        if (rotationBackLocked) {
+            throw new CannotRotateBackException("Before each rotateBack at least one rotate call must be made!");
+        }
+        block = lastRotation.block;
+        blockOffset = lastRotation.blockOffset;
+        rotationPoint = lastRotation.rotationPoint;
+        rotationBackLocked = true;
+    }
+
+    private class LastBlockRotation {
+        private Block block;
+        private Point blockOffset;
+        private Point rotationPoint;
+    }
+
+    Point blockRotationPoint() {
+        int middleRow = block.rows()/2;
+        int middleColumn = block.cols()/2;
+        return new Point(middleRow, middleColumn);
     }
 
     /**
@@ -89,5 +123,5 @@ public class BlockRotator {
         int rotatedColumn = rotatedImageSize.column - 1 - toRotate.row;
         return new Point(rotatedRow, rotatedColumn);
     }
-    
+
 }
