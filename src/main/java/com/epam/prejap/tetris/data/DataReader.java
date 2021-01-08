@@ -17,4 +17,5 @@ final class DataReader {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(path.toFile(), HallOfFame[].class);
     }
+
 }
