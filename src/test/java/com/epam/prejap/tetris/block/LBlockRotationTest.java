@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertEquals;
 
+@Test(groups = "BlockRotation")
 public class LBlockRotationTest {
 
     @DataProvider

@@ -11,11 +11,14 @@
                 <include name="Block"/>
                 <include name="Player"/>
                 <include name="Timer"/>
+                <include name="BlockRotation"/>
             </run>
         </groups>
         <classes>
             <class name="com.epam.prejap.tetris.block.LBlockTest"/>
             <class name="com.epam.prejap.tetris.block.BlockFeedTest"/>
+            <class name="com.epam.prejap.tetris.block.BlockRotatorTest"/>
+            <class name="com.epam.prejap.tetris.block.LBlockRotationTest"/>
             <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
             <class name="com.epam.prejap.tetris.game.PrinterTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
