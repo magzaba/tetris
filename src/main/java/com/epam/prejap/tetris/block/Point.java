@@ -2,9 +2,9 @@ package com.epam.prejap.tetris.block;
 
 import java.util.Objects;
 
-class Point {
-    final int row;
-    final int column;
+public class Point {
+    public final int row;
+    public final int column;
 
     Point(int row, int column) {
         this.row = row;
