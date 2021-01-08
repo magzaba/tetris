@@ -2,6 +2,8 @@ package com.epam.prejap.tetris.block;
 
 public class BlockRotator {
 
+    private static final Point NO_OFFSET = new Point(0, 0);
+
     private Block block;
     private Point blockOffset;
 
@@ -46,6 +48,12 @@ public class BlockRotator {
         Point newRotationPoint = rotatePointOnRotatedImage(rotationPoint, rotatedImageSize);
         var blockOffset = calculateOffset(rotationPoint, newRotationPoint);
         rotationPoint = newRotationPoint;
+
+        boolean blockImageIsSquare = block.cols() == block.rows();
+        if (blockImageIsSquare) {
+            return NO_OFFSET;
+        }
+
         return blockOffset;
     }
 
