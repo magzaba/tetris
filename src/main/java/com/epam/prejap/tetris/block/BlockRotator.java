@@ -3,12 +3,20 @@ package com.epam.prejap.tetris.block;
 public class BlockRotator {
 
     private Block block;
+
+    private Point rotationPoint;
     private Point blockOffset;
 
     public BlockRotator(Block block) {
         this.block = block;
+        rotationPoint = blockRotationPoint();
     }
 
+    Point blockRotationPoint() {
+        int middleRow = block.rows()/2;
+        int middleColumn = block.cols()/2;
+        return new Point(middleRow, middleColumn);
+    }
 
     public void rotate() {
         byte[][] rotatedImage = rotateBlockImage90DegreesClockwise();
