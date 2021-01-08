@@ -17,8 +17,7 @@
                 <include name="RandomPlayer" />
             </define>
             <define name="Game">
-                <include name="PrinterTest" />
-                <include name="TimerTest" />
+                <include name="Timer" />
             </define>
             <run>
                 <include name="Block"/>
