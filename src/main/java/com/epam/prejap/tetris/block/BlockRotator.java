@@ -17,7 +17,7 @@ public class BlockRotator {
 
     }
 
-    byte[][] rotateBlockImage90DegreesClockwise() {
+    private byte[][] rotateBlockImage90DegreesClockwise() {
         int rotatedRows = block.cols();
         int rotatedColumns = block.rows();
         Point rotatedImageSize = new Point(rotatedRows, rotatedColumns);

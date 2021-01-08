@@ -1,8 +1,6 @@
 package com.epam.prejap.tetris.block;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -14,6 +12,9 @@ public class BlockRotatorTest {
     public Object[][] pointsToRotate() {
         return new Object[][] {
                 {new Point(0, 1), new Point(2,3 ), new Point(1, 2)},
+                {new Point(1, 2), new Point(3,2 ), new Point(2, 0)},
+                {new Point(2, 0), new Point(2,3 ), new Point(0, 0)},
+                {new Point(0, 0), new Point(3,2 ), new Point(0, 1)},
         };
     }
 
@@ -31,7 +32,8 @@ public class BlockRotatorTest {
         assertEquals(result, rotatedPoint);
     }
 
-    @Ignore
+
+    @Test(enabled = false)
     public void shouldRotateBlock90DegreesClockwise() {
         // given
         BlockRotator blockRotator = new BlockRotator(null);
