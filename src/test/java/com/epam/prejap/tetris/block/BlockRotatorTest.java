@@ -55,11 +55,4 @@ public class BlockRotatorTest {
         assertEquals(result, rotationPoint);
     }
 
-    @Test(enabled = false)
-    public void shouldRotateBlock90DegreesClockwise() {
-        // given
-        BlockRotator blockRotator = new BlockRotator(null);
-    }
-
-
 }
