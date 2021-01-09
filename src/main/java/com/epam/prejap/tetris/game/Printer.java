@@ -1,7 +1,14 @@
 package com.epam.prejap.tetris.game;
 
+import com.epam.prejap.tetris.data.DataReader;
+import com.epam.prejap.tetris.data.HallOfFame;
+
+import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Scanner;
 
 public class Printer {
 
@@ -56,4 +63,30 @@ public class Printer {
         String elapsedTime = String.format(TIME_FORMAT, duration.toHours(), duration.toMinutesPart(), duration.toSecondsPart());
         out.println("Time: " + elapsedTime);
     }
+
+    /**
+     * Prints high scores in format "[number]. Name: [name], Score: [points]".
+     */
+    void hallOfFame(HallOfFame[] hallOfFames){
+        border(25);
+        out.println("HALL OF FAME\n");
+        for (int i = 0; i < hallOfFames.length; i++) {
+            int order = i + 1;
+            out.println(order + ". " + hallOfFames[i]);
+        }
+        border(25);
+    }
+
+    /**
+     * Prints new high score
+     *
+     * @param score int representing new high score
+     */
+    void newHighScore(final int score){
+        String highScore = "NEW HIGH SCORE!";
+        border(highScore.length());
+        out.println(highScore + "\n" + score);
+        border(highScore.length());
+    }
+
 }

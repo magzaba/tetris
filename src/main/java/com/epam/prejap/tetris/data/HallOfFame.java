@@ -20,8 +20,8 @@ public final class HallOfFame implements Comparable<HallOfFame> {
     private final int points;
 
     @JsonCreator()
-    HallOfFame(@JsonProperty("name") final String name,
-               @JsonProperty("points") final int points) {
+    public HallOfFame(@JsonProperty("name") final String name,
+                      @JsonProperty("points") final int points) {
         this.name = name;
         this.points = points;
     }
@@ -41,8 +41,8 @@ public final class HallOfFame implements Comparable<HallOfFame> {
 
     @Override
     public String toString() {
-        return "Name: " + name + '\'' +
-                ", Score: " + points + '}';
+        return "Name: " + name +
+                ", Score: " + points;
     }
 
     /**
