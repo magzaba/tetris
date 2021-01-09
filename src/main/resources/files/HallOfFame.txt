@@ -33,4 +33,8 @@
 {
 "name" : "Pl9",
 "points" : 9
+},
+{
+"name" : "P10",
+"points" : 10
 }]

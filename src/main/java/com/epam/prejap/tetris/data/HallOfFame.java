@@ -48,9 +48,9 @@ public class HallOfFame {
 
 
     /**
-     * Add new member to {@link HallOfFame}.
+     * Add new member to {@link HallOfFame} and save to file.
      *
-     * <p>List of members is sorted descending by points and limited to 25 elements. New lists is saved to file.
+     * <p>List of members is sorted descending by points, limited to 25 elements and printed.
      *
      * @param newMember entitled to enter hall of fame
      * @return updated list of members
@@ -59,11 +59,11 @@ public class HallOfFame {
     List<HallOfFameMember> enterHallOfFame(final HallOfFameMember newMember) throws IOException {
         members.add(newMember);
         Collections.sort(members);
+        writer.writeToFile(members.toArray(HallOfFameMember[]::new));
         var limitedMembers = members.stream()
                 .limit(25)
                 .toArray(HallOfFameMember[]::new);
 
-        writer.writeToFile(limitedMembers);
         printer.hallOfFame(limitedMembers);
         return Arrays.asList(limitedMembers);
     }
