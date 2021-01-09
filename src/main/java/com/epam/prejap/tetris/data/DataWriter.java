@@ -7,7 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class DataWriter {
+/**
+ * The DataWriter class is responsible for writing data to file of specified {@link DataWriter#path}.
+ */
+final class DataWriter {
 
     private final Path path;
 
@@ -15,6 +18,15 @@ public class DataWriter {
         this.path = path;
     }
 
+    /**
+     * Writes array of {@link HallOfFame} objects to file.
+     *
+     * <p>Data is saved from array of {@link HallOfFame} objects to file of {@link DataWriter#path} in JSON array format
+     * using Jackson library.
+     *
+     * @param hallOfFames - an array of {@link HallOfFame} objects
+     * @throws IOException if writing to file unsuccessful
+     */
     void writeToFile(HallOfFame[] hallOfFames) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);

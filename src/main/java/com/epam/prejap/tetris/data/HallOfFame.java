@@ -5,6 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ * The HallOfFame class represents {@link HallOfFame#name} and {@link HallOfFame#points} of player with highest scores
+ * in tetris game.
+ *
+ * <p>Acts as definition of mapper from JSON using Jackson library.
+ */
 final class HallOfFame {
 
     private final String name;
