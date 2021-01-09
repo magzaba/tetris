@@ -3,10 +3,7 @@ package com.epam.prejap.tetris.data;
 import com.epam.prejap.tetris.game.Printer;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class HallOfFame {
 
@@ -40,6 +37,7 @@ public class HallOfFame {
                 .findAny();
 
         if (anyDefeated.isPresent()){
+            printer.newHighScore(points);
             HallOfFameMember newMember = printer.readInitials(points);
             members = enterHallOfFame(newMember);
             return true;
@@ -65,6 +63,7 @@ public class HallOfFame {
                 .toArray(HallOfFameMember[]::new);
 
         writer.writeToFile(limitedMembers);
+        printer.hallOfFame(limitedMembers);
         return Arrays.asList(limitedMembers);
     }
 

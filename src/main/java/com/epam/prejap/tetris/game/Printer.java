@@ -63,14 +63,14 @@ public class Printer {
     /**
      * Prints high scores in format "[number]. Name: [name], Score: [points]".
      */
-    void hallOfFame(HallOfFameMember[] hallOfFameMembers){
-        border(25);
+    public void hallOfFame(HallOfFameMember[] hallOfFameMembers){
+        border(20);
         out.println("HALL OF FAME\n");
         for (int i = 0; i < hallOfFameMembers.length; i++) {
             int order = i + 1;
             out.println(order + ". " + hallOfFameMembers[i]);
         }
-        border(25);
+        border(20);
     }
 
     /**
@@ -78,7 +78,7 @@ public class Printer {
      *
      * @param score int representing new high score
      */
-    void newHighScore(final int score){
+    public void newHighScore(final int score){
         String highScore = "NEW HIGH SCORE!";
         border(highScore.length());
         out.println(highScore + "\n" + score);
