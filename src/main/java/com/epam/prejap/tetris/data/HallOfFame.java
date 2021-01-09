@@ -5,6 +5,11 @@ import com.epam.prejap.tetris.game.Printer;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * The HallOfFame class represents highest number of points in tetris game.
+ *
+ * <p>Implementation note: It contains List with {@link HallOfFameMember} read from file.
+ */
 public class HallOfFame {
 
     private final DataReader reader;
@@ -28,8 +33,8 @@ public class HallOfFame {
     /**
      * Try to enter high score {@link HallOfFame} if number of points is sufficient
      *
-     * @param points
-     * @return
+     * @param points int representing points won in game
+     * @return boolean if qualified to enter high scores
      * @throws IOException
      */
     public boolean tryToEnterHallOfFame(final int points) throws IOException {

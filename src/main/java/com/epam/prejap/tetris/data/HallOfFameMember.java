@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
 /**
- * The HallOfFame class represents {@link HallOfFameMember#name} and {@link HallOfFameMember#points} of player with highest scores
+ * The HallOfFameMember class represents {@link HallOfFameMember#name} and {@link HallOfFameMember#points} of player with highest scores
  * in tetris game.
  *
  * <p>Acts as definition of mapper from JSON using Jackson library.
@@ -51,6 +51,7 @@ public final class HallOfFameMember implements Comparable<HallOfFameMember> {
 
     /**
      * Compares this object to the other using <strong>reverse</strong> order of {@link Integer#compare(int x, int y)}
+     *
      * @param o object to be compared against
      * @return the value {@code 0} if {@code x == y};
      *         a value greater than {@code 0} if {@code x < y}; and
