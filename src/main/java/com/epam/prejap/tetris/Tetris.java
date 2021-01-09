@@ -1,13 +1,21 @@
 package com.epam.prejap.tetris;
 
 import com.epam.prejap.tetris.block.BlockFeed;
+import com.epam.prejap.tetris.data.DataReader;
+import com.epam.prejap.tetris.data.DataWriter;
+import com.epam.prejap.tetris.data.HallOfFame;
 import com.epam.prejap.tetris.game.*;
 import com.epam.prejap.tetris.player.Player;
 import com.epam.prejap.tetris.player.RandomPlayer;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 
 class Tetris {
+
+    private static final Path PATH = Paths.get("src/java/resources/files/HallOfFame.txt");
 
     private final Playfield playfield;
     private final Waiter waiter;
@@ -43,7 +51,7 @@ class Tetris {
         return new Score(score);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int rows = 10;
         int cols = 20;
         int delay = 500;
@@ -56,6 +64,11 @@ class Tetris {
 
 
         var score = game.play();
+
+        var reader = new DataReader(PATH);
+        var writer = new DataWriter(PATH);
+        var hallOfFame = new HallOfFame(reader, writer, printer);
+        hallOfFame.tryToEnterHallOfFame(score.points());
 
         System.out.println("Score: " + score.points());
     }

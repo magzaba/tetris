@@ -14,7 +14,7 @@ public final class DataWriter {
 
     private final Path path;
 
-    DataWriter(final Path path) {
+    public DataWriter(final Path path) {
         this.path = path;
     }
 
