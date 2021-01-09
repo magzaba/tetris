@@ -15,7 +15,7 @@ import java.util.Random;
 
 class Tetris {
 
-    private static final Path PATH = Paths.get("src/java/resources/files/HallOfFame.txt");
+    private static final Path PATH = Paths.get("src/main/resources/files/HallOfFame.txt");
 
     private final Playfield playfield;
     private final Waiter waiter;
@@ -64,13 +64,13 @@ class Tetris {
 
 
         var score = game.play();
+        System.out.println("Score: " + score.points());
 
         var reader = new DataReader(PATH);
         var writer = new DataWriter(PATH);
         var hallOfFame = new HallOfFame(reader, writer, printer);
         hallOfFame.tryToEnterHallOfFame(score.points());
 
-        System.out.println("Score: " + score.points());
     }
 
 }
