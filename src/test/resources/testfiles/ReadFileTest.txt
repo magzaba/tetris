@@ -35,6 +35,6 @@
 "points" : 9
 },
 {
-"name" : "Pl10",
+"name" : "P10",
 "points" : 10
 }]

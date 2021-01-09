@@ -51,7 +51,7 @@ public class DataReaderTest {
         HallOfFameMember player7 = new HallOfFameMember("Pl7", 7);
         HallOfFameMember player8 = new HallOfFameMember("Pl8", 8);
         HallOfFameMember player9 = new HallOfFameMember("Pl9", 9);
-        HallOfFameMember player10 = new HallOfFameMember("Pl10", 10);
+        HallOfFameMember player10 = new HallOfFameMember("P10", 10);
 
         return new HallOfFameMember[][]{{player1, player2, player3, player4, player5, player6, player7, player8, player9, player10}};
     }
