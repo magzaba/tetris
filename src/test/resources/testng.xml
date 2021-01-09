@@ -13,6 +13,7 @@
                 <include name="Timer"/>
                 <include name="DataReader"/>
                 <include name="DataWriter"/>
+                <include name="HallOfFameMember"/>
             </run>
         </groups>
         <classes>
@@ -23,6 +24,7 @@
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
             <class name="com.epam.prejap.tetris.data.DataReaderTest"/>
             <class name="com.epam.prejap.tetris.data.DataWriterTest"/>
+            <class name="com.epam.prejap.tetris.data.HallOfFameMemberTest"/>
         </classes>
     </test>
 </suite>
