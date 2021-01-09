@@ -1,12 +1,8 @@
 package com.epam.prejap.tetris.game;
 
-import com.epam.prejap.tetris.data.DataReader;
-import com.epam.prejap.tetris.data.HallOfFame;
+import com.epam.prejap.tetris.data.HallOfFameMember;
 
-import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Scanner;
 
@@ -67,18 +63,18 @@ public class Printer {
     /**
      * Prints high scores in format "[number]. Name: [name], Score: [points]".
      */
-    void hallOfFame(HallOfFame[] hallOfFames){
+    void hallOfFame(HallOfFameMember[] hallOfFameMembers){
         border(25);
         out.println("HALL OF FAME\n");
-        for (int i = 0; i < hallOfFames.length; i++) {
+        for (int i = 0; i < hallOfFameMembers.length; i++) {
             int order = i + 1;
-            out.println(order + ". " + hallOfFames[i]);
+            out.println(order + ". " + hallOfFameMembers[i]);
         }
         border(25);
     }
 
     /**
-     * Prints new high score
+     * Prints new high score with borders
      *
      * @param score int representing new high score
      */
@@ -95,11 +91,11 @@ public class Printer {
      * @param score int representing new high score
      * @return new member of HallOfFame with param score and input name
      */
-    HallOfFame readInitials(final int score) {
+    public HallOfFameMember readInitials(final int score) {
         out.print("ENTER YOUR INITIALS [MAX 3]: ");
         Scanner in = new Scanner(System.in);
         String name = in.next(".{1,3}");
-        return new HallOfFame(name, score);
+        return new HallOfFameMember(name, score);
     }
 
 }

@@ -6,31 +6,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
 /**
- * The HallOfFame class represents {@link HallOfFame#name} and {@link HallOfFame#points} of player with highest scores
+ * The HallOfFame class represents {@link HallOfFameMember#name} and {@link HallOfFameMember#points} of player with highest scores
  * in tetris game.
  *
  * <p>Acts as definition of mapper from JSON using Jackson library.
  *
  * <p>Natural order of objects means descending by points.
  */
-public final class HallOfFame implements Comparable<HallOfFame> {
+public final class HallOfFameMember implements Comparable<HallOfFameMember> {
 
     private final String name;
 
     private final int points;
 
     @JsonCreator()
-    public HallOfFame(@JsonProperty("name") final String name,
-                      @JsonProperty("points") final int points) {
+    public HallOfFameMember(@JsonProperty("name") final String name,
+                            @JsonProperty("points") final int points) {
         this.name = name;
         this.points = points;
+    }
+
+    public int points() {
+        return points;
     }
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final HallOfFame that = (HallOfFame) o;
+        final HallOfFameMember that = (HallOfFameMember) o;
         return points == that.points && Objects.equals(name, that.name);
     }
 
@@ -53,7 +57,7 @@ public final class HallOfFame implements Comparable<HallOfFame> {
      *         a value less than {@code 0} if {@code x > y}
      */
     @Override
-    public int compareTo(final HallOfFame o) {
+    public int compareTo(final HallOfFameMember o) {
         return Integer.compare(o.points, points);
     }
 }

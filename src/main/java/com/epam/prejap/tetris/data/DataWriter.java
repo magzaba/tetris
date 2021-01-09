@@ -19,18 +19,18 @@ public final class DataWriter {
     }
 
     /**
-     * Writes array of {@link HallOfFame} objects to file.
+     * Writes array of {@link HallOfFameMember} objects to file.
      *
-     * <p>Data is saved from array of {@link HallOfFame} objects to file of {@link DataWriter#path} in JSON array format
+     * <p>Data is saved from array of {@link HallOfFameMember} objects to file of {@link DataWriter#path} in JSON array format
      * using Jackson library.
      *
-     * @param hallOfFames - an array of {@link HallOfFame} objects
+     * @param hallOfFameMembers - an array of {@link HallOfFameMember} objects
      * @throws IOException if writing to file unsuccessful
      */
-    void writeToFile(HallOfFame[] hallOfFames) throws IOException {
+    void writeToFile(HallOfFameMember[] hallOfFameMembers) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        mapper.writeValue(path.toFile(), hallOfFames);
+        mapper.writeValue(path.toFile(), hallOfFameMembers);
     }
 
 }

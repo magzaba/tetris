@@ -29,12 +29,12 @@ public class DataReaderTest {
 
 
     @Test(dependsOnMethods = "shallReadArrayWithLength10", dataProvider = "defaultInitialHallOfFame")
-    public void shallReadCorrectDataFromFile(HallOfFame[] expected) throws IOException {
+    public void shallReadCorrectDataFromFile(HallOfFameMember[] expected) throws IOException {
         //given
         DataReader reader = new DataReader(path);
 
         //when
-        HallOfFame[] result = reader.readFromFile();
+        HallOfFameMember[] result = reader.readFromFile();
 
         //then
         assertEquals(result, expected);
@@ -42,17 +42,17 @@ public class DataReaderTest {
 
     @DataProvider()
     public static Object[][] defaultInitialHallOfFame() {
-        HallOfFame player1 = new HallOfFame("Pl1", 1);
-        HallOfFame player2 = new HallOfFame("Pl2", 2);
-        HallOfFame player3 = new HallOfFame("Pl3", 3);
-        HallOfFame player4 = new HallOfFame("Pl4", 4);
-        HallOfFame player5 = new HallOfFame("Pl5", 5);
-        HallOfFame player6 = new HallOfFame("Pl6", 6);
-        HallOfFame player7 = new HallOfFame("Pl7", 7);
-        HallOfFame player8 = new HallOfFame("Pl8", 8);
-        HallOfFame player9 = new HallOfFame("Pl9", 9);
-        HallOfFame player10 = new HallOfFame("Pl10", 10);
+        HallOfFameMember player1 = new HallOfFameMember("Pl1", 1);
+        HallOfFameMember player2 = new HallOfFameMember("Pl2", 2);
+        HallOfFameMember player3 = new HallOfFameMember("Pl3", 3);
+        HallOfFameMember player4 = new HallOfFameMember("Pl4", 4);
+        HallOfFameMember player5 = new HallOfFameMember("Pl5", 5);
+        HallOfFameMember player6 = new HallOfFameMember("Pl6", 6);
+        HallOfFameMember player7 = new HallOfFameMember("Pl7", 7);
+        HallOfFameMember player8 = new HallOfFameMember("Pl8", 8);
+        HallOfFameMember player9 = new HallOfFameMember("Pl9", 9);
+        HallOfFameMember player10 = new HallOfFameMember("Pl10", 10);
 
-        return new HallOfFame[][]{{player1, player2, player3, player4, player5, player6, player7, player8, player9, player10}};
+        return new HallOfFameMember[][]{{player1, player2, player3, player4, player5, player6, player7, player8, player9, player10}};
     }
 }

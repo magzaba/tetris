@@ -21,16 +21,16 @@ public class DataWriterTest {
     }
 
     @Test(dependsOnGroups = "DataReader", dataProvider = "defaultInitialHallOfFame", dataProviderClass = DataReaderTest.class)
-    public void shallWriteCorrectDataToFile(HallOfFame[] hallOfFames) throws IOException {
+    public void shallWriteCorrectDataToFile(HallOfFameMember[] hallOfFameMembers) throws IOException {
         //given
         DataWriter writer = new DataWriter(writeFilePath);
         DataReader reader = new DataReader(writeFilePath);
 
         //when
-        writer.writeToFile(hallOfFames);
-        HallOfFame[] result = reader.readFromFile();
+        writer.writeToFile(hallOfFameMembers);
+        HallOfFameMember[] result = reader.readFromFile();
 
         //then
-        assertEquals(result, hallOfFames);
+        assertEquals(result, hallOfFameMembers);
     }
 }
