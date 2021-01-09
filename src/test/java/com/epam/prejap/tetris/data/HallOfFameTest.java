@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.testng.Assert.assertFalse;
@@ -44,7 +46,7 @@ public class HallOfFameTest {
         Files.deleteIfExists(writePath);
     }
 
-    @Test(dataProvider = "mockHallOfFameMembers")
+    @Test(groups = "TryToEnter", dataProvider = "mockHallOfFameMembers")
     public void tryToEnterHallOfFameShallBeTrueForHigherScoreThanExistingOnes(HallOfFameMember[] mockMembers) throws IOException {
         //given
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
@@ -57,7 +59,7 @@ public class HallOfFameTest {
         assertTrue(result, "Shall return true, but it did not");
     }
 
-    @Test(dataProvider = "mockHallOfFameMembers")
+    @Test(groups = "TryToEnter", dataProvider = "mockHallOfFameMembers")
     public void tryToEnterHallOfFameShallBeFalseForLowerScoreThanExistingOnes(HallOfFameMember[] mockMembers) throws IOException {
         //given
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
@@ -91,13 +93,25 @@ public class HallOfFameTest {
         return new Object[]{mock1, mock2};
     }
 
-    @Test
-    public void testEnterHallOfFame() {
+    @Test(dependsOnGroups = "TryToEnter", dataProvider = "mockHallOfFameMembers")
+    public void shallAddOneNewMemberToHallOfFame(HallOfFameMember[] mockMembers) throws IOException {
         //given
+        SoftAssert softAssert = new SoftAssert();
+        var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
+        Scanner in = new Scanner("Moc");
+        HallOfFameMember newMember = new HallOfFameMember("tst", 0);
 
         //when
+        List<HallOfFameMember> updatedMembers = hallOfFame.enterHallOfFame(newMember);
+        boolean containsNewMember = updatedMembers.contains(newMember);
+        long onlyOne = updatedMembers.stream()
+                .filter(e -> e.equals(newMember))
+                .count();
 
         //then
-
+        softAssert.assertTrue(containsNewMember);
+        softAssert.assertEquals(onlyOne, 1L);
+        softAssert.assertEquals(updatedMembers.size(), mockMembers.length + 1);
+        softAssert.assertAll("Shall add element to list once, but it did not");
     }
 }
