@@ -10,8 +10,10 @@ import java.util.Objects;
  * in tetris game.
  *
  * <p>Acts as definition of mapper from JSON using Jackson library.
+ *
+ * <p>Natural order of objects means descending by points.
  */
-final class HallOfFame {
+public final class HallOfFame implements Comparable<HallOfFame> {
 
     private final String name;
 
@@ -35,5 +37,23 @@ final class HallOfFame {
     @Override
     public int hashCode() {
         return Objects.hash(name, points);
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + '\'' +
+                ", Score: " + points + '}';
+    }
+
+    /**
+     * Compares this object to the other using <strong>reverse</strong> order of {@link Integer#compare(int x, int y)}
+     * @param o object to be compared against
+     * @return the value {@code 0} if {@code x == y};
+     *         a value greater than {@code 0} if {@code x < y}; and
+     *         a value less than {@code 0} if {@code x > y}
+     */
+    @Override
+    public int compareTo(final HallOfFame o) {
+        return Integer.compare(o.points, points);
     }
 }

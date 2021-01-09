@@ -8,11 +8,11 @@ import java.nio.file.Path;
 /**
  * The DataReader class is responsible for reading data to file of specified {@link DataReader#path}.
  */
-final class DataReader {
+public final class DataReader {
 
     private final Path path;
 
-    DataReader(final Path path) {
+    public DataReader(final Path path) {
         this.path = path;
     }
 
@@ -26,7 +26,7 @@ final class DataReader {
      * @return HallOfFame[]
      * @throws IOException if reading file unsuccessful
      */
-    HallOfFame[] readFromFile() throws IOException {
+    public HallOfFame[] readFromFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(path.toFile(), HallOfFame[].class);
     }
