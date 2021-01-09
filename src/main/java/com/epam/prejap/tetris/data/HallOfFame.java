@@ -21,7 +21,8 @@ public class HallOfFame {
     }
 
     private List<HallOfFameMember> obtainMembers() throws IOException {
-        return Arrays.asList(reader.readFromFile());
+        var readList = Arrays.asList(reader.readFromFile());
+        return new ArrayList<>(readList);
     }
 
     /**
@@ -36,7 +37,7 @@ public class HallOfFame {
                 .filter(e -> e.points() < points)
                 .findAny();
 
-        if (anyDefeated.isPresent()){
+        if (anyDefeated.isPresent()) {
             printer.newHighScore(points);
             HallOfFameMember newMember = printer.readInitials(points);
             members = enterHallOfFame(newMember);
