@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
+import java.util.Scanner;
 
 class Tetris {
 
@@ -69,7 +70,7 @@ class Tetris {
         var reader = new DataReader(PATH);
         var writer = new DataWriter(PATH);
         var hallOfFame = new HallOfFame(reader, writer, printer);
-        hallOfFame.tryToEnterHallOfFame(score.points());
+        hallOfFame.tryToEnterHallOfFame(score.points(), new Scanner(System.in));
 
     }
 

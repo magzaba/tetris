@@ -14,6 +14,7 @@
                 <include name="DataReader"/>
                 <include name="DataWriter"/>
                 <include name="HallOfFameMember"/>
+                <include name="HallOfFame"/>
             </run>
         </groups>
         <classes>
@@ -25,6 +26,7 @@
             <class name="com.epam.prejap.tetris.data.DataReaderTest"/>
             <class name="com.epam.prejap.tetris.data.DataWriterTest"/>
             <class name="com.epam.prejap.tetris.data.HallOfFameMemberTest"/>
+            <class name="com.epam.prejap.tetris.data.HallOfFameMember"/>
         </classes>
     </test>
 </suite>

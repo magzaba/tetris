@@ -25,6 +25,13 @@ public class HallOfFame {
         this.members = obtainMembers();
     }
 
+    HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer, final List<HallOfFameMember> members) {
+        this.reader = reader;
+        this.writer = writer;
+        this.printer = printer;
+        this.members = members;
+    }
+
     private List<HallOfFameMember> obtainMembers() throws IOException {
         var readList = Arrays.asList(reader.readFromFile());
         return new ArrayList<>(readList);
@@ -37,14 +44,14 @@ public class HallOfFame {
      * @return boolean if qualified to enter high scores
      * @throws IOException
      */
-    public boolean tryToEnterHallOfFame(final int points) throws IOException {
+    public boolean tryToEnterHallOfFame(final int points, Scanner in) throws IOException {
         Optional<HallOfFameMember> anyDefeated = members.stream()
                 .filter(e -> e.points() < points)
                 .findAny();
 
         if (anyDefeated.isPresent()) {
             printer.newHighScore(points);
-            HallOfFameMember newMember = printer.readInitials(points);
+            HallOfFameMember newMember = printer.readInitials(points, in);
             members = enterHallOfFame(newMember);
             return true;
         }

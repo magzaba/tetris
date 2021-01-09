@@ -91,9 +91,8 @@ public class Printer {
      * @param score int representing new high score
      * @return new member of HallOfFame with param score and input name
      */
-    public HallOfFameMember readInitials(final int score) {
+    public HallOfFameMember readInitials(final int score, Scanner in) {
         out.print("ENTER YOUR INITIALS [MAX 3]: ");
-        Scanner in = new Scanner(System.in);
         String name = in.next(".{1,3}");
         return new HallOfFameMember(name, score);
     }
