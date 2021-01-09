@@ -28,16 +28,23 @@ public class HallOfFame {
     }
 
     /**
-     * Checks if given number of points is sufficient to enter high score {@link HallOfFame}
+     * Try to enter high score {@link HallOfFame} if number of points is sufficient
+     *
      * @param points
      * @return
      * @throws IOException
      */
-    public boolean isEntitledToEnter(final int points) throws IOException {
+    public boolean tryToEnterHallOfFame(final int points) throws IOException {
         Optional<HallOfFameMember> anyDefeated = members.stream()
                 .filter(e -> e.points() < points)
                 .findAny();
-        return anyDefeated.isPresent();
+
+        if (anyDefeated.isPresent()){
+            HallOfFameMember newMember = printer.readInitials(points);
+            members = enterHallOfFame(newMember);
+            return true;
+        }
+        return false;
     }
 
 
@@ -58,8 +65,7 @@ public class HallOfFame {
                 .toArray(HallOfFameMember[]::new);
 
         writer.writeToFile(limitedMembers);
-        members = Arrays.asList(limitedMembers);
-        return members;
+        return Arrays.asList(limitedMembers);
     }
 
 }
