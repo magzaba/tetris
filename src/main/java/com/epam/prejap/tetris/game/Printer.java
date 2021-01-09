@@ -4,6 +4,7 @@ import com.epam.prejap.tetris.data.HallOfFameMember;
 
 import java.io.PrintStream;
 import java.time.Duration;
+import java.util.List;
 import java.util.Scanner;
 
 public class Printer {
@@ -61,14 +62,19 @@ public class Printer {
     }
 
     /**
-     * Prints high scores in format "[number]. Name: [name], Score: [points]".
+     * Prints high scores in format "[number]. Name: [name], Score: [points]",
+     * limiting entries to max 25 elements.
      */
-    public void hallOfFame(HallOfFameMember[] hallOfFameMembers){
+    public void hallOfFame(List<HallOfFameMember> hallOfFameMembers) {
+        var limitedMembers = hallOfFameMembers.stream()
+                .limit(25)
+                .toArray(HallOfFameMember[]::new);
+
         border(20);
         out.println("HALL OF FAME\n");
-        for (int i = 0; i < hallOfFameMembers.length; i++) {
+        for (int i = 0; i < limitedMembers.length; i++) {
             int order = i + 1;
-            out.println(order + ". " + hallOfFameMembers[i]);
+            out.println(order + ". " + limitedMembers[i]);
         }
         border(20);
     }
@@ -78,7 +84,7 @@ public class Printer {
      *
      * @param score int representing new high score
      */
-    public void newHighScore(final int score){
+    public void newHighScore(final int score) {
         String highScore = "NEW HIGH SCORE!";
         border(highScore.length());
         out.println(highScore + "\n" + score);

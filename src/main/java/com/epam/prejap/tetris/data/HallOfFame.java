@@ -72,12 +72,8 @@ public class HallOfFame {
         members.add(newMember);
         Collections.sort(members);
         writer.writeToFile(members.toArray(HallOfFameMember[]::new));
-        var limitedMembers = members.stream()
-                .limit(25)
-                .toArray(HallOfFameMember[]::new);
-
-        printer.hallOfFame(limitedMembers);
-        return Arrays.asList(limitedMembers);
+        printer.hallOfFame(members);
+        return members;
     }
 
 }
