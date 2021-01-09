@@ -89,4 +89,17 @@ public class Printer {
         border(highScore.length());
     }
 
+    /**
+     * Reads initials from console, limited to 3 characters
+     *
+     * @param score int representing new high score
+     * @return new member of HallOfFame with param score and input name
+     */
+    HallOfFame readInitials(final int score) {
+        out.print("ENTER YOUR INITIALS [MAX 3]: ");
+        Scanner in = new Scanner(System.in);
+        String name = in.next(".{1,3}");
+        return new HallOfFame(name, score);
+    }
+
 }
