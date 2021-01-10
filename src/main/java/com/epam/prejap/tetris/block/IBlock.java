@@ -22,7 +22,7 @@ final class IBlock extends Block {
         super(IMAGE);
     }
 
-    public IBlock(byte[][] image) {
+    private IBlock(byte[][] image) {
         super(image);
     }
 
