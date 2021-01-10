@@ -1,7 +1,5 @@
 package com.epam.prejap.tetris.block;
 
-import java.util.Arrays;
-
 /**
  * The LBlock class represents block shape of "L" in tetris game.
  *

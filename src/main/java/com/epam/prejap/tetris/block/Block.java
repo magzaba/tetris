@@ -1,7 +1,5 @@
 package com.epam.prejap.tetris.block;
 
-import java.util.HashMap;
-
 public abstract class Block {
 
     final byte[][] image;
