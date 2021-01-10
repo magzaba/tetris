@@ -50,7 +50,7 @@ public class Playfield {
         blockRotator.rotate();
         block = blockRotator.getRotatedBlock();
         var offset = blockRotator.getBlockOffset();
-        if (!move(offset.row, offset.column)) {
+        if (!move(offset.row(), offset.column())) {
             blockRotator.rotateBack();
             block = blockRotator.getRotatedBlock();
         }

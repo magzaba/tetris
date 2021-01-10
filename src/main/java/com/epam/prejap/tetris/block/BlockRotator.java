@@ -1,8 +1,5 @@
 package com.epam.prejap.tetris.block;
 
-import java.util.Deque;
-import java.util.LinkedList;
-
 public class BlockRotator {
 
     private static final Point NO_OFFSET = new Point(0, 0);
@@ -92,8 +89,8 @@ public class BlockRotator {
     }
 
     private Point calculateOffset(Point from, Point to) {
-        int row = from.row - to.row;
-        int column = from.column - to.column;
+        int row = from.row() - to.row();
+        int column = from.column() - to.column();
         return new Point(row, column);
     }
 
@@ -110,17 +107,17 @@ public class BlockRotator {
     }
 
     private byte[][] emptyRotatedImage(Point rotatedImageSize) {
-        return new byte[rotatedImageSize.row][rotatedImageSize.column];
+        return new byte[rotatedImageSize.row()][rotatedImageSize.column()];
     }
 
     private void rotatePointOnImage(byte[][] rotatedImage, Point rotatedImageSize, Point toRotate) {
         Point rotated = rotatePointOnRotatedImage(toRotate, rotatedImageSize);
-        rotatedImage[rotated.row][rotated.column] = block.dotAt(toRotate.row, toRotate.column);
+        rotatedImage[rotated.row()][rotated.column()] = block.dotAt(toRotate.row(), toRotate.column());
     }
 
     Point rotatePointOnRotatedImage(Point toRotate, Point rotatedImageSize) {
-        int rotatedRow = toRotate.column;
-        int rotatedColumn = rotatedImageSize.column - 1 - toRotate.row;
+        int rotatedRow = toRotate.column();
+        int rotatedColumn = rotatedImageSize.column() - 1 - toRotate.row();
         return new Point(rotatedRow, rotatedColumn);
     }
 
