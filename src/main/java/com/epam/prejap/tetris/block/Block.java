@@ -1,5 +1,7 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.stream.IntStream;
+
 public abstract class Block {
 
     final byte[][] image;
@@ -38,5 +40,15 @@ public abstract class Block {
     public byte dotAt(int i, int j) {
         return image[i][j];
     }
-
+    /**
+     * Calculates the lowest position of the block that is occupied in the inspected column
+     * @param col index of the column being checked
+     * @return index of the lowest occupied row in the given column
+     * @throws java.util.NoSuchElementException if the column of block is empty
+     * @throws java.lang.ArrayIndexOutOfBoundsException if there is no such column in block
+     * @author Madgalena Żaba
+     */
+    public int lowestOccupiedRowInColumn(int col){
+        return IntStream.range(0,rows).filter(i->dotAt(i,col)>0).max().getAsInt();
+    }
 }
