@@ -5,6 +5,7 @@ public enum Move {
     NONE(' '),
     LEFT('h'),
     RIGHT('l'),
+    DOWN('m'),
     ;
 
     private final int key;

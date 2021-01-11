@@ -30,18 +30,28 @@ public class Playfield {
         show();
     }
 
+    /**
+     * Attempts to perform a move and displays the updated playfield
+     * @param move to be performed
+     * @return true if move was performed (block changed its position), false otherwise
+     * @see Move
+     */
     public boolean move(Move move) {
         hide();
         boolean moved;
         switch (move) {
             case LEFT -> moveLeft();
             case RIGHT -> moveRight();
+            case DOWN -> moveToBottom();
         }
         moved = moveDown();
         show();
         return moved;
     }
 
+    private void moveToBottom() {
+        move(maxRowOffset()-1,0);
+    }
 
     private void moveRight() {
         move(0, 1);
@@ -53,6 +63,20 @@ public class Playfield {
 
     private boolean moveDown() {
         return move(1, 0);
+    }
+
+    private int maxRowOffset() {
+        var maxRowCount=rows;
+        for (int blockCol=0;blockCol<block.cols();blockCol++){
+            var offsetInColumn=0;
+            for(int i = row+ block.lowestOccupiedRowInColumn(blockCol)+1; i<rows; i++) {
+                if (grid[i][col + blockCol] > 0) {
+                    maxRowCount=Integer.min(offsetInColumn, maxRowCount);
+                }
+                offsetInColumn++;
+            }
+        }
+        return maxRowCount;
     }
 
     private boolean move(int rowOffset, int colOffset) {
