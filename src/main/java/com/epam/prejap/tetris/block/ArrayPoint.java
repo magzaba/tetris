@@ -1,7 +1,10 @@
 package com.epam.prejap.tetris.block;
 
 /**
- * Holds coordinates ({@code row} and {@code column}) of a point inside a 2D array.
+ * Holds coordinates ({@code row} and {@code column}) of an element inside a 2D array.
+ * <p></p>
+ * Although array coordinates consist of non-negative integers, this object can also hold negative values.
+ * This allows offsetting a coordinate up and right, or down and left in one operation.
  */
 public record ArrayPoint(int row, int column) {
     /**
