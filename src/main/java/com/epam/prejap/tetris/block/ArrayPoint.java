@@ -8,9 +8,12 @@ public record ArrayPoint(int row, int column) {
         if (divisor == 0) {
             throw new IllegalArgumentException("Cannot divide by 0.");
         }
-        return new ArrayPoint(this.row/divisor, this.column/divisor);
+        return new ArrayPoint(row/divisor, column/divisor);
     }
     public ArrayPoint negate() {
-        return new ArrayPoint(-this.row, -this.column);
+        return new ArrayPoint(-row, -column);
+    }
+    public ArrayPoint transpose() {
+        return new ArrayPoint(column, row);
     }
 }
