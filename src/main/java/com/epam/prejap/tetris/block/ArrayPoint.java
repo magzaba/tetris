@@ -10,9 +10,6 @@ public record ArrayPoint(int row, int column) {
         }
         return new ArrayPoint(row/divisor, column/divisor);
     }
-    public ArrayPoint negate() {
-        return new ArrayPoint(-row, -column);
-    }
     public ArrayPoint transpose() {
         return new ArrayPoint(column, row);
     }
