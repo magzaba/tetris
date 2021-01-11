@@ -1,8 +1,8 @@
 package com.epam.prejap.tetris.game;
 
-import com.epam.prejap.tetris.block.Block;
+import com.epam.prejap.tetris.block.ArrayPoint;
 import com.epam.prejap.tetris.block.BlockFeed;
-import com.epam.prejap.tetris.block.BlockRotator;
+import com.epam.prejap.tetris.block.RotatableBlock;
 
 public class Playfield {
 
@@ -12,8 +12,7 @@ public class Playfield {
     private final Printer printer;
     private final BlockFeed feed;
 
-    private Block block;
-    private BlockRotator blockRotator;
+    private RotatableBlock rotatableBlock;
     private int row;
     private int col;
 
@@ -26,8 +25,8 @@ public class Playfield {
     }
 
     public void nextBlock() {
-        block = feed.nextBlock();
-        blockRotator = new BlockRotator(block);
+        var block = feed.nextBlock();
+        rotatableBlock = RotatableBlock.of(block);
         row = 0;
         col = (cols - block.cols()) / 2;
         show();
@@ -47,13 +46,26 @@ public class Playfield {
     }
 
     private void rotateBlock() {
-        blockRotator.rotate();
-        block = blockRotator.getRotatedBlock();
-        var offset = blockRotator.getBlockOffset();
-        if (!move(offset.row(), offset.column())) {
-            blockRotator.rotateBack();
-            block = blockRotator.getRotatedBlock();
+        var blockAfterRotation = rotatableBlock.rotate();
+        var offsetAfterRotation =  calculateRotationPointOffset(rotatableBlock, blockAfterRotation);
+        if (isValidMove(blockAfterRotation, offsetAfterRotation)) {
+            rotatableBlock = blockAfterRotation;
+            doMove(offsetAfterRotation);
         }
+    }
+
+    private static ArrayPoint calculateRotationPointOffset(RotatableBlock from, RotatableBlock to) {
+        var fromRotationPoint = from.rotationPoint();
+        var toRotationPoint = to.rotationPoint();
+        return fromRotationPoint.subtract(toRotationPoint);
+    }
+
+    private boolean isValidMove(RotatableBlock rotatableBlock, ArrayPoint offset) {
+        return isValidMove(rotatableBlock, offset.row(), offset.column());
+    }
+
+    private void doMove(ArrayPoint moveDistance) {
+        doMove(moveDistance.row(), moveDistance.column());
     }
 
 
@@ -71,17 +83,17 @@ public class Playfield {
 
     private boolean move(int rowOffset, int colOffset) {
         boolean moved = false;
-        if (isValidMove(block, rowOffset, colOffset)) {
+        if (isValidMove(rotatableBlock, rowOffset, colOffset)) {
             doMove(rowOffset, colOffset);
             moved = true;
         }
         return moved;
     }
 
-    private boolean isValidMove(Block block, int rowOffset, int colOffset) {
-        for (int i = 0; i < block.rows(); i++) {
-            for (int j = 0; j < block.cols(); j++) {
-                var dot = block.dotAt(i, j);
+    private boolean isValidMove(RotatableBlock rotatableBlock, int rowOffset, int colOffset) {
+        for (int i = 0; i < rotatableBlock.rows(); i++) {
+            for (int j = 0; j < rotatableBlock.cols(); j++) {
+                var dot = rotatableBlock.dotAt(i, j);
                 if (dot > 0) {
                     int newRow = row + i + rowOffset;
                     int newCol = col + j + colOffset;
@@ -109,9 +121,9 @@ public class Playfield {
     }
 
     private void forEachBrick(BrickAction action) {
-        for (int i = 0; i < block.rows(); i++) {
-            for (int j = 0; j < block.cols(); j++) {
-                var dot = block.dotAt(i, j);
+        for (int i = 0; i < rotatableBlock.rows(); i++) {
+            for (int j = 0; j < rotatableBlock.cols(); j++) {
+                var dot = rotatableBlock.dotAt(i, j);
                 if (dot > 0) {
                     action.act(i, j, dot);
                 }
