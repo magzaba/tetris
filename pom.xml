@@ -3,12 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.epam.prejap</groupId>
     <artifactId>tetris</artifactId>
-    <version>0.5</version>
+    <version>0.6</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.java.version>14</project.java.version>
         <maven.compiler.source>${project.java.version}</maven.compiler.source>
         <maven.compiler.target>${project.java.version}</maven.compiler.target>
@@ -16,6 +16,7 @@
         <version.plugin.maven.compiler>3.8.1</version.plugin.maven.compiler>
         <version.plugin.maven.jar>3.2.0</version.plugin.maven.jar>
         <version.plugin.maven.surefire>3.0.0-M5</version.plugin.maven.surefire>
+        <version.plugin.maven.failsafe>3.0.0-M5</version.plugin.maven.failsafe>
         <!-- dependencies versions -->
         <version.testng>7.3.0</version.testng>
         <version.mockito>1.10.19</version.mockito>
@@ -35,7 +36,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -77,7 +77,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${version.plugin.maven.surefire}</version>
+                <version>${version.plugin.maven.failsafe}</version>
                 <configuration>
                     <argLine>
                         --enable-preview
