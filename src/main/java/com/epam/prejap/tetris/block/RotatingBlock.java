@@ -29,8 +29,8 @@ class RotatingBlock implements RotatableBlock {
     }
 
     @Override
-    public byte dotAt(int i, int j) {
-        return block.dotAt(i, j);
+    public byte dotAt(int row, int column) {
+        return block.dotAt(row, column);
     }
 
     @Override
