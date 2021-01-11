@@ -63,7 +63,7 @@ class RotatingBlock implements RotatableBlock {
         return new byte[rotatedImageSize.row()][rotatedImageSize.column()];
     }
 
-    static ArrayPoint rotatePointOnImage(ArrayPoint toRotate, ArrayPoint rotatedImageSize) {
+    private static ArrayPoint rotatePointOnImage(ArrayPoint toRotate, ArrayPoint rotatedImageSize) {
         int rotatedRow = toRotate.column();
         int rotatedColumn = rotatedImageSize.column() - 1 - toRotate.row();
         return new ArrayPoint(rotatedRow, rotatedColumn);
