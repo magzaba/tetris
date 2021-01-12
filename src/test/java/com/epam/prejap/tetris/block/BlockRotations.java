@@ -2,7 +2,7 @@ package com.epam.prejap.tetris.block;
 
 class BlockRotations {
 
-    static final Object[][] I_BLOCK_ROTATION_IMAGES = new Object[][]{
+    static final Object[] I_BLOCK_ROTATION_IMAGES = new Object[]{
             new byte[][] {
                     {1},
                     {1},
@@ -49,7 +49,7 @@ class BlockRotations {
             new ArrayPoint(0, 1),
     };
 
-    static final Object[][] J_BLOCK_ROTATION_IMAGES = new Object[][]{
+    static final Object[] J_BLOCK_ROTATION_IMAGES = new Object[]{
             new byte[][] {
                     {0, 1},
                     {0, 1},
@@ -77,7 +77,7 @@ class BlockRotations {
             new ArrayPoint(0, 1),
     };
 
-    static final Object[][] O_BLOCK_ROTATION_IMAGES = new Object[][]{
+    static final Object[] O_BLOCK_ROTATION_IMAGES = new Object[]{
             new byte[][] {
                     {1, 1},
                     {1, 1},
