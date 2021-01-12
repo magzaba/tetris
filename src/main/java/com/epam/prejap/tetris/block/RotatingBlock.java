@@ -37,9 +37,17 @@ class RotatingBlock implements RotatableBlock {
     public RotatableBlock rotate() {
         var rotatedImageSize = getBlockImageSize().transpose();
         byte[][] rotatedImage = rotateBlockImage90DegreesClockwise(rotatedImageSize);
-        var rotationPointAfterRotation = rotatePointOnImage(rotationPoint, rotatedImageSize);
+        var rotationPointAfterRotation = rotateRotationPoint(rotationPoint, rotatedImageSize);
 
         return new RotatingBlock(block.copyWithImage(rotatedImage), rotationPointAfterRotation);
+    }
+
+    private static ArrayPoint rotateRotationPoint(ArrayPoint toRotate, ArrayPoint rotatedImageSize) {
+        boolean isImageSquare = rotatedImageSize.row() == rotatedImageSize.column();
+        if (isImageSquare) {
+            return toRotate;
+        }
+        return rotatePointOnImage(toRotate, rotatedImageSize);
     }
 
     private ArrayPoint getBlockImageSize() {
