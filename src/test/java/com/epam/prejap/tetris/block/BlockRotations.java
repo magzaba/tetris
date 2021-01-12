@@ -78,13 +78,14 @@ class BlockRotations {
     };
 
     static final Object[][] O_BLOCK_ROTATION_IMAGES = new Object[][]{
-            {},
-            {},
-            {},
+            new byte[][] {
+                    {1, 1},
+                    {1, 1},
+            },
     };
 
     static final ArrayPoint[] O_BLOCK_ROTATION_POINTS = new ArrayPoint[]{
-
+            new ArrayPoint(1, 1),
     };
 
 }
