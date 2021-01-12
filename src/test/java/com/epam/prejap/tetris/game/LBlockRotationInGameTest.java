@@ -1,7 +1,7 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.BlockFeed;
-import com.epam.prejap.tetris.block.MockBlockFeed;
+import com.epam.prejap.tetris.block.MockBlockFeeds;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,9 +15,8 @@ public class LBlockRotationInGameTest {
 
     private static final int GRID_ROWS = 7;
     private static final int GRID_COLUMNS = 5;
-    private static final int L_BLOCK_INDEX_IN_BLOCK_FEED = 1;
 
-    private BlockFeed mockBlockFeed = new MockBlockFeed(L_BLOCK_INDEX_IN_BLOCK_FEED);
+    private BlockFeed mockBlockFeed = MockBlockFeeds.lBlockFeed();
     private ByteArrayOutputStream bos;
     private Printer printer;
 
