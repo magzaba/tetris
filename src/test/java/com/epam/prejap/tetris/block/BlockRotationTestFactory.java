@@ -12,11 +12,11 @@ public class BlockRotationTestFactory {
                         BlockRotations.I_BLOCK_ROTATION_IMAGES,
                         BlockRotations.I_BLOCK_ROTATION_POINTS
                 ),
-//                new BlockRotationTest(
-//                        new JBlock(),
-//                        BlockRotations.J_BLOCK_ROTATION_IMAGES,
-//                        BlockRotations.J_BLOCK_ROTATION_POINTS
-//                ),
+                new BlockRotationTest(
+                        new JBlock(),
+                        BlockRotations.J_BLOCK_ROTATION_IMAGES,
+                        BlockRotations.J_BLOCK_ROTATION_POINTS
+                ),
                 new BlockRotationTest(
                         new LBlock(),
                         BlockRotations.L_BLOCK_ROTATION_IMAGES,
