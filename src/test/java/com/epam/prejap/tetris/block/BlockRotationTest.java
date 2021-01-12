@@ -49,7 +49,7 @@ public class BlockRotationTest {
     @Test(dataProvider = "rotationDegrees")
     public void shallRotateBlockRotationPoint(RotationDegree degree) {
         // given
-        var block = RotatableBlock.of(new LBlock());
+        var block = RotatableBlock.of(this.block);
         var index = degree.ordinal()%rotationPoints.length;
         var expectedRotationPoint = rotationPoints[index];
 
@@ -58,7 +58,7 @@ public class BlockRotationTest {
 
         // then
         assertEquals(rotatedBlock.rotationPoint(), expectedRotationPoint,
-                "Block rotation point should have been rotated " + degree.toString() + " times but did not");
+                "Block rotation point should have been rotated but did not");
     }
 
     private RotatableBlock rotateBlockByDegrees(RotatableBlock block, RotationDegree degree) {
