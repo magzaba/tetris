@@ -7,11 +7,11 @@ public class BlockRotationTestFactory {
     @Factory
     public Object[] factoryMethod() {
         return new Object[]{
-//                new BlockRotationTest(
-//                        new IBlock(),
-//                        BlockRotations.I_BLOCK_ROTATION_IMAGES,
-//                        BlockRotations.I_BLOCK_ROTATION_POINTS
-//                ),
+                new BlockRotationTest(
+                        new IBlock(),
+                        BlockRotations.I_BLOCK_ROTATION_IMAGES,
+                        BlockRotations.I_BLOCK_ROTATION_POINTS
+                ),
 //                new BlockRotationTest(
 //                        new JBlock(),
 //                        BlockRotations.J_BLOCK_ROTATION_IMAGES,
