@@ -10,7 +10,7 @@ import java.io.PrintStream;
 
 import static org.testng.Assert.assertTrue;
 
-@Test(groups = "BlockRotation")
+@Test(groups = "BlockRotationInGame", dependsOnGroups = "BlockRotation")
 public class LBlockRotationInGameTest {
 
     private static final int GRID_ROWS = 7;

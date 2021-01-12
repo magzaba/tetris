@@ -12,6 +12,7 @@
                 <include name="Player"/>
                 <include name="Timer"/>
                 <include name="BlockRotation"/>
+                <include name="BlockRotationInGame"/>
             </run>
         </groups>
         <classes>
