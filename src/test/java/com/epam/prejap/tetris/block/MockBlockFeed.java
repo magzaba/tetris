@@ -2,27 +2,27 @@ package com.epam.prejap.tetris.block;
 
 import java.util.function.Supplier;
 
-public class MockBlockFeeds extends BlockFeed {
+public class MockBlockFeed extends BlockFeed {
 
     private final Supplier<Block> blockSupplier;
 
     public static BlockFeed iBlockFeed() {
-        return new MockBlockFeeds(IBlock::new);
+        return new MockBlockFeed(IBlock::new);
     }
 
     public static BlockFeed jBlockFeed() {
-        return new MockBlockFeeds(JBlock::new);
+        return new MockBlockFeed(JBlock::new);
     }
 
     public static BlockFeed lBlockFeed() {
-        return new MockBlockFeeds(LBlock::new);
+        return new MockBlockFeed(LBlock::new);
     }
 
     public static BlockFeed oBlockFeed() {
-        return new MockBlockFeeds(OBlock::new);
+        return new MockBlockFeed(OBlock::new);
     }
 
-    private MockBlockFeeds(Supplier<Block> blockSupplier) {
+    private MockBlockFeed(Supplier<Block> blockSupplier) {
         this.blockSupplier = blockSupplier;
     }
 
