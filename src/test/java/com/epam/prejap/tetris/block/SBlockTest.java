@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-@Test(groups = "SBlock")
+@Test(groups = "Block")
 public class SBlockTest {
 
     @Test

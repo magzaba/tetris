@@ -6,7 +6,7 @@ import org.testng.asserts.SoftAssert;
 
 import static org.testng.Assert.assertEquals;
 
-@Test(groups = "LBlock")
+@Test(groups = "Block")
 public class LBlockTest {
 
     @Test

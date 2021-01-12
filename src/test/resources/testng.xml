@@ -13,7 +13,7 @@
                 <include name="SBlock" />
                 <include name="IBlock" />
                 <include name="OBlock" />
-                <include name="Jlock" />
+                <include name="JBlock" />
             </define>
             <define name="Player">
                 <include name="RandomPlayer" />
