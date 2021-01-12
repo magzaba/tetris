@@ -28,7 +28,7 @@
             <class name="com.epam.prejap.tetris.game.PrinterTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
             <class name="com.epam.prejap.tetris.block.BlockRotationTestFactory"/>
-            <class name="com.epam.prejap.tetris.game.LBlockRotationInGameTest"/>
+            <class name="com.epam.prejap.tetris.game.PlayfieldBlockRotationTestFactory"/>
         </classes>
     </test>
 </suite>

@@ -1,8 +1,7 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.BlockFeed;
-import com.epam.prejap.tetris.block.MockBlockFeeds;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -11,139 +10,47 @@ import java.io.PrintStream;
 import static org.testng.Assert.assertTrue;
 
 @Test(groups = "BlockRotationInGame", dependsOnGroups = "BlockRotation")
-public class LBlockRotationInGameTest {
+public class PlayfieldBlockRotationTest {
 
-    private static final int GRID_ROWS = 7;
-    private static final int GRID_COLUMNS = 5;
+    private final BlockFeed mockBlockFeed;
+    private final Object[][] blockRotationsOnGridAfterUPKeyPresses;
+    private final int gridRows;
+    private final int gridColumns;
 
-    private BlockFeed mockBlockFeed = MockBlockFeeds.lBlockFeed();
-    private ByteArrayOutputStream bos;
-    private Printer printer;
+    public PlayfieldBlockRotationTest(BlockFeed mockBlockFeed,
+                                      Object[][] blockRotationsOnGridAfterUPKeyPresses,
+                                      int gridRows,
+                                      int gridColumns) {
 
-    @BeforeMethod
-    public void setUp() {
-        bos = new ByteArrayOutputStream();
-        printer = new Printer(new PrintStream(bos), new Timer(1));
+        this.mockBlockFeed = mockBlockFeed;
+        this.blockRotationsOnGridAfterUPKeyPresses = blockRotationsOnGridAfterUPKeyPresses;
+        this.gridRows = gridRows;
+        this.gridColumns = gridColumns;
     }
 
-    @Test
-    public void shallHaveLBlockAtSpawningPosition() {
+    @Test(dataProvider = "blockRotationsOnGridAfterUPKeyPresses")
+    public void EachTimeUPKeyIsPressedBlockShallRotateOnlyOnceBeforeBeingMovedDown(
+            int timesUPKeyIsPressed,
+            String expectedGrid) {
+
         // given
-        Playfield playfield = new Playfield(GRID_ROWS, GRID_COLUMNS, mockBlockFeed, printer);
+        var bos = new ByteArrayOutputStream();
+        var printer = new Printer(new PrintStream(bos), new Timer(1));
+        Playfield playfield = new Playfield(gridRows, gridColumns, mockBlockFeed, printer);
         playfield.nextBlock();
-        String expectedGrid = """
-            +-----+
-            | #   |
-            | #   |
-            | ##  |
-            |     |
-            |     |
-            |     |
-            |     |
-            +-----+""";
 
         // when
+        for (int i = 0; i < timesUPKeyIsPressed; i++) {
+            playfield.move(Move.UP);
+        }
 
         // then
         assertTrue(bos.toString().contains(expectedGrid));
     }
 
-    @Test
-    public void afterPressingMoveUPOneTimeShallHave90DegreesRotatedLBlockMovedDownOneRow() {
-        // given
-        Playfield playfield = new Playfield(GRID_ROWS, GRID_COLUMNS, mockBlockFeed, printer);
-        playfield.nextBlock();
-        String expectedGrid = """
-            +-----+
-            |     |
-            | ### |
-            | #   |
-            |     |
-            |     |
-            |     |
-            |     |
-            +-----+""";
-
-        // when
-        playfield.move(Move.UP);
-
-        // then
-        assertTrue(bos.toString().contains(expectedGrid));
-    }
-
-    @Test
-    public void afterPressingMoveUPTwoTimesShallHave180DegreesRotatedLBlockMovedDownTwoRows() {
-        // given
-        Playfield playfield = new Playfield(GRID_ROWS, GRID_COLUMNS, mockBlockFeed, printer);
-        playfield.nextBlock();
-        String expectedGrid = """
-            +-----+
-            |     |
-            |     |
-            |  ## |
-            |   # |
-            |   # |
-            |     |
-            |     |
-            +-----+""";
-
-        // when
-        playfield.move(Move.UP);
-        playfield.move(Move.UP);
-
-        // then
-        assertTrue(bos.toString().contains(expectedGrid));
-    }
-
-    @Test
-    public void afterPressingMoveUPThreeTimesShallHave270DegreesRotatedLBlockMovedDownThreeRows() {
-        // given
-        Playfield playfield = new Playfield(GRID_ROWS, GRID_COLUMNS, mockBlockFeed, printer);
-        playfield.nextBlock();
-        String expectedGrid = """
-            +-----+
-            |     |
-            |     |
-            |     |
-            |     |
-            |   # |
-            | ### |
-            |     |
-            +-----+""";
-
-        // when
-        playfield.move(Move.UP);
-        playfield.move(Move.UP);
-        playfield.move(Move.UP);
-
-        // then
-        assertTrue(bos.toString().contains(expectedGrid));
-    }
-
-    @Test
-    public void afterPressingMoveUPFourTimesShallHave360DegreesRotatedLBlockMovedDownFourRows() {
-        // given
-        Playfield playfield = new Playfield(GRID_ROWS, GRID_COLUMNS, mockBlockFeed, printer);
-        playfield.nextBlock();
-        String expectedGrid = """
-            +-----+
-            |     |
-            |     |
-            |     |
-            |     |
-            | #   |
-            | #   |
-            | ##  |
-            +-----+""";
-
-        // when
-        playfield.move(Move.UP);
-        playfield.move(Move.UP);
-        playfield.move(Move.UP);
-        playfield.move(Move.UP);
-
-        // then
-        assertTrue(bos.toString().contains(expectedGrid));
+    @DataProvider
+    public Object[][] blockRotationsOnGridAfterUPKeyPresses() {
+        return blockRotationsOnGridAfterUPKeyPresses;
     }
 
 }
