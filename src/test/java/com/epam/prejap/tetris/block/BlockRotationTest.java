@@ -31,7 +31,8 @@ public class BlockRotationTest {
     public void shallRotateBlockImage(RotationDegree degree) {
         // given
         var block = RotatableBlock.of(this.block);
-        var expectedRotatedImage = (byte[][])rotationImages[degree.ordinal()%4];
+        var index = degree.ordinal()%rotationImages.length;
+        var expectedRotatedImage = (byte[][])rotationImages[index];
 
         // when
         var rotatedBlock = rotateBlockByDegrees(block, degree);
@@ -49,7 +50,8 @@ public class BlockRotationTest {
     public void shallRotateBlockRotationPoint(RotationDegree degree) {
         // given
         var block = RotatableBlock.of(new LBlock());
-        var expectedRotationPoint = rotationPoints[degree.ordinal()%4];
+        var index = degree.ordinal()%rotationPoints.length;
+        var expectedRotationPoint = rotationPoints[index];
 
         // when
         var rotatedBlock = rotateBlockByDegrees(block, degree);
