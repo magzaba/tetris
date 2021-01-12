@@ -20,10 +20,10 @@
             <class name="com.epam.prejap.tetris.block.LBlockTest"/>
             <class name="com.epam.prejap.tetris.block.IBlockTest"/>
             <class name="com.epam.prejap.tetris.block.BlockFeedTestFactory"/>
-            <class name="com.epam.prejap.tetris.block.LBlockRotationTest"/>
             <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
             <class name="com.epam.prejap.tetris.game.PrinterTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
+            <class name="com.epam.prejap.tetris.block.BlockRotationTestFactory"/>
         </classes>
     </test>
 </suite>
