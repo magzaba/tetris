@@ -21,10 +21,10 @@ public class BlockRotationTest {
     private final Object[] rotationImages;
     private final ArrayPoint[] rotationPoints;
 
-    public BlockRotationTest(Block block, Object[] rotationImages, ArrayPoint[] rotationPoints) {
-        this.block = block;
-        this.rotationImages = rotationImages;
-        this.rotationPoints = rotationPoints;
+    public BlockRotationTest(BlockRotations blockRotations) {
+        this.block = blockRotations.block();
+        this.rotationImages = blockRotations.rotationImages();
+        this.rotationPoints = blockRotations.rotationPoints();
     }
 
     @Test(dataProvider = "rotationDegrees")
