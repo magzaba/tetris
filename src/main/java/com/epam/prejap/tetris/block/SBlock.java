@@ -16,4 +16,13 @@ final class SBlock extends Block {
     public SBlock() {
         super(IMAGE);
     }
+
+    private SBlock(byte[][] image) {
+        super(image);
+    }
+
+    @Override
+    Block copyWithImage(byte[][] image) {
+        return new SBlock(image);
+    }
 }
