@@ -26,7 +26,12 @@ public class BlockRotationTestFactory {
                         new OBlock(),
                         BlockRotations.O_BLOCK_ROTATION_IMAGES,
                         BlockRotations.O_BLOCK_ROTATION_POINTS
-                )
+                ),
+                new BlockRotationTest(
+                        new SBlock(),
+                        BlockRotations.S_BLOCK_ROTATION_IMAGES,
+                        BlockRotations.S_BLOCK_ROTATION_POINTS
+                ),
         };
     }
 
