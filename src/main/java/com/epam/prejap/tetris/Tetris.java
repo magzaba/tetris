@@ -52,7 +52,20 @@ class Tetris {
         return new Score(score);
     }
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * Prepares the environment and launches the game.
+     *
+     * @param args  array of strings input from the command line
+     *              <ul>
+     *                  <li>args[0] is dedicated to configuring custom navigation keys</li>
+     *                  <ul>
+     *                      <li>each key should be represented by a single character and separated by space</li>
+     *                      <li>input example: "q s d" -> none: q, left: s, right: d</li>
+     *                  </ul>
+     *              </ul>
+     * @see CommandLineAnalyst#checkArgsForNavigationKeys(String)
+     */
+    public static void main(String[] args) throws IOException  {
         int rows = 10;
         int cols = 20;
         int delay = 500;
@@ -64,6 +77,10 @@ class Tetris {
         var game = new Tetris(playfield, new Waiter(delay), new RandomPlayer(new Random()), timer);
 
 
+        if (args != null && args.length != 0) {
+            CommandLineAnalyst.checkArgsForNavigationKeys(args[0]);
+        }
+
         var score = game.play();
         System.out.println("Score: " + score.points());
 
@@ -73,5 +90,4 @@ class Tetris {
         hallOfFame.tryToEnterHallOfFame(score.points(), new Scanner(System.in));
 
     }
-
 }
