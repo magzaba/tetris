@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 
 @Test(groups = "RandomPlayer")
 public class RandomPlayerTest {
