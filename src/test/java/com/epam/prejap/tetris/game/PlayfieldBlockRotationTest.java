@@ -17,15 +17,11 @@ public class PlayfieldBlockRotationTest {
     private final int gridRows;
     private final int gridColumns;
 
-    public PlayfieldBlockRotationTest(BlockFeed mockBlockFeed,
-                                      Object[][] blockRotationsOnGridAfterUPKeyPresses,
-                                      int gridRows,
-                                      int gridColumns) {
-
-        this.mockBlockFeed = mockBlockFeed;
-        this.blockRotationsOnGridAfterUPKeyPresses = blockRotationsOnGridAfterUPKeyPresses;
-        this.gridRows = gridRows;
-        this.gridColumns = gridColumns;
+    public PlayfieldBlockRotationTest(PlayfieldBlockRotations playfieldBlockRotations) {
+        this.mockBlockFeed = playfieldBlockRotations.mockBlockfeed();
+        this.blockRotationsOnGridAfterUPKeyPresses = playfieldBlockRotations.blockRotationsOnGrid();
+        this.gridRows = playfieldBlockRotations.gridRows();
+        this.gridColumns = playfieldBlockRotations.gridColumns();
     }
 
     @Test(dataProvider = "blockRotationsOnGridAfterUPKeyPresses")
