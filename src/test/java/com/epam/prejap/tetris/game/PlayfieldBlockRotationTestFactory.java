@@ -13,6 +13,12 @@ public class PlayfieldBlockRotationTestFactory {
                         PlayfieldBlockRotations.L_BLOCK_ROTATIONS_ON_GRID,
                         PlayfieldBlockRotations.GRID_ROWS,
                         PlayfieldBlockRotations.GRID_COLUMNS
+                ),
+                new PlayfieldBlockRotationTest(
+                        MockBlockFeed.oBlockFeed(),
+                        PlayfieldBlockRotations.O_BLOCK_ROTATIONS_ON_GRID,
+                        PlayfieldBlockRotations.GRID_ROWS,
+                        PlayfieldBlockRotations.GRID_COLUMNS
                 )
         };
     }

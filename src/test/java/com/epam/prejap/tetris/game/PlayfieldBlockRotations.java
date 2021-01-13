@@ -70,4 +70,67 @@ class PlayfieldBlockRotations {
             },
     };
 
+    static final Object[][] O_BLOCK_ROTATIONS_ON_GRID = new Object[][]{
+            {
+                TimesUPKeyIsPressed.ZERO.ordinal(), """
+                +-----+
+                | ##  |
+                | ##  |
+                |     |
+                |     |
+                |     |
+                |     |
+                |     |
+                +-----+"""
+            },
+            {
+                TimesUPKeyIsPressed.ONE.ordinal(), """
+                +-----+
+                |     |
+                | ##  |
+                | ##  |
+                |     |
+                |     |
+                |     |
+                |     |
+                +-----+"""
+            },
+            {
+                TimesUPKeyIsPressed.TWO.ordinal(), """
+                +-----+
+                |     |
+                |     |
+                | ##  |
+                | ##  |
+                |     |
+                |     |
+                |     |
+                +-----+"""
+            },
+            {
+                TimesUPKeyIsPressed.THREE.ordinal(), """
+                +-----+
+                |     |
+                |     |
+                |     |
+                | ##  |
+                | ##  |
+                |     |
+                |     |
+                +-----+"""
+            },
+            {
+                TimesUPKeyIsPressed.FOUR.ordinal(), """
+                +-----+
+                |     |
+                |     |
+                |     |
+                |     |
+                | ##  |
+                | ##  |
+                |     |
+                +-----+"""
+            },
+    };
+
 }
