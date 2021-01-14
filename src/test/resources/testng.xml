@@ -22,6 +22,7 @@
             </define>
             <run>
                 <include name="Block"/>
+                <include name="Score"/>
                 <include name="Player"/>
                 <include name="NavigationKeys"/>
                 <include name="Game"/>
@@ -30,11 +31,16 @@
             </run>
         </groups>
         <classes>
+            <class name="com.epam.prejap.tetris.block.BlockFeedTest"/>
+            <class name="com.epam.prejap.tetris.block.BlockTest"/>
+            <class name="com.epam.prejap.tetris.block.BlockTestFactory"/>
+            <class name="com.epam.prejap.tetris.block.BlockFeedTest"/>
             <class name="com.epam.prejap.tetris.block.BlockTest"/>
             <class name="com.epam.prejap.tetris.block.BlockTestFactory"/>
             <class name="com.epam.prejap.tetris.block.BlockFeedTest"/>
             <class name="com.epam.prejap.tetris.block.BlockFeedTestFactory"/>
             <class name="com.epam.prejap.tetris.block.BlockMethodTest"/>
+            <class name="com.epam.prejap.tetris.game.PlayfieldTest"/>
             <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
             <class name="com.epam.prejap.tetris.game.MoveTest"/>
             <class name="com.epam.prejap.tetris.CommandLineAnalystTest"/>
@@ -42,6 +48,7 @@
             <class name="com.epam.prejap.tetris.game.GridTest"/>
             <class name="com.epam.prejap.tetris.game.PlayfieldTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
+            <class name="com.epam.prejap.tetris.game.RefereeTest"/>
             <class name="com.epam.prejap.tetris.block.Color"/>
         </classes>
     </test>

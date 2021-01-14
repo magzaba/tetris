@@ -3,22 +3,28 @@ package com.epam.prejap.tetris.game;
 import com.epam.prejap.tetris.block.Block;
 import com.epam.prejap.tetris.block.BlockFeed;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Playfield {
 
     private final Printer printer;
     private final BlockFeed feed;
-    private Block block;
+    private final List<PlayfieldObserver> playfieldObservers;
     private final Grid grid;
+    private Block block;
 
     /**
      * @param feed    block generator
      * @param printer displays grid to user via System.out
      * @param grid    starting
      */
-    public Playfield(BlockFeed feed, Printer printer, Grid grid) {
+    public Playfield(BlockFeed feed, Printer printer, Grid grid,
+                     List<PlayfieldObserver> playfieldObservers) {
         this.feed = feed;
         this.printer = printer;
         this.grid = grid;
+        this.playfieldObservers = new ArrayList<>();
     }
 
     /**
@@ -26,6 +32,7 @@ public class Playfield {
      */
     public void nextBlock() {
         block = feed.nextBlock();
+        notifyBlockObservers();
         grid.newBlock(block.cols());
         show(block);
     }
@@ -81,9 +88,12 @@ public class Playfield {
     }
 
     private void show(Block block) {
+        printer.printScore();
         grid.show(block);
         printer.draw(grid.byteGrid);
     }
 
-
+    private void notifyBlockObservers() {
+        playfieldObservers.forEach(PlayfieldObserver::newBlockAppeared);
+    }
 }
