@@ -26,12 +26,9 @@
                 <include name="Player"/>
                 <include name="NavigationKeys"/>
                 <include name="Timer"/>
-<<<<<<< HEAD
+                <include name="Color"/>
                 <include name="BlockRotation"/>
                 <include name="BlockRotationInGame"/>
-=======
-                <include name="Color"/>
->>>>>>> master
             </run>
         </groups>
         <classes>
@@ -46,12 +43,9 @@
             <class name="com.epam.prejap.tetris.CommandLineAnalystTest"/>
             <class name="com.epam.prejap.tetris.game.PrinterTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
-<<<<<<< HEAD
+            <class name="com.epam.prejap.tetris.block.Color"/>
             <class name="com.epam.prejap.tetris.block.BlockRotationTestFactory"/>
             <class name="com.epam.prejap.tetris.game.PlayfieldBlockRotationTestFactory"/>
-=======
-            <class name="com.epam.prejap.tetris.block.Color"/>
->>>>>>> master
         </classes>
     </test>
 </suite>
