@@ -13,7 +13,7 @@ import static org.testng.Assert.assertEquals;
 @Test(groups = "DataWriter")
 public class DataWriterTest {
 
-    private final Path writeFilePath = Paths.get("src/test/resources/testfiles/WriteFileTest.txt");
+    private final Path writeFilePath = Paths.get("src/test/resources/testfiles/WriteFileTest.json");
 
     @AfterMethod
     public void tearDown() throws IOException {

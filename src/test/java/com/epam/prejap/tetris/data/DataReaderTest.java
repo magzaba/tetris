@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
 @Test(groups = "DataReader")
 public class DataReaderTest {
 
-    private final Path path = Paths.get("src/test/resources/testfiles/ReadFileTest.txt");
+    private final Path path = Paths.get("src/test/resources/testfiles/ReadFileTest.json");
 
     @Test
     public void shallReadArrayWithLength10() {

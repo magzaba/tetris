@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 class Tetris {
 
-    private static final Path PATH = Paths.get("src/main/resources/files/HallOfFame.txt");
+    private static final Path PATH = Paths.get("src/main/resources/files/HallOfFame.json");
 
     private final Playfield playfield;
     private final Waiter waiter;

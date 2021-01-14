@@ -32,7 +32,7 @@ public class HallOfFameTest {
 
     @BeforeClass
     public void setUp() {
-        readPath = Paths.get("src/test/resources/testfiles/ReadFileTest.txt");
+        readPath = Paths.get("src/test/resources/testfiles/ReadFileTest.json");
         writePath = Paths.get("src/test/resources/testfiles/WriteFileTest.txt");
         timer = new Timer(500);
         printer = new Printer(System.out, timer);
