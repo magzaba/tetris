@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 import static org.testng.Assert.*;
 
@@ -71,21 +72,13 @@ public class HallOfFameTest {
 
     @DataProvider()
     public static Object[] mockHallOfFameMembers() {
-        HallOfFameMember[] mock1 = new HallOfFameMember[]{
-                new HallOfFameMember("n10", 10),
-                new HallOfFameMember("n15", 15),
-                new HallOfFameMember("n20", 20),
-                new HallOfFameMember("n25", 25),
-                new HallOfFameMember("n30", 30),
-        };
+        HallOfFameMember[] mock1 = IntStream.range(10,20)
+                .mapToObj(i -> new HallOfFameMember("P" + i, i))
+                .toArray(HallOfFameMember[]::new);
 
-        HallOfFameMember[] mock2 = new HallOfFameMember[]{
-                new HallOfFameMember("n5", 5),
-                new HallOfFameMember("n6", 6),
-                new HallOfFameMember("n7", 7),
-                new HallOfFameMember("n8", 8),
-                new HallOfFameMember("n9", 9),
-        };
+        HallOfFameMember[] mock2 = IntStream.range(4,14)
+                .mapToObj(i -> new HallOfFameMember("P" + i, i))
+                .toArray(HallOfFameMember[]::new);
 
         return new Object[]{mock1, mock2};
     }
@@ -175,7 +168,7 @@ public class HallOfFameTest {
         softAssert.assertTrue(actual.contains("25"));
         softAssert.assertFalse(actual.contains("26"));
         softAssert.assertFalse(actual.contains("30"));
-        softAssert.assertAll("Shall print only 25 elements, but it did not");
+        softAssert.assertAll("Should have printed only 25 elements, but it did not");
 
     }
 

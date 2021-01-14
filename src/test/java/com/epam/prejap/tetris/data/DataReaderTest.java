@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertEquals;
 
@@ -41,17 +42,11 @@ public class DataReaderTest {
 
     @DataProvider()
     public static Object[][] defaultInitialHallOfFame() {
-        HallOfFameMember player1 = new HallOfFameMember("Pl1", 1);
-        HallOfFameMember player2 = new HallOfFameMember("Pl2", 2);
-        HallOfFameMember player3 = new HallOfFameMember("Pl3", 3);
-        HallOfFameMember player4 = new HallOfFameMember("Pl4", 4);
-        HallOfFameMember player5 = new HallOfFameMember("Pl5", 5);
-        HallOfFameMember player6 = new HallOfFameMember("Pl6", 6);
-        HallOfFameMember player7 = new HallOfFameMember("Pl7", 7);
-        HallOfFameMember player8 = new HallOfFameMember("Pl8", 8);
-        HallOfFameMember player9 = new HallOfFameMember("Pl9", 9);
-        HallOfFameMember player10 = new HallOfFameMember("P10", 10);
 
-        return new HallOfFameMember[][]{{player1, player2, player3, player4, player5, player6, player7, player8, player9, player10}};
+        HallOfFameMember[] members = IntStream.range(1, 11)
+                .mapToObj(i -> new HallOfFameMember("P" + i, i))
+                .toArray(HallOfFameMember[]::new);
+
+        return new HallOfFameMember[][]{members};
     }
 }
