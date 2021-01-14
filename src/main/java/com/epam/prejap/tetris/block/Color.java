@@ -1,6 +1,7 @@
 package com.epam.prejap.tetris.block;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * @author Dominik Janiga
@@ -16,6 +17,8 @@ public enum Color {
     MAGENTA(6, 35),
     CYAN(7, 36),
     WHITE(8, 37);
+
+    static final Pattern ANSIEscapeColorCodePreCompiledPattern = Pattern.compile("\u001B\\[\\d*m");
 
     /**
      * Color identifiers from ANSI escape codes
@@ -67,5 +70,16 @@ public enum Color {
         String finalByte = "m";
         String resetColor = escape + "0" + finalByte;
         return escape + ansiCode + finalByte + blockMark + resetColor;
+    }
+
+    /**
+     * Strips the {@code input} out of ANSI escape color codes and returns it.
+     *
+     * @param   input {@code String} to be stripped out of ANSI escape color codes
+     * @return  a {@code String} stripped out of ANSI escape color codes
+     * @see     <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI Escape codes</a>
+     */
+    public static String stripOfColors(String input) {
+        return ANSIEscapeColorCodePreCompiledPattern.matcher(input).replaceAll("");
     }
 }

@@ -1,6 +1,7 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.BlockFeed;
+import com.epam.prejap.tetris.block.Color;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -41,7 +42,7 @@ public class PlayfieldBlockRotationTest {
         }
 
         // then
-        assertTrue(bos.toString().contains(expectedGrid));
+        assertTrue(Color.stripOfColors(bos.toString()).contains(expectedGrid));
     }
 
     @DataProvider
