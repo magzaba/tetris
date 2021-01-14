@@ -92,5 +92,5 @@ public interface RotatableBlock {
      */
     Block asBlock();
 
-    byte colorId();
+    byte getColorId();
 }

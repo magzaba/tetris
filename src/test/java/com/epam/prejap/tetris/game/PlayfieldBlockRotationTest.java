@@ -33,7 +33,8 @@ public class PlayfieldBlockRotationTest {
         // given
         var bos = new ByteArrayOutputStream();
         var printer = new Printer(new PrintStream(bos), new Timer(1));
-        Playfield playfield = new Playfield(gridRows, gridColumns, mockBlockFeed, printer);
+        var gridWithoutObstacles = createGridWithoutObstacles();
+        Playfield playfield = new Playfield(mockBlockFeed, printer, gridWithoutObstacles);
         playfield.nextBlock();
 
         // when
@@ -48,6 +49,11 @@ public class PlayfieldBlockRotationTest {
     @DataProvider
     public Object[][] blockRotationsOnGridAfterUPKeyPresses() {
         return blockRotationsOnGridAfterUPKeyPresses;
+    }
+
+    private Grid createGridWithoutObstacles() {
+        boolean areExtraBlockAdded = false;
+        return Grid.getNewGrid(mockBlockFeed, gridRows, gridColumns, areExtraBlockAdded);
     }
 
 }

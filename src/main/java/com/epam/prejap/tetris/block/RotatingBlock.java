@@ -92,7 +92,7 @@ class RotatingBlock implements RotatableBlock {
     }
 
     @Override
-    public byte colorId() {
+    public byte getColorId() {
         return block.getColorId();
     }
 }

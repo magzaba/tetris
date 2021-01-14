@@ -6,34 +6,40 @@ import com.epam.prejap.tetris.block.RotatableBlock;
 
 public class Playfield {
 
-    private final byte[][] grid;
-    private final int rows;
-    private final int cols;
     private final Printer printer;
     private final BlockFeed feed;
-
     private RotatableBlock rotatableBlock;
-    private int row;
-    private int col;
+    private final Grid grid;
 
-    public Playfield(int rows, int cols, BlockFeed feed, Printer printer) {
-        this.rows = rows;
-        this.cols = cols;
+    /**
+     * @param feed    block generator
+     * @param printer displays grid to user via System.out
+     * @param grid    starting
+     */
+    public Playfield(BlockFeed feed, Printer printer, Grid grid) {
         this.feed = feed;
         this.printer = printer;
-        grid = new byte[this.rows][this.cols];
+        this.grid = grid;
     }
 
+    /**
+     * Generates new block starting at row 0 in the center column
+     */
     public void nextBlock() {
-        var block = feed.nextBlock();
-        rotatableBlock = RotatableBlock.of(block);
-        row = 0;
-        col = (cols - block.cols()) / 2;
-        show();
+        var nextBlock = feed.nextBlock();
+        rotatableBlock = RotatableBlock.of(nextBlock);
+        grid.newBlock(rotatableBlock.cols());
+        showBlockOnGrid();
     }
 
+    /**
+     * Shifts current block left or right one column, then down one row
+     *
+     * @param move direction of movement
+     * @return block moved down one row
+     */
     public boolean move(Move move) {
-        hide();
+        hideBlockOnGrid();
         boolean moved;
         switch (move) {
             case LEFT -> moveLeft();
@@ -41,33 +47,9 @@ public class Playfield {
             case UP -> rotateBlock();
         }
         moved = moveDown();
-        show();
+        showBlockOnGrid();
         return moved;
     }
-
-    private void rotateBlock() {
-        var blockAfterRotation = rotatableBlock.rotate();
-        var offsetAfterRotation =  calculateRotationPointOffset(rotatableBlock, blockAfterRotation);
-        if (isValidMove(blockAfterRotation, offsetAfterRotation)) {
-            rotatableBlock = blockAfterRotation;
-            doMove(offsetAfterRotation);
-        }
-    }
-
-    private static ArrayPoint calculateRotationPointOffset(RotatableBlock from, RotatableBlock to) {
-        var fromRotationPoint = from.rotationPoint();
-        var toRotationPoint = to.rotationPoint();
-        return fromRotationPoint.subtract(toRotationPoint);
-    }
-
-    private boolean isValidMove(RotatableBlock rotatableBlock, ArrayPoint offset) {
-        return isValidMove(rotatableBlock, offset.row(), offset.column());
-    }
-
-    private void doMove(ArrayPoint moveDistance) {
-        doMove(moveDistance.row(), moveDistance.column());
-    }
-
 
     private void moveRight() {
         move(0, 1);
@@ -81,57 +63,44 @@ public class Playfield {
         return move(1, 0);
     }
 
+    private void rotateBlock() {
+        var blockAfterRotation = rotatableBlock.rotate();
+        var offsetAfterRotation =  calculateRotationPointOffset(rotatableBlock, blockAfterRotation);
+        if (isValidRotation(blockAfterRotation, offsetAfterRotation)) {
+            doRotate(blockAfterRotation, offsetAfterRotation);
+        }
+    }
+
+    private static ArrayPoint calculateRotationPointOffset(RotatableBlock from, RotatableBlock to) {
+        var fromRotationPoint = from.rotationPoint();
+        var toRotationPoint = to.rotationPoint();
+        return fromRotationPoint.subtract(toRotationPoint);
+    }
+
+    private boolean isValidRotation(RotatableBlock rotatableBlock, ArrayPoint offsetAfterRotation) {
+        return grid.isValidMove(rotatableBlock.asBlock(), offsetAfterRotation.row(), offsetAfterRotation.column());
+    }
+
+    private void doRotate(RotatableBlock blockAfterRotation, ArrayPoint offsetAfterRotation) {
+        rotatableBlock = blockAfterRotation;
+        grid.doMove(offsetAfterRotation.row(), offsetAfterRotation.column());
+    }
+
     private boolean move(int rowOffset, int colOffset) {
         boolean moved = false;
-        if (isValidMove(rotatableBlock, rowOffset, colOffset)) {
-            doMove(rowOffset, colOffset);
+        if (grid.isValidMove(rotatableBlock.asBlock(), rowOffset, colOffset)) {
+            grid.doMove(rowOffset, colOffset);
             moved = true;
         }
         return moved;
     }
 
-    private boolean isValidMove(RotatableBlock rotatableBlock, int rowOffset, int colOffset) {
-        for (int i = 0; i < rotatableBlock.rows(); i++) {
-            for (int j = 0; j < rotatableBlock.cols(); j++) {
-                var dot = rotatableBlock.dotAt(i, j);
-                if (dot > 0) {
-                    int newRow = row + i + rowOffset;
-                    int newCol = col + j + colOffset;
-                    if (newRow >= rows || newCol >= cols || grid[newRow][newCol] > 0) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
+    private void hideBlockOnGrid() {
+        grid.hide(rotatableBlock.asBlock());
     }
 
-    private void hide() {
-        forEachBrick((i, j) -> grid[row + i][col + j] = 0);
-    }
-
-    private void show() {
-        forEachBrick((i, j) -> grid[row + i][col + j] = rotatableBlock.colorId());
-        printer.draw(grid);
-    }
-
-    private void doMove(int rowOffset, int colOffset) {
-        row += rowOffset;
-        col += colOffset;
-    }
-
-    private void forEachBrick(BrickAction action) {
-        for (int i = 0; i < rotatableBlock.rows(); i++) {
-            for (int j = 0; j < rotatableBlock.cols(); j++) {
-                var dot = rotatableBlock.dotAt(i, j);
-                if (dot > 0) {
-                    action.act(i, j);
-                }
-            }
-        }
-    }
-
-    private interface BrickAction {
-        void act(int i, int j);
+    private void showBlockOnGrid() {
+        grid.show(rotatableBlock.asBlock());
+        printer.draw(grid.byteGrid);
     }
 }
