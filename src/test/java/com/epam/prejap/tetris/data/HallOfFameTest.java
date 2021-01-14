@@ -35,7 +35,7 @@ public class HallOfFameTest {
         readPath = Paths.get("src/test/resources/testfiles/ReadFileTest.json");
         writePath = Paths.get("src/test/resources/testfiles/WriteFileTest.txt");
         timer = new Timer(500);
-        printer = new Printer(System.out, timer);
+        printer = new Printer(System.out, timer, null);
         reader = new DataReader(readPath);
         writer = new DataWriter(writePath);
     }
@@ -51,10 +51,10 @@ public class HallOfFameTest {
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
 
         //when
-        boolean result = hallOfFame.tryToEnterHallOfFame(100);
+        boolean result = hallOfFame.tryToEnter(100);
 
         //then
-        assertTrue(result, "Shall return true, but it did not");
+        assertTrue(result, "Shall have returned true, but it did not");
     }
 
     @Test(groups = "TryToEnter", dataProvider = "mockHallOfFameMembers")
@@ -63,10 +63,10 @@ public class HallOfFameTest {
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
 
         //when
-        boolean result = hallOfFame.tryToEnterHallOfFame(1);
+        boolean result = hallOfFame.tryToEnter(1);
 
         //then
-        assertFalse(result, "Shall return false, but it did not");
+        assertFalse(result, "Shall have returned false, but it did not");
     }
 
     @DataProvider()
@@ -95,7 +95,6 @@ public class HallOfFameTest {
         //given
         SoftAssert softAssert = new SoftAssert();
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
-        Scanner in = new Scanner("Moc");
         HallOfFameMember newMember = new HallOfFameMember("tst", 0);
 
         //when
@@ -109,7 +108,7 @@ public class HallOfFameTest {
         softAssert.assertTrue(containsNewMember);
         softAssert.assertEquals(onlyOne, 1L);
         softAssert.assertEquals(updatedMembers.size(), mockMembers.length + 1);
-        softAssert.assertAll("Shall add element to list once, but it did not");
+        softAssert.assertAll("Should have added element to list once, but it did not");
     }
 
     @Test(dataProvider = "playerInitialsLongerThan3Chars")
@@ -117,7 +116,6 @@ public class HallOfFameTest {
         //given
         SoftAssert softAssert = new SoftAssert();
         Timer timer = new Timer(1);
-        Printer printer = new Printer(System.out, timer);
         HallOfFame hallOfFame = new HallOfFame(printer);
 
         //when
@@ -133,7 +131,6 @@ public class HallOfFameTest {
     public void shallNotReducePlayersNameWhenNoLongerThan3Chars(String name) {
         //given
         Timer timer = new Timer(1);
-        Printer printer = new Printer(System.out, timer);
         HallOfFame hallOfFame = new HallOfFame(printer);
 
         //when

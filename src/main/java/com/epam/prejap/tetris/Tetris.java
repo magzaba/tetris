@@ -88,7 +88,7 @@ class Tetris {
         System.out.println("Total score: " + score.points());
 
         var hallOfFame = new HallOfFame(printer);
-        hallOfFame.tryToEnterHallOfFame(score.points());
+        hallOfFame.tryToEnter(score.points());
 
     }
 }

@@ -53,7 +53,7 @@ public class PrinterTest {
 
 
     @Test(groups = "Color", dataProvider = "colors")
-    public void checkIfPrintMethodPrintsStringWithAppropriateColor(Color color) {
+    public void shallPrintInAppropriateColor(Color color) {
         // given
         Timer timer = Mockito.mock(Timer.class);
         Referee referee = new Referee();

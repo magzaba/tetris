@@ -3,22 +3,17 @@ package com.epam.prejap.tetris.data;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The HallOfFameMember record represents {@link HallOfFameMember#name} and {@link HallOfFameMember#points} of player with highest scores
- * in tetris game.
+ * One line in {@link HallOfFame} of our Tetris game, consisting of name and points earned.
  *
  * <p>Acts as definition of mapper from JSON using Jackson library.
  *
  * <p>Natural order of objects means descending by points.
+ *
+ * @see HallOfFame
  */
 record HallOfFameMember(@JsonProperty("name") String name,
-                               @JsonProperty("points") int points) implements Comparable<HallOfFameMember> {
+                        @JsonProperty("points") int points) implements Comparable<HallOfFameMember> {
 
-
-    @Override
-    public String toString() {
-        return "Name: " + name +
-                ", Score: " + points;
-    }
 
     /**
      * Compares this object to the other using <strong>reverse</strong> order of {@link Integer#compare(int x, int y)}

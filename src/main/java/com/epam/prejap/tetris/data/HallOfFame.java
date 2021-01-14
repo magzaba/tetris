@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 /**
- * Represents highest number of points in tetris game.
+ * Contains members with highest scores in Tetris game.
  *
  * @implNote: It contains List with {@link HallOfFameMember} read from file.
  */
@@ -28,7 +28,7 @@ public final class HallOfFame {
         this.members = obtainMembers();
     }
 
-    public HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer, final List<HallOfFameMember> members) {
+    HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer, final List<HallOfFameMember> members) {
         this.reader = reader;
         this.writer = writer;
         this.printer = printer;
@@ -46,7 +46,7 @@ public final class HallOfFame {
      * @param points int representing points won in game
      * @return boolean if qualified to enter high scores
      */
-    public boolean tryToEnterHallOfFame(final int points) {
+    public boolean tryToEnter(final int points) {
         if (members.isEmpty()) {
             return false;
         }
