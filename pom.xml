@@ -16,6 +16,7 @@
         <version.plugin.maven.jar>3.2.0</version.plugin.maven.jar>
         <version.plugin.maven.surefire>3.0.0-M5</version.plugin.maven.surefire>
         <version.plugin.maven.failsafe>3.0.0-M5</version.plugin.maven.failsafe>
+        <version.plugin.maven.compiler>3.8.1</version.plugin.maven.compiler>
         <!-- dependencies versions -->
         <version.testng>7.3.0</version.testng>
         <version.mockito>3.2.4</version.mockito>
@@ -78,6 +79,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/integration_testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>--enable-preview</argLine>
                 </configuration>
                 <executions>
                     <execution>
@@ -112,9 +114,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.plugin.maven.compiler}</version>
                 <configuration>
-                    <source>14</source>
-                    <target>14</target>
+                    <source>${project.java.version}</source>
+                    <target>${project.java.version}</target>
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
