@@ -23,6 +23,10 @@
                 <include name="Grid"/>
                 <include name="Playfield"/>
             </define>
+            <define name="HallOfFame">
+                <include name="HallOfFameMember"/>
+                <include name="HallOfFameList"/>
+            </define>
             <run>
                 <include name="Block"/>
                 <include name="Player"/>
@@ -30,7 +34,6 @@
                 <include name="Game"/>
                 <include name="Timer"/>
                 <include name="Color"/>
-                <include name="HallOfFameMember"/>
                 <include name="HallOfFame"/>
             </run>
         </groups>

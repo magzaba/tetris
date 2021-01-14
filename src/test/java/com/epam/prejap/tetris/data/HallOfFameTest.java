@@ -20,7 +20,7 @@ import java.util.Scanner;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-@Test(groups = "HallOfFame")
+@Test(groups = "HallOfFameList")
 public class HallOfFameTest {
 
     private Path readPath;
