@@ -14,12 +14,14 @@
                 <include name="IBlock" />
                 <include name="OBlock" />
                 <include name="JBlock" />
+                <include name="BlockRotation" />
             </define>
             <define name="Player">
                 <include name="RandomPlayer" />
             </define>
             <define name="Game">
                 <include name="Timer" />
+                <include name="BlockRotationInGame" />
             </define>
             <run>
                 <include name="Block"/>

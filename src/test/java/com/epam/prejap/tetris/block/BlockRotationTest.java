@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-@Test(groups = "BlockRotation")
+@Test(groups = "BlockRotation", dependsOnGroups = "Block")
 public class BlockRotationTest {
 
     private enum RotationDegree {
