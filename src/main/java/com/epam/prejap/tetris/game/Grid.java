@@ -78,17 +78,22 @@ public class Grid {
     }
 
     int maxRowOffset(Block block) {
-        var maxRowCount=rows;
-        for (int blockCol=0;blockCol<block.cols();blockCol++){
-            var offsetInColumn=0;
-            for(int i = row+ block.lowestOccupiedRowInColumn(blockCol)+1; i<rows; i++) {
-                if (byteGrid[i][col + blockCol] == 0) {
-                    maxRowCount=Integer.min(offsetInColumn, maxRowCount);
+        var maxRowCount = rows;
+        for (int blockCol = 0; blockCol < block.cols(); blockCol++) {
+            var offsetInColumn = 0;
+            for (int i = row + block.lowestOccupiedRowInColumn(blockCol) + 1; i < rows; i++) {
+                if (byteGrid[i][col + blockCol] > 0) {
+                    break;
                 }
                 offsetInColumn++;
             }
+            maxRowCount = Integer.min(offsetInColumn, maxRowCount);
         }
-        return maxRowCount;
+        return maxRowOffsetThatAllowsOneAdditionalMoveDown(maxRowCount);
+    }
+
+    private int maxRowOffsetThatAllowsOneAdditionalMoveDown(int maxRowOffset) {
+        return maxRowOffset > 0 ? maxRowOffset - 1 : 0;
     }
 
     private void addStarterBlocks() {

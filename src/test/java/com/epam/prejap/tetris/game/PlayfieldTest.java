@@ -6,8 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.stream.IntStream;
-
 import static org.testng.Assert.assertEquals;
 
 @Test(groups = "Playfield")
@@ -25,7 +23,7 @@ public class PlayfieldTest {
         playfield = new Playfield(feed, printer, grid);
     }
 
-    @Test(dataProvider = "arrayOfMoves")
+    @Test(dataProvider = "arrayOfMoves", invocationCount = 5)
     public void givenEmptyGrid_moveCalledProperAmountOfTimes(Move move) {
         playfield.nextBlock();
         int blockStart = 0;
@@ -46,14 +44,17 @@ public class PlayfieldTest {
             length++;
         }
 
+        //count expected number of moves to the bottom
+        var expectedNrOfMoves = move.equals(Move.DOWN) ? 1 : rows - length;
+
         //move block down to bottom of grid
         while (playfield.move(move))
             count++;
 
-        assertEquals(count, rows - length, "Block moved an illegal number of turns down");
+        assertEquals(count, expectedNrOfMoves, "Block moved an illegal number of turns down");
     }
 
-    @Test(dataProvider = "arrayOfMoves")
+    @Test(dataProvider = "arrayOfMoves", invocationCount = 5)
     public void givenEmptyGrid_noOtherMoveIsValidAfterMoveDOWN(Move move) {
         //given
         playfield.nextBlock();
@@ -66,10 +67,8 @@ public class PlayfieldTest {
     }
 
     @DataProvider
-    public Object[][] arrayOfMoves() {
-        var amtOfIterations = 15;
-        var amtOfPossibleMoves = Move.values().length;
-        return IntStream.rangeClosed(0, amtOfIterations).mapToObj(i -> new Object[]{Move.values()[i % amtOfPossibleMoves]}).toArray(Object[][]::new);
+    public Object[] arrayOfMoves() {
+        return Move.values();
     }
 
 }

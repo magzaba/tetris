@@ -51,7 +51,7 @@ public class Playfield {
     }
 
     private void moveToBottom() {
-        move(grid.maxRowOffset(block)-1,0);
+        move(grid.maxRowOffset(block), 0);
     }
 
     private void moveRight() {
@@ -65,7 +65,6 @@ public class Playfield {
     private boolean moveDown() {
         return move(1, 0);
     }
-
 
 
     private boolean move(int rowOffset, int colOffset) {
