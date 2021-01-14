@@ -42,7 +42,7 @@ public class HallOfFame {
      * @param points int representing points won in game
      * @return boolean if qualified to enter high scores
      */
-    public boolean tryToEnterHallOfFame(final int points, Scanner in) {
+    public boolean tryToEnterHallOfFame(final int points) {
         if (members.isEmpty()) {
             return false;
         }
@@ -52,7 +52,8 @@ public class HallOfFame {
 
         if (anyDefeated.isPresent()) {
             printer.newHighScore(points);
-            HallOfFameMember newMember = printer.readInitials(points, in);
+            String name = System.getProperty("user.name");
+            HallOfFameMember newMember = printer.readInitials(points, name);
             members = enterHallOfFame(newMember);
             return true;
         }

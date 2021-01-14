@@ -50,10 +50,9 @@ public class HallOfFameTest {
     public void tryToEnterHallOfFameShallBeTrueForHigherScoreThanExistingOnes(HallOfFameMember[] mockMembers) {
         //given
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
-        Scanner in = new Scanner("Moc");
 
         //when
-        boolean result = hallOfFame.tryToEnterHallOfFame(100, in);
+        boolean result = hallOfFame.tryToEnterHallOfFame(100);
 
         //then
         assertTrue(result, "Shall return true, but it did not");
@@ -63,10 +62,9 @@ public class HallOfFameTest {
     public void tryToEnterHallOfFameShallBeFalseForLowerScoreThanExistingOnes(HallOfFameMember[] mockMembers) {
         //given
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
-        Scanner in = new Scanner("Moc");
 
         //when
-        boolean result = hallOfFame.tryToEnterHallOfFame(1, in);
+        boolean result = hallOfFame.tryToEnterHallOfFame(1);
 
         //then
         assertFalse(result, "Shall return false, but it did not");

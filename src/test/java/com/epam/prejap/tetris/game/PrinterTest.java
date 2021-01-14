@@ -11,12 +11,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import static org.testng.Assert.*;
 
@@ -59,7 +55,6 @@ public class PrinterTest {
     }
 
 
-
     @Test(groups = "Color", dataProvider = "colors")
     public void checkIfPrintMethodPrintsStringWithAppropriateColor(Color color) {
         // given
@@ -86,7 +81,7 @@ public class PrinterTest {
     }
 
     @Test(dataProvider = "mockHallOfFame30Members")
-    public void hallOfFameShallPrintMax25Entries(HallOfFameMember[] mockMembers){
+    public void hallOfFameShallPrintMax25Entries(HallOfFameMember[] mockMembers) {
         //given
         SoftAssert softAssert = new SoftAssert();
         Timer timer = new Timer(1);
@@ -105,18 +100,33 @@ public class PrinterTest {
 
     }
 
-    @Test(dataProvider = "scannerMoreThan3CharsInput", expectedExceptions = InputMismatchException.class)
-    public void shallNotReadNameWithMoreThan3Chars(String name){
+    @Test(dataProvider = "playerInitialsLongerThan3Chars")
+    public void shallReducePlayersNameWhenLongerThan3Chars(String name) {
+        //given
+        SoftAssert softAssert = new SoftAssert();
+        Timer timer = new Timer(1);
+        Printer printer = new Printer(new PrintStream(bos), timer);
+
+        //when
+        HallOfFameMember actual = printer.readInitials(1, name);
+
+        //then
+        softAssert.assertEquals(actual.name().length(), 3);
+        softAssert.assertEquals(actual.name(), name.substring(0, 3));
+        softAssert.assertAll("Shall shorten name to 3 characters but it did not");
+    }
+
+    @Test(dataProvider = "playerInitialsNoLongerThan3Chars")
+    public void shallNotReducePlayersNameWhenNoLongerThan3Chars(String name) {
         //given
         Timer timer = new Timer(1);
         Printer printer = new Printer(new PrintStream(bos), timer);
-        Scanner in = new Scanner(name);
 
         //when
-        HallOfFameMember actual = printer.readInitials(1, in);
+        HallOfFameMember actual = printer.readInitials(1, name);
 
         //then
-        assertThrows(InputMismatchException::new);
+        assertEquals(actual.name(), name);
     }
 
     @DataProvider()
@@ -127,24 +137,23 @@ public class PrinterTest {
     }
 
     @DataProvider()
-    public static Object[] scanner3CharsInput() {
-        return new Object[]{
-                "one",
-                "two",
-                "123",
-                "...",
-                "!`!"
-        };
-    }
-
-    @DataProvider()
-    public static Object[] scannerMoreThan3CharsInput() {
+    public static Object[] playerInitialsLongerThan3Chars() {
         return new Object[]{
                 "oneone",
                 "twotwo",
                 "123123",
                 "......",
                 "!`!!`!"
+        };
+    }
+
+    @DataProvider()
+    public static Object[] playerInitialsNoLongerThan3Chars() {
+        return new Object[]{
+                "one",
+                "12",
+                "1",
+                "",
         };
     }
 }

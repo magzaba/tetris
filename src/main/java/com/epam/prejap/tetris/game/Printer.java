@@ -94,15 +94,20 @@ public class Printer {
     }
 
     /**
-     * Reads initials from console, limited to 3 characters
+     * Creates new {@link HallOfFameMember} from given players initials and scores,
+     * with name limited to max. 3 characters.
      *
      * @param score int representing new high score
-     * @return new member of HallOfFame with param score and input name
+     * @param systemName Player name, shall be read from user.name property
+     * @return new member of HallOfFame with given initials and score.
      */
-    public HallOfFameMember readInitials(final int score, Scanner in) {
-        out.print("ENTER YOUR INITIALS [MAX 3]: ");
-        String name = in.next(".{1,3}");
-        return new HallOfFameMember(name, score);
+    public HallOfFameMember readInitials(final int score, String systemName) {
+        out.print("FIRST 3 letters of system name initials saved in HallOfFame");
+        if (systemName.length() <= 3) {
+            return new HallOfFameMember(systemName, score);
+
+        }
+        return new HallOfFameMember(systemName.substring(0, 3), score);
     }
 
 }

@@ -91,7 +91,7 @@ class Tetris {
         var reader = new DataReader(PATH);
         var writer = new DataWriter(PATH);
         var hallOfFame = new HallOfFame(reader, writer, printer);
-        hallOfFame.tryToEnterHallOfFame(score.points(), new Scanner(System.in));
+        hallOfFame.tryToEnterHallOfFame(score.points());
 
     }
 }
