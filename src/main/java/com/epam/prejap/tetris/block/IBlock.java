@@ -19,15 +19,15 @@ final class IBlock extends Block {
     };
 
     IBlock() {
-        super(IMAGE);
+        super(IMAGE, Color.GREEN);
     }
 
-    private IBlock(byte[][] image) {
-        super(image);
+    private IBlock(byte[][] image, Color color) {
+        super(image, color);
     }
 
     @Override
     Block copyWithImage(byte[][] image) {
-        return new IBlock(image);
+        return new IBlock(image, this.color);
     }
 }

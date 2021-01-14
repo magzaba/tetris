@@ -91,4 +91,6 @@ public interface RotatableBlock {
      * @return {@code Block} that this object wraps.
      */
     Block asBlock();
+
+    byte colorId();
 }

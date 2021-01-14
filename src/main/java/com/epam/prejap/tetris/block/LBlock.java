@@ -16,15 +16,15 @@ final class LBlock extends Block {
     };
 
     LBlock() {
-        super(IMAGE);
+        super(IMAGE, Color.RED);
     }
 
-    private LBlock(byte[][] image) {
-        super(image);
+    private LBlock(byte[][] image, Color color) {
+        super(image, color);
     }
 
     @Override
     Block copyWithImage(byte[][] image) {
-        return new LBlock(image);
+        return new LBlock(image, this.color);
     }
 }

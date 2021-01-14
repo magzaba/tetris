@@ -16,15 +16,15 @@ final class OBlock extends Block {
     };
 
     public OBlock() {
-        super(IMAGE);
+        super(IMAGE, Color.BLUE);
     }
 
-    private OBlock(byte[][] image) {
-        super(image);
+    private OBlock(byte[][] image, Color color) {
+        super(image, color);
     }
 
     @Override
     Block copyWithImage(byte[][] image) {
-        return new OBlock(image);
+        return new OBlock(image, this.color);
     }
 }

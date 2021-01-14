@@ -17,15 +17,15 @@ final class JBlock extends Block {
     };
 
     JBlock() {
-        super(IMAGE);
+        super(IMAGE, Color.YELLOW);
     }
 
-    private JBlock(byte[][] image) {
-        super(image);
+    private JBlock(byte[][] image, Color color) {
+        super(image, color);
     }
 
     @Override
     Block copyWithImage(byte[][] image) {
-        return new JBlock(image);
+        return new JBlock(image, this.color);
     }
 }

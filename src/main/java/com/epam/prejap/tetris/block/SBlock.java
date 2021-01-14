@@ -14,15 +14,15 @@ final class SBlock extends Block {
     };
 
     public SBlock() {
-        super(IMAGE);
+        super(IMAGE, Color.MAGENTA);
     }
 
-    private SBlock(byte[][] image) {
-        super(image);
+    private SBlock(byte[][] image, Color color) {
+        super(image, color);
     }
 
     @Override
     Block copyWithImage(byte[][] image) {
-        return new SBlock(image);
+        return new SBlock(image, this.color);
     }
 }

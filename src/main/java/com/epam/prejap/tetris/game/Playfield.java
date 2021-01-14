@@ -107,11 +107,11 @@ public class Playfield {
     }
 
     private void hide() {
-        forEachBrick((i, j, dot) -> grid[row + i][col + j] = 0);
+        forEachBrick((i, j) -> grid[row + i][col + j] = 0);
     }
 
     private void show() {
-        forEachBrick((i, j, dot) -> grid[row + i][col + j] = dot);
+        forEachBrick((i, j) -> grid[row + i][col + j] = rotatableBlock.colorId());
         printer.draw(grid);
     }
 
@@ -125,14 +125,13 @@ public class Playfield {
             for (int j = 0; j < rotatableBlock.cols(); j++) {
                 var dot = rotatableBlock.dotAt(i, j);
                 if (dot > 0) {
-                    action.act(i, j, dot);
+                    action.act(i, j);
                 }
             }
         }
     }
 
     private interface BrickAction {
-        void act(int i, int j, byte dot);
+        void act(int i, int j);
     }
-
 }

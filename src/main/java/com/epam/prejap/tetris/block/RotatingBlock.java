@@ -90,4 +90,9 @@ class RotatingBlock implements RotatableBlock {
     public Block asBlock() {
         return block;
     }
+
+    @Override
+    public byte colorId() {
+        return block.getColorId();
+    }
 }
