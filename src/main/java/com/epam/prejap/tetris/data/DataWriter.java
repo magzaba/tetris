@@ -35,7 +35,7 @@ final class DataWriter {
         try {
             mapper.writeValue(path.toFile(), hallOfFameMembers);
         } catch (IOException e) {
-            System.err.println("Error occurred when writing to file");
+            System.err.println("Error occurred when writing HallOfFame members to file, path: " + path);
         }
     }
 

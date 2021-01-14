@@ -31,7 +31,7 @@ final class DataReader {
         try {
             return mapper.readValue(path.toFile(), HallOfFameMember[].class);
         } catch (IOException e) {
-            System.err.println("Error occurred when reading from file");
+            System.err.println("Returned empty array. Error occurred when reading HallOfFame members from file, path: " + path);
         }
         return new HallOfFameMember[0];
     }
