@@ -19,16 +19,21 @@ public final class DataReader {
     /**
      * Returns array of {@link HallOfFameMember} objects.
      *
-     * <p>Data is read from resource file of specified {@link DataReader#path} using Jackson library.
+     * <p>Data is read from resource file of specified {@link DataReader#path} using Jackson library, when unsuccessful
+     * error message is printed out and empty array returned.
      *
      * <p>File contains array of JSON object mapped to array of {@link HallOfFameMember}.
      *
      * @return HallOfFame[]
-     * @throws IOException if reading file unsuccessful
      */
-    public HallOfFameMember[] readFromFile() throws IOException {
+    public HallOfFameMember[] readFromFile() {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(path.toFile(), HallOfFameMember[].class);
+        try {
+            return mapper.readValue(path.toFile(), HallOfFameMember[].class);
+        } catch (IOException e) {
+            System.err.println("Error occurred when reading from file");
+        }
+        return new HallOfFameMember[0];
     }
 
 }

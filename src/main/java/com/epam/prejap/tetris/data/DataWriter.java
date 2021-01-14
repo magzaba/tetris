@@ -24,13 +24,19 @@ public final class DataWriter {
      * <p>Data is saved from array of {@link HallOfFameMember} objects to file of {@link DataWriter#path} in JSON array format
      * using Jackson library.
      *
+     * <p>When there is IOException thrown by ObjectMapper, error is printed out.
+     *
      * @param hallOfFameMembers - an array of {@link HallOfFameMember} objects
-     * @throws IOException if writing to file unsuccessful
      */
-    void writeToFile(HallOfFameMember[] hallOfFameMembers) throws IOException {
+    void writeToFile(HallOfFameMember[] hallOfFameMembers) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        mapper.writeValue(path.toFile(), hallOfFameMembers);
+
+        try {
+            mapper.writeValue(path.toFile(), hallOfFameMembers);
+        } catch (IOException e) {
+            System.err.println("Error occurred when writing to file");
+        }
     }
 
 }

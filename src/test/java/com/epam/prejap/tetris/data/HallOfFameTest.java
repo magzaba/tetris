@@ -47,7 +47,7 @@ public class HallOfFameTest {
     }
 
     @Test(groups = "TryToEnter", dataProvider = "mockHallOfFameMembers")
-    public void tryToEnterHallOfFameShallBeTrueForHigherScoreThanExistingOnes(HallOfFameMember[] mockMembers) throws IOException {
+    public void tryToEnterHallOfFameShallBeTrueForHigherScoreThanExistingOnes(HallOfFameMember[] mockMembers) {
         //given
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
         Scanner in = new Scanner("Moc");
@@ -60,7 +60,7 @@ public class HallOfFameTest {
     }
 
     @Test(groups = "TryToEnter", dataProvider = "mockHallOfFameMembers")
-    public void tryToEnterHallOfFameShallBeFalseForLowerScoreThanExistingOnes(HallOfFameMember[] mockMembers) throws IOException {
+    public void tryToEnterHallOfFameShallBeFalseForLowerScoreThanExistingOnes(HallOfFameMember[] mockMembers) {
         //given
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));
         Scanner in = new Scanner("Moc");
@@ -94,7 +94,7 @@ public class HallOfFameTest {
     }
 
     @Test(dependsOnGroups = "TryToEnter", dataProvider = "mockHallOfFameMembers")
-    public void shallAddOneNewMemberToHallOfFame(HallOfFameMember[] mockMembers) throws IOException {
+    public void shallAddOneNewMemberToHallOfFame(HallOfFameMember[] mockMembers) {
         //given
         SoftAssert softAssert = new SoftAssert();
         var hallOfFame = new HallOfFame(reader, writer, printer, new ArrayList<>(Arrays.asList(mockMembers)));

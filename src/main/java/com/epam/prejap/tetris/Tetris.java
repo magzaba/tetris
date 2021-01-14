@@ -8,7 +8,6 @@ import com.epam.prejap.tetris.game.*;
 import com.epam.prejap.tetris.player.Player;
 import com.epam.prejap.tetris.player.RandomPlayer;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -65,7 +64,7 @@ class Tetris {
      *              </ul>
      * @see CommandLineAnalyst#checkArgsForNavigationKeys(String)
      */
-    public static void main(String[] args) throws IOException  {
+    public static void main(String[] args) {
         int rows = 10;
         int cols = 20;
         int delay = 500;

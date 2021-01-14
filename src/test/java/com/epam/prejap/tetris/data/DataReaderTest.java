@@ -15,7 +15,7 @@ public class DataReaderTest {
     private final Path path = Paths.get("src/test/resources/testfiles/ReadFileTest.txt");
 
     @Test
-    public void shallReadArrayWithLength10() throws IOException {
+    public void shallReadArrayWithLength10() {
         //given
         DataReader reader = new DataReader(path);
         int expected = 10;
@@ -29,7 +29,7 @@ public class DataReaderTest {
 
 
     @Test(dependsOnMethods = "shallReadArrayWithLength10", dataProvider = "defaultInitialHallOfFame")
-    public void shallReadCorrectDataFromFile(HallOfFameMember[] expected) throws IOException {
+    public void shallReadCorrectDataFromFile(HallOfFameMember[] expected) {
         //given
         DataReader reader = new DataReader(path);
 

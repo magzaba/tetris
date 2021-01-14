@@ -18,7 +18,7 @@ public class HallOfFame {
 
     private List<HallOfFameMember> members;
 
-    public HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer) throws IOException {
+    public HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer) {
         this.reader = reader;
         this.writer = writer;
         this.printer = printer;
@@ -32,7 +32,7 @@ public class HallOfFame {
         this.members = members;
     }
 
-    private List<HallOfFameMember> obtainMembers() throws IOException {
+    private List<HallOfFameMember> obtainMembers() {
         var readList = Arrays.asList(reader.readFromFile());
         return new ArrayList<>(readList);
     }
@@ -42,9 +42,11 @@ public class HallOfFame {
      *
      * @param points int representing points won in game
      * @return boolean if qualified to enter high scores
-     * @throws IOException
      */
-    public boolean tryToEnterHallOfFame(final int points, Scanner in) throws IOException {
+    public boolean tryToEnterHallOfFame(final int points, Scanner in) {
+        if (members.isEmpty()){
+            return false;
+        }
         Optional<HallOfFameMember> anyDefeated = members.stream()
                 .filter(e -> e.points() < points)
                 .findAny();
@@ -66,9 +68,8 @@ public class HallOfFame {
      *
      * @param newMember entitled to enter hall of fame
      * @return updated list of members
-     * @throws IOException if writing to file unsuccessful
      */
-    List<HallOfFameMember> enterHallOfFame(final HallOfFameMember newMember) throws IOException {
+    List<HallOfFameMember> enterHallOfFame(final HallOfFameMember newMember) {
         members.add(newMember);
         Collections.sort(members);
         writer.writeToFile(members.toArray(HallOfFameMember[]::new));

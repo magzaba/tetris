@@ -21,7 +21,7 @@ public class DataWriterTest {
     }
 
     @Test(dependsOnGroups = "DataReader", dataProvider = "defaultInitialHallOfFame", dataProviderClass = DataReaderTest.class)
-    public void shallWriteCorrectDataToFile(HallOfFameMember[] hallOfFameMembers) throws IOException {
+    public void shallWriteCorrectDataToFile(HallOfFameMember[] hallOfFameMembers) {
         //given
         DataWriter writer = new DataWriter(writeFilePath);
         DataReader reader = new DataReader(writeFilePath);
