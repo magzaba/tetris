@@ -5,6 +5,7 @@ import com.epam.prejap.tetris.game.*;
 import com.epam.prejap.tetris.player.Player;
 import com.epam.prejap.tetris.player.RandomPlayer;
 
+import java.util.Arrays;
 import java.util.Random;
 
 class Tetris {
@@ -46,14 +47,14 @@ class Tetris {
     /**
      * Prepares the environment and launches the game.
      *
-     * @param args  array of strings input from the command line
-     *              <ul>
-     *                  <li>args[0] is dedicated to configuring custom navigation keys</li>
-     *                  <ul>
-     *                      <li>each key should be represented by a single character and separated by space</li>
-     *                      <li>input example: "q s d" -> none: q, left: s, right: d</li>
-     *                  </ul>
-     *              </ul>
+     * @param args array of strings input from the command line
+     *             <ul>
+     *                 <li>args[0] is dedicated to configuring custom navigation keys</li>
+     *                 <ul>
+     *                     <li>each key should be represented by a single character and separated by space</li>
+     *                     <li>input example: "q s d" -> none: q, left: s, right: d</li>
+     *                 </ul>
+     *             </ul>
      * @see CommandLineAnalyst#checkArgsForNavigationKeys(String)
      */
     public static void main(String[] args) {
@@ -62,13 +63,17 @@ class Tetris {
         int delay = 500;
 
         var timer = new Timer(delay);
+
         var feed = new BlockFeed();
         var printer = new Printer(System.out, timer);
-        var playfield = new Playfield(rows, cols, feed, printer);
+        var flagPresent = Arrays.asList(args).contains("-rb") | Arrays.asList(args).contains("-RB");
+        var grid = Grid.getNewGrid(feed, rows, cols, flagPresent);
+
+        var playfield = new Playfield(feed, printer, grid);
         var game = new Tetris(playfield, new Waiter(delay), new RandomPlayer(new Random()), timer);
 
 
-        if (args != null && args.length != 0) {
+        if (args.length != 0 && !args[0].equalsIgnoreCase("-rb")) {
             CommandLineAnalyst.checkArgsForNavigationKeys(args[0]);
         }
 
