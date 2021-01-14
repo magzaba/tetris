@@ -30,8 +30,6 @@
                 <include name="Game"/>
                 <include name="Timer"/>
                 <include name="Color"/>
-                <include name="DataReader"/>
-                <include name="DataWriter"/>
                 <include name="HallOfFameMember"/>
                 <include name="HallOfFame"/>
             </run>
@@ -51,8 +49,6 @@
             <class name="com.epam.prejap.tetris.game.PlayfieldTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
             <class name="com.epam.prejap.tetris.block.Color"/>
-            <class name="com.epam.prejap.tetris.data.DataReaderTest"/>
-            <class name="com.epam.prejap.tetris.data.DataWriterTest"/>
             <class name="com.epam.prejap.tetris.data.HallOfFameMemberTest"/>
             <class name="com.epam.prejap.tetris.data.HallOfFameTest"/>
         </classes>

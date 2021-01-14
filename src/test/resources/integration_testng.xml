@@ -7,12 +7,19 @@
 <suite name="TetrisIntegrationSuite" time-out="10000" verbose="1">
     <test name="IntegrationTests">
         <groups>
+            <define name="IOData">
+                <include name="DataReader"/>
+                <include name="DataWriter"/>
+            </define>
             <run>
                 <include name="JarFile"/>
+                <include name="IOData"/>
             </run>
         </groups>
         <classes>
             <class name="com.epam.prejap.tetris.JarFileTest"/>
+            <class name="com.epam.prejap.tetris.data.DataReaderTest"/>
+            <class name="com.epam.prejap.tetris.data.DataWriterTest"/>
         </classes>
     </test>
 </suite>
