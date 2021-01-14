@@ -1,6 +1,7 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.BlockFeed;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -50,6 +51,18 @@ public class PlayfieldTest {
             count++;
 
         assertEquals(count, rows - length, "Block moved an illegal number of turns down");
+    }
+
+    @Test(dataProvider = "arrayOfMoves")
+    public void givenEmptyGrid_noOtherMoveIsValidAfterMoveDOWN(Move move) {
+        //given
+        playfield.nextBlock();
+
+        //when
+        playfield.move(Move.DOWN);
+
+        //then
+        Assert.assertFalse(playfield.move(move));
     }
 
     @DataProvider

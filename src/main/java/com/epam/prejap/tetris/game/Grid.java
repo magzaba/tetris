@@ -3,8 +3,6 @@ package com.epam.prejap.tetris.game;
 import com.epam.prejap.tetris.block.Block;
 import com.epam.prejap.tetris.block.BlockFeed;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
@@ -77,6 +75,20 @@ public class Grid {
     void doMove(int rowOffset, int colOffset) {
         row += rowOffset;
         col += colOffset;
+    }
+
+    int maxRowOffset(Block block) {
+        var maxRowCount=rows;
+        for (int blockCol=0;blockCol<block.cols();blockCol++){
+            var offsetInColumn=0;
+            for(int i = row+ block.lowestOccupiedRowInColumn(blockCol)+1; i<rows; i++) {
+                if (byteGrid[i][col + blockCol] == 0) {
+                    maxRowCount=Integer.min(offsetInColumn, maxRowCount);
+                }
+                offsetInColumn++;
+            }
+        }
+        return maxRowCount;
     }
 
     private void addStarterBlocks() {

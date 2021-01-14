@@ -51,7 +51,7 @@ public class Playfield {
     }
 
     private void moveToBottom() {
-        move(maxRowOffset()-1,0);
+        move(grid.maxRowOffset(block)-1,0);
     }
 
     private void moveRight() {
@@ -66,19 +66,7 @@ public class Playfield {
         return move(1, 0);
     }
 
-    private int maxRowOffset() {
-        var maxRowCount=rows;
-        for (int blockCol=0;blockCol<block.cols();blockCol++){
-            var offsetInColumn=0;
-            for(int i = row+ block.lowestOccupiedRowInColumn(blockCol)+1; i<rows; i++) {
-                if (grid[i][col + blockCol] > 0) {
-                    maxRowCount=Integer.min(offsetInColumn, maxRowCount);
-                }
-                offsetInColumn++;
-            }
-        }
-        return maxRowCount;
-    }
+
 
     private boolean move(int rowOffset, int colOffset) {
         boolean moved = false;
