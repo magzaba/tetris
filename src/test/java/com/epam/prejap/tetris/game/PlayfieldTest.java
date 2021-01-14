@@ -1,7 +1,6 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.BlockFeed;
-import org.testng.annotations.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -11,10 +10,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
-import static org.testng.Assert.*;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 @Test(groups = "Playfield")
 public class PlayfieldTest {
@@ -38,7 +36,12 @@ public class PlayfieldTest {
         playfield = new Playfield(feed, printer, grid, List.of(referee));
     }
 
-    @Test(dataProvider = "arrayOfMoves", invocationCount = 5)
+    @DataProvider
+    public Object[] moveValues() {
+        return Move.values();
+    }
+
+    @Test(groups = "Playfield", dataProvider = "moveValues", invocationCount = 5)
     public void givenEmptyGrid_moveCalledProperAmountOfTimes(Move move) {
         playfield.nextBlock();
         int blockStart = 0;
@@ -69,7 +72,7 @@ public class PlayfieldTest {
         assertEquals(count, expectedNrOfMoves, "Block moved an illegal number of turns down");
     }
 
-    @Test(dataProvider = "arrayOfMoves", invocationCount = 5)
+    @Test(groups = "Playfield", dataProvider = "moveValues", invocationCount = 5)
     public void givenEmptyGrid_noOtherMoveIsValidAfterMoveDOWN(Move move) {
         //given
         playfield.nextBlock();
@@ -79,11 +82,6 @@ public class PlayfieldTest {
 
         //then
         Assert.assertFalse(playfield.move(move));
-    }
-
-    @DataProvider
-    public Object[] arrayOfMoves() {
-        return Move.values();
     }
 
     @Test(groups = "Score")
@@ -111,10 +109,5 @@ public class PlayfieldTest {
 
         //then
         assertTrue(SCORE_PATTERN.matcher(actualString).find());
-    }
-
-    @DataProvider
-    public Object[] moveValues() {
-        return Move.values();
     }
 }
