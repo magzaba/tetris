@@ -24,7 +24,7 @@ public class HallOfFame {
         this.members = obtainMembers();
     }
 
-    HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer, final List<HallOfFameMember> members) {
+    public HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer, final List<HallOfFameMember> members) {
         this.reader = reader;
         this.writer = writer;
         this.printer = printer;
@@ -63,7 +63,7 @@ public class HallOfFame {
     /**
      * Add new member to {@link HallOfFame} and save to file.
      *
-     * <p>List of members is sorted descending by points, limited to 25 elements and printed.
+     * <p>List of all members is sorted descending by points, saved to file and first 25 elements printed.
      *
      * @param newMember entitled to enter hall of fame
      * @return updated list of members
@@ -72,8 +72,34 @@ public class HallOfFame {
         members.add(newMember);
         Collections.sort(members);
         writer.writeToFile(members.toArray(HallOfFameMember[]::new));
-        printer.hallOfFame(members);
+        printer.hallOfFame(this);
         return members;
+    }
+
+    /**
+     * Creates String representation of 25 best score members of HallOfFame.
+     *
+     * @implNote: all members are limited to 25 and printed in format "[number]. Name: [name], Score: [points]".
+     *
+     * @return String representation of 25 highest scores members.
+     */
+    @Override
+    public String toString() {
+        HallOfFameMember[] limitedMembers = limitMembersTo25elements();
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("HALL OF FAME\n");
+        for (int i = 0; i < limitedMembers.length; i++) {
+            int order = i + 1;
+            builder.append(order + ". " + limitedMembers[i] + "\n");
+        }
+        return builder.toString();
+    }
+
+    private HallOfFameMember[] limitMembersTo25elements() {
+        return members.stream()
+                .limit(25)
+                .toArray(HallOfFameMember[]::new);
     }
 
 }

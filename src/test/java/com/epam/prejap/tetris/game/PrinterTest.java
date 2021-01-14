@@ -91,9 +91,10 @@ public class PrinterTest {
         SoftAssert softAssert = new SoftAssert();
         Timer timer = new Timer(1);
         Printer printer = new Printer(new PrintStream(bos), timer);
+        HallOfFame hallOfFame = new HallOfFame(null, null, null, Arrays.asList(mockMembers));
 
         //when
-        printer.hallOfFame(new ArrayList<>(Arrays.asList(mockMembers)));
+        printer.hallOfFame(hallOfFame);
 
         //then
         softAssert.assertTrue(bos.toString().contains("1"));

@@ -1,12 +1,11 @@
 package com.epam.prejap.tetris.game;
 
-import com.epam.prejap.tetris.data.HallOfFameMember;
-
 import com.epam.prejap.tetris.block.Color;
+import com.epam.prejap.tetris.data.HallOfFame;
+import com.epam.prejap.tetris.data.HallOfFameMember;
 
 import java.io.PrintStream;
 import java.time.Duration;
-import java.util.List;
 import java.util.Scanner;
 
 public class Printer {
@@ -74,20 +73,11 @@ public class Printer {
     }
 
     /**
-     * Prints high scores in format "[number]. Name: [name], Score: [points]",
-     * limiting entries to max 25 elements.
+     * Prints HallOfFame members with given boarder",
      */
-    public void hallOfFame(List<HallOfFameMember> hallOfFameMembers) {
-        var limitedMembers = hallOfFameMembers.stream()
-                .limit(25)
-                .toArray(HallOfFameMember[]::new);
-
+    public void hallOfFame(HallOfFame hallOfFame) {
         border(20);
-        out.println("HALL OF FAME\n");
-        for (int i = 0; i < limitedMembers.length; i++) {
-            int order = i + 1;
-            out.println(order + ". " + limitedMembers[i]);
-        }
+        out.println(hallOfFame);
         border(20);
     }
 
