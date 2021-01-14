@@ -7,6 +7,7 @@ import com.epam.prejap.tetris.player.Player;
 import com.epam.prejap.tetris.player.RandomPlayer;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 class Tetris {
@@ -15,22 +16,23 @@ class Tetris {
     private final Waiter waiter;
     private final Player player;
     private final Timer timer;
+    private final Referee referee;
 
-    public Tetris(Playfield playfield, Waiter waiter, Player player, Timer timer) {
+    public Tetris(Playfield playfield, Waiter waiter, Player player, Timer timer,
+                  Referee referee) {
         this.playfield = playfield;
         this.waiter = waiter;
         this.player = player;
         this.timer = timer;
+        this.referee = referee;
     }
 
     public Score play() {
         boolean moved;
-        int score = 0;
         do {
             moved = false;
 
             playfield.nextBlock();
-            score++;
 
             boolean nextMove;
             do {
@@ -41,6 +43,8 @@ class Tetris {
             } while (nextMove);
 
         } while (moved);
+
+        int score = referee.currentScore();
 
         return new Score(score);
     }
@@ -66,20 +70,22 @@ class Tetris {
         var timer = new Timer(delay);
 
         var feed = new BlockFeed();
-        var printer = new Printer(System.out, timer);
+        var referee = new Referee();
+        var printer = new Printer(System.out, timer, referee);
         var flagPresent = Arrays.asList(args).contains("-rb") | Arrays.asList(args).contains("-RB");
         var grid = Grid.getNewGrid(feed, rows, cols, flagPresent);
 
-        var playfield = new Playfield(feed, printer, grid);
-        var game = new Tetris(playfield, new Waiter(delay), new RandomPlayer(new Random()), timer);
+        var playfield = new Playfield(feed, printer, grid, List.of(referee));
+        var game = new Tetris(playfield, new Waiter(delay), new RandomPlayer(new Random()), timer,
+                referee);
 
+        var score = game.play();
 
         if (args.length != 0 && !args[0].equalsIgnoreCase("-rb")) {
             CommandLineAnalyst.checkArgsForNavigationKeys(args[0]);
         }
 
-        var score = game.play();
-        System.out.println("Score: " + score.points());
+        System.out.println("Total score: " + score.points());
 
         var hallOfFame = new HallOfFame(printer);
         hallOfFame.tryToEnterHallOfFame(score.points());

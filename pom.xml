@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.prejap</groupId>
     <artifactId>tetris</artifactId>
-    <version>0.11</version>
+    <version>1.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -92,6 +92,17 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.plugin.maven.compiler}</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.6</version>
@@ -110,16 +121,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${version.plugin.maven.compiler}</version>
-                <configuration>
-                    <source>${project.java.version}</source>
-                    <target>${project.java.version}</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
-                </configuration>
             </plugin>
         </plugins>
     </build>
