@@ -10,7 +10,7 @@ import java.nio.file.Path;
 /**
  * The DataWriter class is responsible for writing data to file of specified {@link DataWriter#path}.
  */
-public final class DataWriter {
+final class DataWriter {
 
     private final Path path;
 

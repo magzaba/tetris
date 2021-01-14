@@ -2,6 +2,8 @@ package com.epam.prejap.tetris.data;
 
 import com.epam.prejap.tetris.game.Printer;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -9,7 +11,9 @@ import java.util.*;
  *
  * @implNote: It contains List with {@link HallOfFameMember} read from file.
  */
-public class HallOfFame {
+public final class HallOfFame {
+
+    private static final Path PATH = Paths.get("src/main/resources/files/HallOfFame.json");
 
     private final DataReader reader;
     private final DataWriter writer;
@@ -17,9 +21,9 @@ public class HallOfFame {
 
     private List<HallOfFameMember> members;
 
-    public HallOfFame(final DataReader reader, final DataWriter writer, final Printer printer) {
-        this.reader = reader;
-        this.writer = writer;
+    public HallOfFame(final Printer printer) {
+        this.reader = new DataReader(PATH);
+        this.writer = new DataWriter(PATH);
         this.printer = printer;
         this.members = obtainMembers();
     }
@@ -53,7 +57,7 @@ public class HallOfFame {
         if (anyDefeated.isPresent()) {
             printer.newHighScore(points);
             String name = System.getProperty("user.name");
-            HallOfFameMember newMember = printer.readInitials(points, name);
+            HallOfFameMember newMember = createNewMember(points, name);
             members = enterHallOfFame(newMember);
             return true;
         }
@@ -77,12 +81,29 @@ public class HallOfFame {
         return members;
     }
 
+
+    /**
+     * Creates new {@link HallOfFameMember} from given players initials and scores,
+     * with name limited to max. 3 characters.
+     *
+     * @param score      int representing new high score
+     * @param systemName Player name, shall be read from user.name property
+     * @return new member of HallOfFame with given initials and score.
+     */
+    public HallOfFameMember createNewMember(final int score, String systemName) {
+        if (systemName.length() <= 3) {
+            return new HallOfFameMember(systemName, score);
+
+        }
+        return new HallOfFameMember(systemName.substring(0, 3), score);
+    }
+
+
     /**
      * Creates String representation of 25 best score members of HallOfFame.
      *
-     * @implNote: all members are limited to 25 and printed in format "[number]. Name: [name], Score: [points]".
-     *
      * @return String representation of 25 highest scores members.
+     * @implNote: all members are limited to 25 and printed in format "[number]. Name: [name], Score: [points]".
      */
     @Override
     public String toString() {

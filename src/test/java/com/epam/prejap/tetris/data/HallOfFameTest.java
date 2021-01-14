@@ -17,8 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 @Test(groups = "HallOfFameList")
 public class HallOfFameTest {
@@ -30,6 +29,7 @@ public class HallOfFameTest {
     private DataReader reader;
     private DataWriter writer;
 
+
     @BeforeClass
     public void setUp() {
         readPath = Paths.get("src/test/resources/testfiles/ReadFileTest.json");
@@ -39,7 +39,6 @@ public class HallOfFameTest {
         reader = new DataReader(readPath);
         writer = new DataWriter(writePath);
     }
-
 
     @AfterMethod
     public void tearDown() throws IOException {
@@ -112,4 +111,83 @@ public class HallOfFameTest {
         softAssert.assertEquals(updatedMembers.size(), mockMembers.length + 1);
         softAssert.assertAll("Shall add element to list once, but it did not");
     }
+
+    @Test(dataProvider = "playerInitialsLongerThan3Chars")
+    public void shallReducePlayersNameWhenLongerThan3Chars(String name) {
+        //given
+        SoftAssert softAssert = new SoftAssert();
+        Timer timer = new Timer(1);
+        Printer printer = new Printer(System.out, timer);
+        HallOfFame hallOfFame = new HallOfFame(printer);
+
+        //when
+        HallOfFameMember actual = hallOfFame.createNewMember(1, name);
+
+        //then
+        softAssert.assertEquals(actual.name().length(), 3);
+        softAssert.assertEquals(actual.name(), name.substring(0, 3));
+        softAssert.assertAll("Shall shorten name to 3 characters but it did not");
+    }
+
+    @Test(dataProvider = "playerInitialsNoLongerThan3Chars")
+    public void shallNotReducePlayersNameWhenNoLongerThan3Chars(String name) {
+        //given
+        Timer timer = new Timer(1);
+        Printer printer = new Printer(System.out, timer);
+        HallOfFame hallOfFame = new HallOfFame(printer);
+
+        //when
+        HallOfFameMember actual = hallOfFame.createNewMember(1, name);
+
+        //then
+        assertEquals(actual.name(), name);
+    }
+
+    @DataProvider()
+    public static Object[] playerInitialsLongerThan3Chars() {
+        return new Object[]{
+                "oneone",
+                "twotwo",
+                "123123",
+                "......",
+                "!`!!`!"
+        };
+    }
+
+    @DataProvider()
+    public static Object[] playerInitialsNoLongerThan3Chars() {
+        return new Object[]{
+                "one",
+                "12",
+                "1",
+                "",
+        };
+    }
+
+    @Test(dataProvider = "mockHallOfFame30Members")
+    public void toStringShallContainMax25Entries(HallOfFameMember[] mockMembers) {
+        //given
+        SoftAssert softAssert = new SoftAssert();
+        HallOfFame hallOfFame = new HallOfFame(reader, writer, printer, Arrays.asList(mockMembers));
+
+        //when
+        String actual = hallOfFame.toString();
+
+        //then
+        softAssert.assertTrue(actual.contains("1"));
+        softAssert.assertTrue(actual.contains("25"));
+        softAssert.assertFalse(actual.contains("26"));
+        softAssert.assertFalse(actual.contains("30"));
+        softAssert.assertAll("Shall print only 25 elements, but it did not");
+
+    }
+
+
+    @DataProvider()
+    public static Object[] mockHallOfFame30Members() {
+        HallOfFameMember[] mock1 = new HallOfFameMember[30];
+        Arrays.fill(mock1, new HallOfFameMember("one", 1));
+        return new Object[]{mock1};
+    }
+
 }

@@ -2,11 +2,9 @@ package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.Color;
 import com.epam.prejap.tetris.data.HallOfFame;
-import com.epam.prejap.tetris.data.HallOfFameMember;
 
 import java.io.PrintStream;
 import java.time.Duration;
-import java.util.Scanner;
 
 public class Printer {
 
@@ -91,23 +89,6 @@ public class Printer {
         border(highScore.length());
         out.println(highScore + "\n" + score);
         border(highScore.length());
-    }
-
-    /**
-     * Creates new {@link HallOfFameMember} from given players initials and scores,
-     * with name limited to max. 3 characters.
-     *
-     * @param score int representing new high score
-     * @param systemName Player name, shall be read from user.name property
-     * @return new member of HallOfFame with given initials and score.
-     */
-    public HallOfFameMember readInitials(final int score, String systemName) {
-        out.print("FIRST 3 letters of system name initials saved in HallOfFame");
-        if (systemName.length() <= 3) {
-            return new HallOfFameMember(systemName, score);
-
-        }
-        return new HallOfFameMember(systemName.substring(0, 3), score);
     }
 
 }

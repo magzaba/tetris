@@ -8,7 +8,7 @@ import java.nio.file.Path;
 /**
  * The DataReader class is responsible for reading data to file of specified {@link DataReader#path}.
  */
-public final class DataReader {
+final class DataReader {
 
     private final Path path;
 

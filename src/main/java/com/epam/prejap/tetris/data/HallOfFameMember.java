@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * <p>Natural order of objects means descending by points.
  */
-public record HallOfFameMember(@JsonProperty("name") String name,
+record HallOfFameMember(@JsonProperty("name") String name,
                                @JsonProperty("points") int points) implements Comparable<HallOfFameMember> {
 
 

@@ -1,22 +1,15 @@
 package com.epam.prejap.tetris;
 
 import com.epam.prejap.tetris.block.BlockFeed;
-import com.epam.prejap.tetris.data.DataReader;
-import com.epam.prejap.tetris.data.DataWriter;
 import com.epam.prejap.tetris.data.HallOfFame;
 import com.epam.prejap.tetris.game.*;
 import com.epam.prejap.tetris.player.Player;
 import com.epam.prejap.tetris.player.RandomPlayer;
 
 import java.util.Arrays;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Random;
-import java.util.Scanner;
 
 class Tetris {
-
-    private static final Path PATH = Paths.get("src/main/resources/files/HallOfFame.json");
 
     private final Playfield playfield;
     private final Waiter waiter;
@@ -88,9 +81,7 @@ class Tetris {
         var score = game.play();
         System.out.println("Score: " + score.points());
 
-        var reader = new DataReader(PATH);
-        var writer = new DataWriter(PATH);
-        var hallOfFame = new HallOfFame(reader, writer, printer);
+        var hallOfFame = new HallOfFame(printer);
         hallOfFame.tryToEnterHallOfFame(score.points());
 
     }
