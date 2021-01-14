@@ -45,7 +45,7 @@ final class TestingBlock extends Block {
     private final byte[][] dots;
 
     TestingBlock(byte[][] dots) {
-        super(dots);
+        super(dots, Color.RED);
         this.dots=dots;
 
     }
