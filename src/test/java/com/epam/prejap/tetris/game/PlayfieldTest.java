@@ -33,7 +33,7 @@ public class PlayfieldTest {
         playfield = new Playfield(feed, printer, grid, List.of(referee));
     }
 
-    @Test(dataProvider = "arrayOfMoves")
+    @Test(dataProvider = "arrayOfTestedMoves")
     public void givenEmptyGrid_moveCalledProperAmountOfTimes(Move move) {
         playfield.nextBlock();
         int blockStart = 0;
@@ -62,10 +62,11 @@ public class PlayfieldTest {
     }
 
     @DataProvider
-    public Object[][] arrayOfMoves() {
+    public Object[][] arrayOfTestedMoves() {
         var amtOfIterations = 15;
-        var amtOfPossibleMoves = Move.values().length;
-        return IntStream.rangeClosed(0, amtOfIterations).mapToObj(i -> new Object[]{Move.values()[i % amtOfPossibleMoves]}).toArray(Object[][]::new);
+        Move[] testedMoves = new Move[]{Move.NONE, Move.LEFT, Move.RIGHT};
+        var amtOfTestedMoves = testedMoves.length;
+        return IntStream.rangeClosed(0, amtOfIterations).mapToObj(i -> new Object[]{testedMoves[i % amtOfTestedMoves]}).toArray(Object[][]::new);
     }
 
     @Test(groups = "Score")

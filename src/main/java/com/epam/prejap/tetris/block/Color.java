@@ -68,4 +68,5 @@ public enum Color {
         String resetColor = escape + "0" + finalByte;
         return escape + ansiCode + finalByte + blockMark + resetColor;
     }
+
 }
