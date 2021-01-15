@@ -12,6 +12,7 @@ public class BlockRotationTestFactory {
                 new BlockRotationTest(TestBlockRotations.lBlock()),
                 new BlockRotationTest(TestBlockRotations.oBlock()),
                 new BlockRotationTest(TestBlockRotations.sBlock()),
+                new BlockRotationTest(TestBlockRotations.zBlock()),
         };
     }
 

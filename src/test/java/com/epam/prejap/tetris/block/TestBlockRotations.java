@@ -105,6 +105,27 @@ record TestBlockRotations(Block block, Object[] rotationImages) {
             },
     };
 
+    private static final Object[] Z_BLOCK_ROTATION_IMAGES = new Object[]{
+            new byte[][]{
+                    {1, 1, 0},
+                    {0, 1, 1},
+            },
+            new byte[][]{
+                    {0, 1},
+                    {1, 1},
+                    {1, 0},
+            },
+            new byte[][]{
+                    {1, 1, 0},
+                    {0, 1, 1},
+            },
+            new byte[][]{
+                    {0, 1},
+                    {1, 1},
+                    {1, 0},
+            },
+    };
+
     static TestBlockRotations iBlock() {
         return new TestBlockRotations(new IBlock(), I_BLOCK_ROTATION_IMAGES);
     }
@@ -123,6 +144,10 @@ record TestBlockRotations(Block block, Object[] rotationImages) {
 
     static TestBlockRotations sBlock() {
         return new TestBlockRotations(new SBlock(), S_BLOCK_ROTATION_IMAGES);
+    }
+
+    static TestBlockRotations zBlock() {
+        return new TestBlockRotations(new ZBlock(), Z_BLOCK_ROTATION_IMAGES);
     }
 
 }
