@@ -65,9 +65,9 @@ public abstract class Block implements Iterable<Block> {
     }
 
     public Block rotate() {
-        var iterator = iterator();
-        iterator.next(); // skip current image
-        return iterator().next();
+        var blockIterator = iterator();
+        blockIterator.next(); // skip current image
+        return blockIterator.next();
     }
 
     @Override
@@ -90,7 +90,7 @@ public abstract class Block implements Iterable<Block> {
         public Block next() {
             int currentImage = cursor;
             cursor++;
-            if (cursor >= images.size()) {
+            if (cursor == images.size()) {
                 cursor = 0;
             }
             return copyWithImageIndex(currentImage);

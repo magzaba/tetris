@@ -2,10 +2,6 @@ package com.epam.prejap.tetris.block;
 
 record BlockRotations(Block block, Object[] rotationImages) {
 
-    private enum Image {
-        INITIAL, FIRST_ROTATION, SECOND_ROTATION, THIRD_ROTATION, FOURTH_ROTATION
-    }
-
     private static final Object[][] I_BLOCK_ROTATION_IMAGES = new Object[][]{
             new byte[][]{
                     {1},
@@ -74,9 +70,30 @@ record BlockRotations(Block block, Object[] rotationImages) {
                     {1, 1},
                     {1, 1},
             },
+            new byte[][]{
+                    {1, 1},
+                    {1, 1},
+            },
+            new byte[][]{
+                    {1, 1},
+                    {1, 1},
+            },
+            new byte[][]{
+                    {1, 1},
+                    {1, 1},
+            },
     };
 
     private static final Object[] S_BLOCK_ROTATION_IMAGES = new Object[]{
+            new byte[][]{
+                    {0, 1, 1},
+                    {1, 1, 0},
+            },
+            new byte[][]{
+                    {1, 0},
+                    {1, 1},
+                    {0, 1},
+            },
             new byte[][]{
                     {0, 1, 1},
                     {1, 1, 0},
