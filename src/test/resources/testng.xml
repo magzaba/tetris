@@ -18,10 +18,12 @@
                 <include name="Timer"/>
                 <include name="Grid"/>
                 <include name="Playfield"/>
+                <include name="Referee"/>
             </define>
             <run>
                 <include name="Block"/>
                 <include name="Score"/>
+                <include name="Waiter"/>
                 <include name="Player"/>
                 <include name="NavigationKeys"/>
                 <include name="Game"/>
@@ -40,6 +42,8 @@
             <class name="com.epam.prejap.tetris.block.BlockFeedTestFactory"/>
             <class name="com.epam.prejap.tetris.game.PlayfieldTest"/>
             <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
+            <class name="com.epam.prejap.tetris.game.RefereeTest"/>
+            <class name="com.epam.prejap.tetris.game.WaiterTest"/>
             <class name="com.epam.prejap.tetris.game.MoveTest"/>
             <class name="com.epam.prejap.tetris.CommandLineAnalystTest"/>
             <class name="com.epam.prejap.tetris.game.PrinterTest"/>

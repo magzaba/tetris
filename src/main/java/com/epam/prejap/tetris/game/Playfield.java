@@ -24,7 +24,7 @@ public class Playfield {
         this.feed = feed;
         this.printer = printer;
         this.grid = grid;
-        this.playfieldObservers = new ArrayList<>();
+        this.playfieldObservers = playfieldObservers;
     }
 
     /**
