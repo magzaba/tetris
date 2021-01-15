@@ -53,7 +53,6 @@ public class PlayfieldBlockRotationTest {
             playfield.move(Move.UP);
         }
 
-        System.out.println(OUTPUT.toString());
         // then
         assertTrue(
                 ANSI_COLOR_ESCAPE_CODES

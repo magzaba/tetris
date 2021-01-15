@@ -22,6 +22,10 @@ public class TestMockBlockFeed extends BlockFeed {
         return new TestMockBlockFeed(OBlock::new);
     }
 
+    public static BlockFeed sBlockFeed() {
+        return new TestMockBlockFeed(SBlock::new);
+    }
+
     public static BlockFeed zBlockFeed() {
         return new TestMockBlockFeed(ZBlock::new);
     }
