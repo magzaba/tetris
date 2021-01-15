@@ -3,19 +3,19 @@ package com.epam.prejap.tetris.game;
 import com.epam.prejap.tetris.block.BlockFeed;
 import com.epam.prejap.tetris.block.MockBlockFeed;
 
-record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
-                               Object[][] blockRotationsOnGrid,
-                               int gridRows,
-                               int gridColumns) {
+record TestPlayfieldBlockRotations(BlockFeed mockBlockfeed,
+                                   Object[][] blockRotationsOnGrid,
+                                   int gridRows,
+                                   int gridColumns) {
 
-    private enum TimesUPKeyIsPressed {ZERO, ONE, TWO, THREE, FOUR}
+    enum TimesUPKeyIsPressed {ZERO, ONE, TWO, THREE, FOUR}
 
     private static final int GRID_ROWS = 7;
     private static final int GRID_COLUMNS = 5;
 
     private static final Object[][] L_BLOCK_ROTATIONS_ON_GRID = new Object[][]{
             {
-                    TimesUPKeyIsPressed.ZERO.ordinal(), """
+                    TimesUPKeyIsPressed.ZERO, """
                 +-----+
                 | #   |
                 | #   |
@@ -27,7 +27,7 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.ONE.ordinal(), """
+                    TimesUPKeyIsPressed.ONE, """
                 +-----+
                 |     |
                 | ### |
@@ -39,31 +39,31 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.TWO.ordinal(), """
+                    TimesUPKeyIsPressed.TWO, """
                 +-----+
                 |     |
                 |     |
-                |  ## |
-                |   # |
-                |   # |
+                | ##  |
+                |  #  |
+                |  #  |
                 |     |
                 |     |
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.THREE.ordinal(), """
+                    TimesUPKeyIsPressed.THREE, """
                 +-----+
-                |     |
                 |     |
                 |     |
                 |     |
                 |   # |
                 | ### |
                 |     |
+                |     |
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.FOUR.ordinal(), """
+                    TimesUPKeyIsPressed.FOUR, """
                 +-----+
                 |     |
                 |     |
@@ -78,7 +78,7 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
 
     private static final Object[][] O_BLOCK_ROTATIONS_ON_GRID = new Object[][]{
             {
-                    TimesUPKeyIsPressed.ZERO.ordinal(), """
+                    TimesUPKeyIsPressed.ZERO, """
                 +-----+
                 | ##  |
                 | ##  |
@@ -90,7 +90,7 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.ONE.ordinal(), """
+                    TimesUPKeyIsPressed.ONE, """
                 +-----+
                 |     |
                 | ##  |
@@ -102,7 +102,7 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.TWO.ordinal(), """
+                    TimesUPKeyIsPressed.TWO, """
                 +-----+
                 |     |
                 |     |
@@ -114,7 +114,7 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.THREE.ordinal(), """
+                    TimesUPKeyIsPressed.THREE, """
                 +-----+
                 |     |
                 |     |
@@ -126,7 +126,7 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
                 +-----+"""
             },
             {
-                    TimesUPKeyIsPressed.FOUR.ordinal(), """
+                    TimesUPKeyIsPressed.FOUR, """
                 +-----+
                 |     |
                 |     |
@@ -139,8 +139,8 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
             },
     };
 
-    static PlayfieldBlockRotations lBlock() {
-        return new PlayfieldBlockRotations(
+    static TestPlayfieldBlockRotations lBlock() {
+        return new TestPlayfieldBlockRotations(
                 MockBlockFeed.lBlockFeed(),
                 L_BLOCK_ROTATIONS_ON_GRID,
                 GRID_ROWS,
@@ -148,8 +148,8 @@ record PlayfieldBlockRotations(BlockFeed mockBlockfeed,
         );
     }
 
-    static PlayfieldBlockRotations oBlock() {
-        return new PlayfieldBlockRotations(
+    static TestPlayfieldBlockRotations oBlock() {
+        return new TestPlayfieldBlockRotations(
                 MockBlockFeed.oBlockFeed(),
                 O_BLOCK_ROTATIONS_ON_GRID,
                 GRID_ROWS,

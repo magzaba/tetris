@@ -1,6 +1,7 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.BlockFeed;
+import com.epam.prejap.tetris.game.TestPlayfieldBlockRotations.TimesUPKeyIsPressed;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -38,7 +39,7 @@ public class PlayfieldBlockRotationTest {
 
     @Test(groups = "BlockRotationInGame", dataProvider = "blockRotationsOnGridAfterUPKeyPresses")
     public void EachTimeUPKeyIsPressedBlockShallRotateOnlyOnceBeforeBeingMovedDown(
-            int timesUPKeyIsPressed,
+            TimesUPKeyIsPressed timesUPKeyIsPressed,
             String expectedGrid) {
 
         // given
@@ -48,10 +49,11 @@ public class PlayfieldBlockRotationTest {
         playfield.nextBlock();
 
         // when
-        for (int i = 0; i < timesUPKeyIsPressed; i++) {
+        for (int i = 0; i < timesUPKeyIsPressed.ordinal(); i++) {
             playfield.move(Move.UP);
         }
 
+        System.out.println(OUTPUT.toString());
         // then
         assertTrue(
                 ANSI_COLOR_ESCAPE_CODES
