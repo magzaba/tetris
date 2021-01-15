@@ -5,8 +5,10 @@ import org.mockito.Mockito;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -50,15 +52,14 @@ public class PrinterTest {
     }
 
 
-
     @Test(groups = "Color", dataProvider = "colors")
-    public void checkIfPrintMethodPrintsStringWithAppropriateColor(Color color) {
+    public void shallPrintInAppropriateColor(Color color) {
         // given
         Timer timer = Mockito.mock(Timer.class);
         Referee referee = new Referee();
         Printer printer = Mockito.spy(new Printer(new PrintStream(bos), timer, referee));
         int ansiCode = color.getAnsiCode();
-        String escape =  "\u001B[";
+        String escape = "\u001B[";
         String finalByte = "m";
         String resetColor = escape + "0" + finalByte;
         String blockMark = "#";
@@ -76,4 +77,5 @@ public class PrinterTest {
     private Object[] colors() {
         return Color.values();
     }
+
 }

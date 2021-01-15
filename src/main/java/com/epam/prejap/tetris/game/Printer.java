@@ -1,6 +1,7 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.Color;
+import com.epam.prejap.tetris.data.HallOfFame;
 
 import java.io.PrintStream;
 import java.time.Duration;
@@ -74,4 +75,26 @@ public class Printer {
         String elapsedTime = String.format(TIME_FORMAT, duration.toHours(), duration.toMinutesPart(), duration.toSecondsPart());
         out.println("Time: " + elapsedTime);
     }
+
+    /**
+     * Prints HallOfFame members with given boarder",
+     */
+    public void hallOfFame(HallOfFame hallOfFame) {
+        border(20);
+        out.println(hallOfFame);
+        border(20);
+    }
+
+    /**
+     * Prints new high score with borders
+     *
+     * @param score int representing new high score
+     */
+    public void newHighScore(final int score) {
+        String highScore = "NEW HIGH SCORE!";
+        border(highScore.length());
+        out.println(highScore + "\n" + score);
+        border(highScore.length());
+    }
+
 }
