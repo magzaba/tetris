@@ -20,15 +20,14 @@ public class BlockRotationTest {
     private final Block block;
     private final Object[] rotationImages;
 
-    public BlockRotationTest(BlockRotations blockRotations) {
-        this.block = blockRotations.block();
-        this.rotationImages = blockRotations.rotationImages();
+    public BlockRotationTest(TestBlockRotations testBlockRotations) {
+        this.block = testBlockRotations.block();
+        this.rotationImages = testBlockRotations.rotationImages();
     }
 
     @Test(dataProvider = "rotationDegrees")
     public void shallRotateBlockImage(RotationDegree degree) {
         // given
-        var block = RotatableBlock.of(this.block);
         var index = degree.ordinal()%rotationImages.length;
         var expectedRotatedImage = (byte[][])rotationImages[index];
 
@@ -41,10 +40,11 @@ public class BlockRotationTest {
                 assertEquals(rotatedBlock.dotAt(i, j), expectedRotatedImage[i][j],
                         "Block image should have been rotated but was not");
             }
+            System.out.println();
         }
     }
 
-    private RotatableBlock rotateBlockByDegrees(RotatableBlock block, RotationDegree degree) {
+    private Block rotateBlockByDegrees(Block block, RotationDegree degree) {
         for (int i = 0; i < degree.ordinal(); i++) {
             block = block.rotate();
         }

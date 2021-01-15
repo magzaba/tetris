@@ -1,6 +1,6 @@
 package com.epam.prejap.tetris.block;
 
-record BlockRotations(Block block, Object[] rotationImages) {
+record TestBlockRotations(Block block, Object[] rotationImages) {
 
     private static final Object[][] I_BLOCK_ROTATION_IMAGES = new Object[][]{
             new byte[][]{
@@ -105,24 +105,24 @@ record BlockRotations(Block block, Object[] rotationImages) {
             },
     };
 
-    static BlockRotations iBlock() {
-        return new BlockRotations(new IBlock(), I_BLOCK_ROTATION_IMAGES);
+    static TestBlockRotations iBlock() {
+        return new TestBlockRotations(new IBlock(), I_BLOCK_ROTATION_IMAGES);
     }
 
-    static BlockRotations jBlock() {
-        return new BlockRotations(new JBlock(), J_BLOCK_ROTATION_IMAGES);
+    static TestBlockRotations jBlock() {
+        return new TestBlockRotations(new JBlock(), J_BLOCK_ROTATION_IMAGES);
     }
 
-    static BlockRotations lBlock() {
-        return new BlockRotations(new LBlock(), L_BLOCK_ROTATION_IMAGES);
+    static TestBlockRotations lBlock() {
+        return new TestBlockRotations(new LBlock(), L_BLOCK_ROTATION_IMAGES);
     }
 
-    static BlockRotations oBlock() {
-        return new BlockRotations(new OBlock(), O_BLOCK_ROTATION_IMAGES);
+    static TestBlockRotations oBlock() {
+        return new TestBlockRotations(new OBlock(), O_BLOCK_ROTATION_IMAGES);
     }
 
-    static BlockRotations sBlock() {
-        return new BlockRotations(new SBlock(), S_BLOCK_ROTATION_IMAGES);
+    static TestBlockRotations sBlock() {
+        return new TestBlockRotations(new SBlock(), S_BLOCK_ROTATION_IMAGES);
     }
 
 }

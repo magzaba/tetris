@@ -31,8 +31,8 @@ public class BlockTest {
         int expectedColumns = testBlock.cols();
 
         //when
-        int actualRows = childBlock.rows;
-        int actualColumns = childBlock.cols;
+        int actualRows = childBlock.rows();
+        int actualColumns = childBlock.cols();
 
         //then
         assertEquals(actualRows, expectedRows, String.format("The expected number of rows for %s should be %d, but was %d%n", childBlock.getClass().getSimpleName(), expectedRows, actualRows));
