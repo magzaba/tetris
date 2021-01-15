@@ -1,6 +1,7 @@
 package com.epam.prejap.tetris;
 
 import com.epam.prejap.tetris.block.BlockFeed;
+import com.epam.prejap.tetris.data.HallOfFame;
 import com.epam.prejap.tetris.game.*;
 import com.epam.prejap.tetris.player.Player;
 import com.epam.prejap.tetris.player.RandomPlayer;
@@ -88,5 +89,9 @@ class Tetris {
         }
 
         System.out.println("Total score: " + score.points());
+
+        var hallOfFame = new HallOfFame(printer);
+        hallOfFame.tryToEnter(score.points());
+
     }
 }

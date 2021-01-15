@@ -50,6 +50,7 @@ public class Playfield {
         switch (move) {
             case LEFT -> moveLeft();
             case RIGHT -> moveRight();
+            case UP -> rotateBlock();
             case DOWN -> moveToBottom();
         }
         moved = moveDown();
@@ -67,6 +68,15 @@ public class Playfield {
 
     private void moveLeft() {
         move(0, -1);
+    }
+
+    private void rotateBlock() {
+        var rotatedBlock = block.rotate();
+        int moveRows = 0;
+        int moveColumns = 0;
+        if (grid.isValidMove(rotatedBlock, moveRows, moveColumns)) {
+            block = rotatedBlock;
+        }
     }
 
     private boolean moveDown() {

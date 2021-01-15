@@ -21,6 +21,7 @@ public class MoveTest {
         softAssert.assertNotEquals(Move.of(defaultKeys[1]), Move.LEFT);
         softAssert.assertNotEquals(Move.of(defaultKeys[2]), Move.RIGHT);
         softAssert.assertNotEquals(Move.of(defaultKeys[3]), Move.DOWN);
+        softAssert.assertNotEquals(Move.of(defaultKeys[3]), Move.UP);
         softAssert.assertAll("Navigation keys should have been configured but were not and are still default.");
     }
 
@@ -38,16 +39,17 @@ public class MoveTest {
         softAssert.assertEquals(Move.of(actualKeys[1]), Move.LEFT);
         softAssert.assertEquals(Move.of(actualKeys[2]), Move.RIGHT);
         softAssert.assertEquals(Move.of(actualKeys[3]), Move.DOWN);
+        softAssert.assertEquals(Move.of(actualKeys[3]), Move.UP);
         softAssert.assertAll("Navigation keys should have been modified to provided ones but were not.");
     }
 
     @DataProvider
     public static Object[] keys() {
         return new Object[]{
-                new char[]{'a', 's', 'd', 'f'},
-                new char[]{',', '.', '/', ';'},
-                new char[]{'~', '!', '@','#'},
-                new char[]{'1', '2', '3', '4'}
+                new char[]{'a', 's', 'd', 'f', 'g'},
+                new char[]{',', '.', '/', ';','\''},
+                new char[]{'~', '!', '@','#','$'},
+                new char[]{'1', '2', '3', '4','5'}
         };
     }
 }

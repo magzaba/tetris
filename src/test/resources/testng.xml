@@ -11,6 +11,7 @@
                 <include name="BlockFeed" />
                 <include name="BlockShape" />
                 <include name="BlockMethod" />
+                <include name="BlockRotation" />
             </define>
             <define name="Player">
                 <include name="RandomPlayer"/>
@@ -20,6 +21,11 @@
                 <include name="Grid"/>
                 <include name="Playfield"/>
                 <include name="Referee"/>
+                <include name="BlockRotationInGame" />
+            </define>
+            <define name="HallOfFame">
+                <include name="HallOfFameMember"/>
+                <include name="HallOfFameList"/>
             </define>
             <run>
                 <include name="Block"/>
@@ -30,6 +36,9 @@
                 <include name="Game"/>
                 <include name="Timer"/>
                 <include name="Color"/>
+                <include name="BlockRotation"/>
+                <include name="BlockRotationInGame"/>
+                <include name="HallOfFame"/>
             </run>
         </groups>
         <classes>
@@ -54,6 +63,10 @@
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
             <class name="com.epam.prejap.tetris.game.RefereeTest"/>
             <class name="com.epam.prejap.tetris.block.ColorTest"/>
+            <class name="com.epam.prejap.tetris.block.BlockRotationTestFactory"/>
+            <class name="com.epam.prejap.tetris.game.PlayfieldBlockRotationTestFactory"/>
+            <class name="com.epam.prejap.tetris.data.HallOfFameMemberTest"/>
+            <class name="com.epam.prejap.tetris.data.HallOfFameTest"/>
         </classes>
     </test>
 </suite>

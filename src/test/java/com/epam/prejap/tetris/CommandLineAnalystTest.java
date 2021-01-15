@@ -10,15 +10,15 @@ import static org.testng.Assert.assertEquals;
 public class CommandLineAnalystTest {
 
     @DataProvider
-    public static Object[] inputWithExactly4Characters() {
+    public static Object[] inputWithExactly5Characters() {
         return new Object[]{
-                "q s d f",
-                " a   z      g    f"
+                "q s d f w",
+                " a   z  y  f  g  "
         };
     }
 
-    @Test(dataProvider = "inputWithExactly4Characters")
-    public void userCanModifyDefaultNavigationKeysProviding4CharactersSeparatedBySpaces(String input){
+    @Test(dataProvider = "inputWithExactly5Characters")
+    public void userCanModifyDefaultNavigationKeysProviding3CharactersSeparatedBySpaces(String input){
         //given
         char[] providedKeys = extractKeysFromInput(input);
 
@@ -28,7 +28,7 @@ public class CommandLineAnalystTest {
         //then
         assertEquals(navigationKeys, providedKeys, String.join("\n",
                 "Navigation keys should have been modified but were not",
-                "when providing 4 characters separated by spaces within the quotes \" \"."));
+                "when providing 5 characters separated by spaces within the quotes \" \"."));
     }
 
     private char[] extractKeysFromInput(String arg0) {
@@ -63,8 +63,8 @@ public class CommandLineAnalystTest {
         return new Object[]{
                 "a",
                 "a s",
-                "a s d",
-                "a s d f g"
+                "a s d f",
+                "a s d f g y"
         };
     }
 
@@ -80,9 +80,10 @@ public class CommandLineAnalystTest {
     @DataProvider
     public static Object[] inputWithNonCharacterValues() {
         return new Object[]{
-                "aa s d f",
-                "a s dd f",
-                "aa ss dd ff"
+                "aa s d f x",
+                "a ss d f x",
+                "a s dd f x",
+                "aa ss dd ff xx"
         };
     }
 
@@ -98,10 +99,10 @@ public class CommandLineAnalystTest {
     @DataProvider
     public static Object[] inputWithRepeatingKeys() {
         return new Object[]{
-                "a a a a",
-                "a a s d",
-                "a s a s",
-                "s a a d"
+                "a a a a a",
+                "a a s d d",
+                "a s a s a",
+                "s a a d a"
         };
     }
 

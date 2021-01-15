@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -72,7 +73,7 @@ public class PlayfieldTest {
         assertEquals(count, expectedNrOfMoves, "Block moved an illegal number of turns down");
     }
 
-    @Test(groups = "Playfield", dataProvider = "moveValues", invocationCount = 5)
+    @Test(groups = "Playfield", dataProvider = "arrayOfTestedMoves", invocationCount = 5)
     public void givenEmptyGrid_noOtherMoveIsValidAfterMoveDOWN(Move move) {
         //given
         playfield.nextBlock();
@@ -82,6 +83,14 @@ public class PlayfieldTest {
 
         //then
         Assert.assertFalse(playfield.move(move));
+    }
+
+    @DataProvider
+    public Object[][] arrayOfTestedMoves() {
+        var amtOfIterations = 15;
+        Move[] testedMoves = new Move[]{Move.NONE, Move.LEFT, Move.RIGHT,Move.DOWN};
+        var amtOfTestedMoves = testedMoves.length;
+        return IntStream.rangeClosed(0, amtOfIterations).mapToObj(i -> new Object[]{testedMoves[i % amtOfTestedMoves]}).toArray(Object[][]::new);
     }
 
     @Test(groups = "Score")
@@ -95,7 +104,7 @@ public class PlayfieldTest {
         assertTrue(SCORE_PATTERN.matcher(actualString).find());
     }
 
-    @Test(groups = "Score", dataProvider = "moveValues")
+    @Test(groups = "Score", dataProvider = "arrayOfTestedMoves")
     public void scoreShouldBeDisplayedAfterMove(Move move) {
 
         //given
