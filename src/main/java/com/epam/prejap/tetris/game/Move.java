@@ -10,12 +10,13 @@ public enum Move {
     NONE(' '),
     LEFT('h'),
     RIGHT('l'),
+    UP('k'),
     ;
 
     private int key;
     private final char defaultKey;
 
-    public static final char[] DEFAULT_KEYS = new char[]{NONE.defaultKey, LEFT.defaultKey, RIGHT.defaultKey};
+    public static final char[] DEFAULT_KEYS = new char[]{NONE.defaultKey, LEFT.defaultKey, RIGHT.defaultKey, UP.defaultKey};
     private static char[] currentKeys = DEFAULT_KEYS;
 
     Move(char defaultKey) {

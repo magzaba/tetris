@@ -10,15 +10,15 @@ import static org.testng.Assert.assertEquals;
 public class CommandLineAnalystTest {
 
     @DataProvider
-    public static Object[] inputWithExactly3Characters() {
+    public static Object[] inputWithExactly4Characters() {
         return new Object[]{
-                "q s d",
-                " a   z      g  "
+                "q s d w",
+                " a   z      g     y"
         };
     }
 
-    @Test(dataProvider = "inputWithExactly3Characters")
-    public void userCanModifyDefaultNavigationKeysProviding3CharactersSeparatedBySpaces(String input){
+    @Test(dataProvider = "inputWithExactly4Characters")
+    public void userCanModifyDefaultNavigationKeysProviding4CharactersSeparatedBySpaces(String input){
         //given
         char[] providedKeys = extractKeysFromInput(input);
 
@@ -28,7 +28,7 @@ public class CommandLineAnalystTest {
         //then
         assertEquals(navigationKeys, providedKeys, String.join("\n",
                 "Navigation keys should have been modified but were not",
-                "when providing 3 characters separated by spaces within the quotes \" \"."));
+                "when providing 4 characters separated by spaces within the quotes \" \"."));
     }
 
     private char[] extractKeysFromInput(String arg0) {
@@ -63,8 +63,8 @@ public class CommandLineAnalystTest {
         return new Object[]{
                 "a",
                 "a s",
-                "a s d f",
-                "a s d f g"
+                "a s d f g",
+                "a s d f g h"
         };
     }
 
@@ -80,9 +80,10 @@ public class CommandLineAnalystTest {
     @DataProvider
     public static Object[] inputWithNonCharacterValues() {
         return new Object[]{
-                "aa s d",
-                "a s dd",
-                "aa ss dd"
+                "aa s d f",
+                "a ss d f",
+                "a s dd f",
+                "aa ss dd ff"
         };
     }
 
@@ -98,10 +99,10 @@ public class CommandLineAnalystTest {
     @DataProvider
     public static Object[] inputWithRepeatingKeys() {
         return new Object[]{
-                "a a a",
-                "a a s",
-                "a s a",
-                "s a a"
+                "a a a a",
+                "a a s s",
+                "a s a s",
+                "s a a a"
         };
     }
 
