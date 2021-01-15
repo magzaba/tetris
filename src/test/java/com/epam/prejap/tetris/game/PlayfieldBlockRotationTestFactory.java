@@ -7,11 +7,10 @@ public class PlayfieldBlockRotationTestFactory {
     @Factory
     public Object[] factoryMethod() {
         return new Object[]{
-                new PlayfieldBlockRotationTest(PlayfieldBlockRotations.lBlock()),
-                new PlayfieldBlockRotationTest(PlayfieldBlockRotations.oBlock()),
+                new PlayfieldBlockRotationTest(TestPlayfieldBlockRotations.lBlock()),
+                new PlayfieldBlockRotationTest(TestPlayfieldBlockRotations.oBlock()),
         };
     }
-
 
 
 }
