@@ -1,5 +1,7 @@
 # Tetris: A Java/Git exercise
 
+To run: mvn verify; java --enable-preview -jar target/tetris.jar
+
 ## Summary
 
 This repository contains a basic implementation of a Tetris-like game.
