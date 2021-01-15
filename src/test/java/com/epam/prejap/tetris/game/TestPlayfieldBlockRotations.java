@@ -1,7 +1,7 @@
 package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.BlockFeed;
-import com.epam.prejap.tetris.block.MockBlockFeed;
+import com.epam.prejap.tetris.block.TestMockBlockFeed;
 
 record TestPlayfieldBlockRotations(BlockFeed mockBlockfeed,
                                    Object[][] blockRotationsOnGrid,
@@ -141,7 +141,7 @@ record TestPlayfieldBlockRotations(BlockFeed mockBlockfeed,
 
     static TestPlayfieldBlockRotations lBlock() {
         return new TestPlayfieldBlockRotations(
-                MockBlockFeed.lBlockFeed(),
+                TestMockBlockFeed.lBlockFeed(),
                 L_BLOCK_ROTATIONS_ON_GRID,
                 GRID_ROWS,
                 GRID_COLUMNS
@@ -150,7 +150,7 @@ record TestPlayfieldBlockRotations(BlockFeed mockBlockfeed,
 
     static TestPlayfieldBlockRotations oBlock() {
         return new TestPlayfieldBlockRotations(
-                MockBlockFeed.oBlockFeed(),
+                TestMockBlockFeed.oBlockFeed(),
                 O_BLOCK_ROTATIONS_ON_GRID,
                 GRID_ROWS,
                 GRID_COLUMNS
