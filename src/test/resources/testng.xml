@@ -56,7 +56,7 @@
             <class name="com.epam.prejap.tetris.game.PlayfieldTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
             <class name="com.epam.prejap.tetris.game.RefereeTest"/>
-            <class name="com.epam.prejap.tetris.block.Color"/>
+            <class name="com.epam.prejap.tetris.block.ColorTest"/>
             <class name="com.epam.prejap.tetris.data.HallOfFameMemberTest"/>
             <class name="com.epam.prejap.tetris.data.HallOfFameTest"/>
         </classes>
