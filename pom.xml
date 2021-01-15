@@ -16,9 +16,11 @@
         <version.plugin.maven.jar>3.2.0</version.plugin.maven.jar>
         <version.plugin.maven.surefire>3.0.0-M5</version.plugin.maven.surefire>
         <version.plugin.maven.failsafe>3.0.0-M5</version.plugin.maven.failsafe>
+        <version.plugin.maven.compiler>3.8.1</version.plugin.maven.compiler>
         <!-- dependencies versions -->
         <version.testng>7.3.0</version.testng>
         <version.mockito>3.2.4</version.mockito>
+        <version.jacoco>0.8.6</version.jacoco>
     </properties>
 
     <dependencies>
@@ -87,18 +89,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${version.plugin.maven.compiler}</version>
                 <configuration>
-                    <compilerArgs>
-                        <arg>--enable-preview</arg>
-                    </compilerArgs>
+                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.6</version>
+                <version>${version.jacoco}</version>
                 <executions>
                     <execution>
                         <goals>
