@@ -19,11 +19,13 @@
                 <include name="Timer"/>
                 <include name="Grid"/>
                 <include name="Playfield"/>
+                <include name="Referee"/>
                 <include name="BlockRotationInGame" />
             </define>
             <run>
                 <include name="Block"/>
                 <include name="Score"/>
+                <include name="Waiter"/>
                 <include name="Player"/>
                 <include name="NavigationKeys"/>
                 <include name="Game"/>
@@ -44,6 +46,8 @@
             <class name="com.epam.prejap.tetris.block.BlockFeedTestFactory"/>
             <class name="com.epam.prejap.tetris.game.PlayfieldTest"/>
             <class name="com.epam.prejap.tetris.player.RandomPlayerTest"/>
+            <class name="com.epam.prejap.tetris.game.RefereeTest"/>
+            <class name="com.epam.prejap.tetris.game.WaiterTest"/>
             <class name="com.epam.prejap.tetris.game.MoveTest"/>
             <class name="com.epam.prejap.tetris.CommandLineAnalystTest"/>
             <class name="com.epam.prejap.tetris.game.PrinterTest"/>
@@ -51,7 +55,7 @@
             <class name="com.epam.prejap.tetris.game.PlayfieldTest"/>
             <class name="com.epam.prejap.tetris.game.TimerTest"/>
             <class name="com.epam.prejap.tetris.game.RefereeTest"/>
-            <class name="com.epam.prejap.tetris.block.Color"/>
+            <class name="com.epam.prejap.tetris.block.ColorTest"/>
             <class name="com.epam.prejap.tetris.block.BlockRotationTestFactory"/>
             <class name="com.epam.prejap.tetris.game.PlayfieldBlockRotationTestFactory"/>
         </classes>
