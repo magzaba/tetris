@@ -69,7 +69,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${version.plugin.maven.failsafe}</version>
                 <configuration>
-                    <argLine>-DoutputPath=${project.build.directory}/${project.build.finalName}.jar</argLine>
+                    <argLine>--enable-preview -DoutputPath=${project.build.directory}/${project.build.finalName}.jar</argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/integration_testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
