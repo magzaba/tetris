@@ -58,7 +58,9 @@ public class PlayfieldBlockRotationTest {
                 ANSI_COLOR_ESCAPE_CODES
                         .matcher(OUTPUT.toString())
                         .replaceAll("")
-                        .contains(expectedGrid)
+                        .contains(expectedGrid),
+                String.format("%s should have been rotated after pressing UP %s times, but was not.",
+                        mockBlockFeed.nextBlock().getClass().getSimpleName(), timesUPKeyIsPressed.name().toLowerCase())
         );
     }
 

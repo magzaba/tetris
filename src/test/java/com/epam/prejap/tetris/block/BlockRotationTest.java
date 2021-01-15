@@ -38,9 +38,10 @@ public class BlockRotationTest {
         for (int i = 0; i < rotatedBlock.rows(); i++) {
             for (int j = 0; j < rotatedBlock.cols(); j++) {
                 assertEquals(rotatedBlock.dotAt(i, j), expectedRotatedImage[i][j],
-                        "Block image should have been rotated but was not");
+                        String.format("%s image should have been rotated by %s degrees, but does not.",
+                                block.getClass().getSimpleName(), degree.name().toLowerCase()));
+
             }
-            System.out.println();
         }
     }
 
