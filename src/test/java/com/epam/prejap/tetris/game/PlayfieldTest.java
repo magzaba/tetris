@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -29,7 +28,6 @@ public class PlayfieldTest {
     private Grid grid;
     private Playfield playfield;
 
-
     @BeforeMethod
     public void setUp() {
         int cols = 20;
@@ -37,12 +35,7 @@ public class PlayfieldTest {
         playfield = new Playfield(feed, printer, grid, List.of(referee));
     }
 
-    @DataProvider
-    public Object[] moveValues() {
-        return Move.values();
-    }
-
-    @Test(groups = "Playfield", dataProvider = "moveValues", invocationCount = 5)
+    @Test(groups = "Playfield", dataProvider = "arrayOfTestedMoves", invocationCount = 5)
     public void givenEmptyGrid_moveCalledProperAmountOfTimes(Move move) {
         playfield.nextBlock();
         int blockStart = 0;
@@ -86,11 +79,8 @@ public class PlayfieldTest {
     }
 
     @DataProvider
-    public Object[][] arrayOfTestedMoves() {
-        var amtOfIterations = 15;
-        Move[] testedMoves = new Move[]{Move.NONE, Move.LEFT, Move.RIGHT,Move.DOWN};
-        var amtOfTestedMoves = testedMoves.length;
-        return IntStream.rangeClosed(0, amtOfIterations).mapToObj(i -> new Object[]{testedMoves[i % amtOfTestedMoves]}).toArray(Object[][]::new);
+    public Object[] arrayOfTestedMoves() {
+        return new Move[]{Move.NONE, Move.LEFT, Move.RIGHT, Move.DOWN};
     }
 
     @Test(groups = "Score")

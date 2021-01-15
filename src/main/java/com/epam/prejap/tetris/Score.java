@@ -1,3 +1,15 @@
 package com.epam.prejap.tetris;
 
-public record Score(int points) {}
+class Score {
+
+    private final int points;
+
+    public Score(int points) {
+        this.points = points;
+    }
+
+    int points() {
+        return points;
+    }
+
+}

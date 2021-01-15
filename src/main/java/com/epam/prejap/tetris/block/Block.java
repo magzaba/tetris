@@ -3,6 +3,7 @@ package com.epam.prejap.tetris.block;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public abstract class Block implements Iterable<Block> {
 
@@ -69,7 +70,7 @@ public abstract class Block implements Iterable<Block> {
      * @author Madgalena Żaba
      */
     public int lowestOccupiedRowInColumn(int col){
-        return IntStream.range(0,rows).filter(i->dotAt(i,col)>0).max().getAsInt();
+        return IntStream.range(0,rows()).filter(i->dotAt(i,col)>0).max().getAsInt();
     }
 
     public byte getColorId() {
