@@ -1,5 +1,7 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.List;
+
 /**
  * The LBlock class represents block shape of "L" in tetris game.
  *
@@ -9,22 +11,37 @@ package com.epam.prejap.tetris.block;
  */
 final class LBlock extends Block {
 
-    private static final byte[][] IMAGE = {
-            {1, 0},
-            {1, 0},
-            {1, 1},
-    };
+    private static final List<byte[][]> IMAGES = List.of(
+            new byte[][]{
+                    {1, 0},
+                    {1, 0},
+                    {1, 1},
+            },
+            new byte[][]{
+                    {1, 1, 1},
+                    {1, 0, 0},
+            },
+            new byte[][]{
+                    {1, 1},
+                    {0, 1},
+                    {0, 1},
+            },
+            new byte[][]{
+                    {0, 0, 1},
+                    {1, 1, 1},
+            }
+    );
 
     LBlock() {
-        super(IMAGE, Color.RED);
+        super(IMAGES, Color.RED);
     }
 
-    private LBlock(byte[][] image, Color color) {
-        super(image, color);
+    private LBlock(List<byte[][]> image, Color color, int imageIndex) {
+        super(image, color, imageIndex);
     }
 
     @Override
-    Block copyWithImage(byte[][] image) {
-        return new LBlock(image, this.color);
+    Block copyWithImageIndex(int imageIndex) {
+        return new LBlock(this.images, this.color, imageIndex);
     }
 }

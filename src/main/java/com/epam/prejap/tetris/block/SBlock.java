@@ -1,5 +1,7 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.List;
+
 /**
  * The class represents S-shaped block:
  * <pre> ##<br/>## </pre>
@@ -8,21 +10,37 @@ package com.epam.prejap.tetris.block;
  */
 final class SBlock extends Block {
 
-    private static final byte[][] IMAGE = {
-            {0, 1, 1},
-            {1, 1, 0},
-    };
+    private static final List<byte[][]> IMAGES = List.of(
+            new byte[][]{
+                    {0, 1, 1},
+                    {1, 1, 0},
+            },
+            new byte[][]{
+                    {1, 0},
+                    {1, 1},
+                    {0, 1},
+            },
+            new byte[][]{
+                    {0, 1, 1},
+                    {1, 1, 0},
+            },
+            new byte[][]{
+                    {1, 0},
+                    {1, 1},
+                    {0, 1},
+            }
+    );
 
     public SBlock() {
-        super(IMAGE, Color.MAGENTA);
+        super(IMAGES, Color.MAGENTA);
     }
 
-    private SBlock(byte[][] image, Color color) {
-        super(image, color);
+    private SBlock(List<byte[][]> image, Color color, int imageIndex) {
+        super(image, color, imageIndex);
     }
 
     @Override
-    Block copyWithImage(byte[][] image) {
-        return new SBlock(image, this.color);
+    Block copyWithImageIndex(int imageIndex) {
+        return new SBlock(this.images, this.color, imageIndex);
     }
 }

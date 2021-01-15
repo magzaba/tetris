@@ -2,7 +2,6 @@ package com.epam.prejap.tetris.game;
 
 import com.epam.prejap.tetris.block.ArrayPoint;
 import com.epam.prejap.tetris.block.BlockFeed;
-import com.epam.prejap.tetris.block.RotatableBlock;
 
 public class Playfield {
 

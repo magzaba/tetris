@@ -1,62 +1,99 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
-public abstract class Block {
+public abstract class Block implements Iterable<Block> {
 
-    final byte[][] image;
-    final int rows;
-    final int cols;
+    private final static int INITIAL_IMAGE_INDEX = 0;
+
+    final int imageIndex;
+    final List<byte[][]> images;
     final Color color;
 
-    Block(byte[][] dots, Color color) {
+    Block(List<byte[][]> images, Color color, int imageIndex) {
+        for (byte[][] image : images) {
+            checkImageDimensions(image);
+        }
+        this.imageIndex = imageIndex;
+        this.images = images;
         this.color = color;
-        rows = dots.length;
-        if (dots.length == 0) {
+    }
+
+    Block(List<byte[][]> images, Color color) {
+        this(images, color, INITIAL_IMAGE_INDEX);
+    }
+
+    private byte[][] image() {
+        return images.get(imageIndex);
+    }
+
+    private static void checkImageDimensions(byte[][] image) {
+        int rows = image.length;
+        if (rows == 0) {
             throw new IllegalArgumentException("Image has height equal to 0");
         }
-        cols = dots[0].length;
-        image = new byte[rows][cols];
-        for (int i = 0; i < dots.length; i++) {
-            if (dots[i].length != cols) {
+        int columns = image[0].length;
+        for (int i = 0; i < image.length; i++) {
+            if (image[i].length != columns) {
                 throw new IllegalArgumentException("Image is not a rectangle");
             }
-            for (int j = 0; j < cols; j++) {
-                byte dot = dots[i][j];
+            for (int j = 0; j < columns; j++) {
+                byte dot = image[i][j];
                 if (dot < 0) {
                     throw new IllegalArgumentException("Invalid dot value");
                 }
-                image[i][j] = dot;
             }
         }
     }
 
     public int rows() {
-        return rows;
+        return image().length;
     }
 
     public int cols() {
-        return cols;
+        return image()[0].length;
     }
 
     public byte dotAt(int i, int j) {
-        return image[i][j];
+        return image()[i][j];
     }
 
     public byte getColorId() {
         return Objects.requireNonNullElse(color, Color.BLACK).getId();
     }
 
-    /**
-     * Creates and returns a copy of this object with {@link Block#image}
-     * field changed to the value passed as {@code image} argument.
-     *
-     * @implSpec should create a defensive copy of implementing object's fields.
-     *
-     * @param   image new block image that will be the image of a returned object
-     * @return  a copy of this object with changed {@link Block#image} field,
-     *          returned object also has the same type as this concrete object
-     */
-    abstract Block copyWithImage(byte[][] image);
+    public Block rotate() {
+        var iterator = iterator();
+        iterator.next(); // skip current image
+        return iterator().next();
+    }
 
+    @Override
+    public Iterator<Block> iterator() {
+        return new BlockItr();
+    }
+
+    abstract Block copyWithImageIndex(int imageIndex);
+
+    private final class BlockItr implements Iterator<Block> {
+
+        int cursor = imageIndex;
+
+        @Override
+        public boolean hasNext() {
+            return true;
+        }
+
+        @Override
+        public Block next() {
+            int currentImage = cursor;
+            cursor++;
+            if (cursor >= images.size()) {
+                cursor = 0;
+            }
+            return copyWithImageIndex(currentImage);
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.List;
+
 /**
  * O-shaped block implementation of the {@link Block} abstract class.
  * <br>
@@ -10,21 +12,35 @@ package com.epam.prejap.tetris.block;
  */
 final class OBlock extends Block {
 
-    private static final byte[][] IMAGE = {
-        {1, 1},
-        {1, 1},
-    };
+    private static final List<byte[][]> IMAGES = List.of(
+            new byte[][]{
+                    {1, 1},
+                    {1, 1},
+            },
+            new byte[][]{
+                    {1, 1},
+                    {1, 1},
+            },
+            new byte[][]{
+                    {1, 1},
+                    {1, 1},
+            },
+            new byte[][]{
+                    {1, 1},
+                    {1, 1},
+            }
+    );
 
     public OBlock() {
-        super(IMAGE, Color.BLUE);
+        super(IMAGES, Color.BLUE);
     }
 
-    private OBlock(byte[][] image, Color color) {
-        super(image, color);
+    private OBlock(List<byte[][]> image, Color color, int imageIndex) {
+        super(image, color, imageIndex);
     }
 
     @Override
-    Block copyWithImage(byte[][] image) {
-        return new OBlock(image, this.color);
+    Block copyWithImageIndex(int imageIndex) {
+        return new OBlock(this.images, this.color, imageIndex);
     }
 }

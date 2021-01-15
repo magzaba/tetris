@@ -1,5 +1,7 @@
 package com.epam.prejap.tetris.block;
 
+import java.util.List;
+
 /**
  * Z-shaped block implementation of the {@link Block} class.
  *
@@ -10,21 +12,37 @@ package com.epam.prejap.tetris.block;
  */
 final class ZBlock extends Block {
 
-    private static final byte[][] IMAGE = {
-            {1, 1, 0},
-            {0, 1, 1},
-    };
+    private static final List<byte[][]> IMAGES = List.of(
+            new byte[][]{
+                    {1, 1, 0},
+                    {0, 1, 1},
+            },
+            new byte[][]{
+                    {0, 1},
+                    {1, 1},
+                    {1, 0},
+            },
+            new byte[][]{
+                    {1, 1, 0},
+                    {0, 1, 1},
+            },
+            new byte[][]{
+                    {0, 1},
+                    {1, 1},
+                    {1, 0},
+            }
+    );
 
     ZBlock() {
-        super(IMAGE, Color.CYAN);
+        super(IMAGES, Color.CYAN);
     }
 
-    private ZBlock(byte[][] image, Color color) {
-        super(image, color);
+    private ZBlock(List<byte[][]> image, Color color, int imageIndex) {
+        super(image, color, imageIndex);
     }
 
     @Override
-    Block copyWithImage(byte[][] image) {
-        return new ZBlock(image, this.color);
+    Block copyWithImageIndex(int imageIndex) {
+        return new ZBlock(this.images, this.color, imageIndex);
     }
 }
