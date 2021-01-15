@@ -22,6 +22,10 @@ public class TestMockBlockFeed extends BlockFeed {
         return new TestMockBlockFeed(OBlock::new);
     }
 
+    public static BlockFeed zBlockFeed() {
+        return new TestMockBlockFeed(ZBlock::new);
+    }
+
     private TestMockBlockFeed(Supplier<Block> blockSupplier) {
         this.blockSupplier = blockSupplier;
     }
