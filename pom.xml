@@ -17,6 +17,7 @@
         <version.plugin.maven.surefire>3.0.0-M5</version.plugin.maven.surefire>
         <version.plugin.maven.failsafe>3.0.0-M5</version.plugin.maven.failsafe>
         <version.plugin.maven.compiler>3.8.1</version.plugin.maven.compiler>
+        <version.plugin.maven.shade>3.2.4</version.plugin.maven.shade>
         <!-- dependencies versions -->
         <version.testng>7.3.0</version.testng>
         <version.mockito>3.2.4</version.mockito>
@@ -47,7 +48,6 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -118,6 +118,27 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${version.plugin.maven.shade}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.epam.prejap.tetris.Tetris</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
