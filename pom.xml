@@ -92,8 +92,6 @@
                 <version>${version.plugin.maven.compiler}</version>
                 <configuration>
                     <compilerArgs>--enable-preview</compilerArgs>
-                    <source>${project.java.version}</source>
-                    <target>${project.java.version}</target>
                 </configuration>
             </plugin>
 
