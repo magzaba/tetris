@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-@Test(groups = "Playfield")
+@Test(groups = "Playfield", dependsOnGroups ="BlockFeed" )
 public class PlayfieldTest {
 
     private final static String SCORE_REGEX = "Score: \\d";
